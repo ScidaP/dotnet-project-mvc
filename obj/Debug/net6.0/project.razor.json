@@ -16298,16 +16298,6 @@
   "RootNamespace": "Tp4MvcNuevo",
   "Documents": [
     {
-      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\HolaMundo\\ManejarDatos.cshtml",
-      "TargetPath": "Views\\HolaMundo\\ManejarDatos.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\HolaMundo\\Index.cshtml",
-      "TargetPath": "Views\\HolaMundo\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
@@ -16315,11 +16305,6 @@
     {
       "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\HolaMundo\\Welcome.cshtml",
-      "TargetPath": "Views\\HolaMundo\\Welcome.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16333,6 +16318,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\HacerPedido.cshtml",
+      "TargetPath": "Views\\Pedidos\\HacerPedido.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
@@ -16340,11 +16330,6 @@
     {
       "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\HolaMundo\\RecibirDatos.cshtml",
-      "TargetPath": "Views\\HolaMundo\\RecibirDatos.cshtml",
       "FileKind": "mvc"
     },
     {

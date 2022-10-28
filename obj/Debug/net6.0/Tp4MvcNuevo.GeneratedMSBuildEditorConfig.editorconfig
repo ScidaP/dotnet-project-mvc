@@ -15,28 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/HolaMundo/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9sYU11bmRvXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/HolaMundo/ManejarDatos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9sYU11bmRvXE1hbmVqYXJEYXRvcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/HolaMundo/RecibirDatos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9sYU11bmRvXFJlY2liaXJEYXRvcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/HolaMundo/Welcome.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9sYU11bmRvXFdlbGNvbWUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/HacerPedido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xIYWNlclBlZGlkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/Error.cshtml]
