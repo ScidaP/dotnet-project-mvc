@@ -59,7 +59,7 @@ namespace Tp4MvcNuevo.Models {
         internal List<Pedido> ListaPedidos1 { get => ListaPedidos; set => ListaPedidos = value; }
     }
 
-        class Cadeteria {
+    class Cadeteria {
         private string nombre;
         private long telefono;
         private List<Cadete> ListaCadetes;

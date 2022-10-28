@@ -12,6 +12,7 @@ public class PedidosController : Controller
 
     [HttpPost]
     public IActionResult PedidoAgregado(int numero, string obs, string estado) {
+        Pedido nuevoPedido = new Pedido(numero, obs, estado, null);
         return View();
     }
 }
