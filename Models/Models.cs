@@ -76,9 +76,9 @@ namespace Tp4MvcNuevo.Models {
     }
     class Pedido {
         private int numero;
-        private string obs;
-        private Cliente datosCliente;
-        private string estado;
+        private string? obs;
+        private Cliente? datosCliente;
+        private string? estado;
 
         public Pedido(int numero, string obs, string estado, Cliente datosCliente) {
             Numero = numero;
