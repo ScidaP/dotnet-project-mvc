@@ -24,3 +24,5 @@ D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNu
 D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\obj\Debug\net6.0\Tp4MvcNuevo.pdb
 D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\obj\Debug\net6.0\Tp4MvcNuevo.genruntimeconfig.cache
 D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\obj\Debug\net6.0\ref\Tp4MvcNuevo.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\CsvHelper.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\obj\Debug\net6.0\Tp4MvcNuevo.csproj.CopyComplete

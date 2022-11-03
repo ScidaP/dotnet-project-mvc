@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uu9vN1tDI4DcdWgT9uAxQdBKXxNOEh5YWn4cRfQ6TOGKcYe8JYgw7PgpwgQfcKMlI9R+iP1OxtJoVi78yAsmCA==",
+  "dgSpecHash": "FE3YCGrQnnnLpuaM0VmqukAC7GGN6/Vi/+dkws1X+itw0wngf3yNsphF26z90PJRHUdqmDLe+0XcZiRXZ2jz2Q==",
   "success": true,
   "projectFilePath": "D:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Tp4MvcNuevo.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Patrik\\.nuget\\packages\\csvhelper\\30.0.0\\csvhelper.30.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

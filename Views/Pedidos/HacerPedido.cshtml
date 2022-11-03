@@ -6,6 +6,7 @@
     <h1 class="display-4">Hacer Pedidos</h1>
 </div>
 <form asp-controller="Pedidos" asp-action="PedidoAgregado" method="POST" class="w-25">
+    <h2>Datos Pedido</h2>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Numero Pedido</span>
         <input type="text" class="form-control" placeholder="numero" aria-label="numero" aria-describedby="basic-addon1" name="numero">
@@ -18,5 +19,15 @@
         <span class="input-group-text" id="basic-addon1">Estado Pedido</span>
         <input type="text" class="form-control" placeholder="estado" aria-label="estado" aria-describedby="basic-addon1" name="estado">
     </div>
+    <h2>Datos Cliente</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre</span>
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="estado" aria-describedby="basic-addon1" name="nombreCliente">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Apellido</span>
+        <input type="text" class="form-control" placeholder="Apellido" aria-label="estado" aria-describedby="basic-addon1" name="apellidoCliente">
+    </div>
+    <h2>Datos Cadete</h2>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

@@ -12,11 +12,22 @@ namespace Tp4MvcNuevo.Models {
         private string? direccion;
         private long? telefono;
 
-        public Persona(int id, string nombre, string direccion, long telefono) {
-            Id = id;
+        static private int incremental = 0;
+
+        public Persona(string nombre, string direccion, long telefono) {
+            Id = incremental;
             Nombre = nombre;
             Direccion = direccion;
             Telefono = telefono;
+            incremental++;
+        }
+
+        public Persona(string nombre, string apellido) {
+            Id = incremental;
+            Nombre = nombre + " " + apellido;
+            Direccion = null;
+            Telefono = null;
+            incremental++;
         }
 
         public virtual void MostrarDatos() {
@@ -35,9 +46,13 @@ namespace Tp4MvcNuevo.Models {
     class Cliente : Persona {
         private string? referenciasDireccion;
 
-        public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(id, nombre, direccion, telefono) {
+        public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
             ReferenciasDireccion = referenciasDireccion;
-        } 
+        }
+
+        public Cliente(string nombre, string apellido) : base(nombre, apellido) {
+            ReferenciasDireccion = null;
+        }
 
         public string? ReferenciasDireccion { get => referenciasDireccion; set => referenciasDireccion = value; }
     }
@@ -46,7 +61,7 @@ namespace Tp4MvcNuevo.Models {
         private List<Pedido>? ListaPedidos;
         private double? TotalACobrar;
 
-        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1, List<Pedido> listaPedidos1) : base(id, nombre, direccion, telefono) {
+        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1, List<Pedido> listaPedidos1) : base(nombre, direccion, telefono) {
             TotalACobrar1 = totalACobrar1;
             ListaPedidos1 = listaPedidos1;
         }
