@@ -40,10 +40,6 @@ public class PedidosController : Controller
 
     private static void LoadCadetes(List<Cadete> lista) { // no lee bien
         string nombreArchivoCadetes = "datosCadetes.csv";
-        using (var reader = new StreamReader("bin\\Debug\\net6.0\\" + nombreArchivoCadetes)) {
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)) {
-                var registros = csv.GetRecords<Cadete>();
-            }
-        }
+        string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
     }
 }
