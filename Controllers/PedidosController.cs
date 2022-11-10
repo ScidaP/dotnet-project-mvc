@@ -41,5 +41,6 @@ public class PedidosController : Controller
     private static void LoadCadetes(List<Cadete> lista) { // no lee bien
         string nombreArchivoCadetes = "datosCadetes.csv";
         string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
+    
     }
 }

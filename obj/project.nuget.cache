@@ -1,10 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "FE3YCGrQnnnLpuaM0VmqukAC7GGN6/Vi/+dkws1X+itw0wngf3yNsphF26z90PJRHUdqmDLe+0XcZiRXZ2jz2Q==",
+  "dgSpecHash": "AfgGUxgnhFp8oHL0sze2UWW2qM8b2cXLzrugl8xmZSaxnO5l/Stc48Q15mc1XWN9yO7+hdiAq6KE24Vpj7J22Q==",
   "success": true,
-  "projectFilePath": "D:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Tp4MvcNuevo.csproj",
+  "projectFilePath": "E:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Tp4MvcNuevo.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Patrik\\.nuget\\packages\\csvhelper\\30.0.0\\csvhelper.30.0.0.nupkg.sha512"
+    "C:\\Users\\patri\\.nuget\\packages\\csvhelper\\30.0.0\\csvhelper.30.0.0.nupkg.sha512",
+    "C:\\Users\\patri\\.nuget\\packages\\linqtocsv\\1.5.0\\linqtocsv.1.5.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "El paquete \"LINQtoCSV 1.5.0\" se restauró con \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" en lugar de la plataforma de destino del proyecto \"net6.0\". Puede que el paquete no sea totalmente compatible con el proyecto.",
+      "libraryId": "LINQtoCSV",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
