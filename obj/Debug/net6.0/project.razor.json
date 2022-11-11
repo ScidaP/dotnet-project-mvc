@@ -16313,6 +16313,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\EliminarPedido.cshtml",
+      "TargetPath": "Views\\Pedidos\\EliminarPedido.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\HacerPedido.cshtml",
       "TargetPath": "Views\\Pedidos\\HacerPedido.cshtml",
       "FileKind": "mvc"

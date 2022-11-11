@@ -26,7 +26,7 @@ public class PedidosController : Controller
     public IActionResult PedidoAgregado(int numero, string obs, string estado, string nombreCliente, string apellidoCliente, string nombreCadete) {
         Cliente nuevoCliente = new Cliente(nombreCliente, apellidoCliente);
         Pedido nuevoPedido = new Pedido(numero, obs, estado, nuevoCliente);
-        Cadete buscarCadete = ListaCadetes.Find(cad => cad.Nombre.Contains(nombreCadete));
+        Cadete? buscarCadete = ListaCadetes.Find(cad => cad.Nombre.Contains(nombreCadete));
         if (buscarCadete != null) { // Si se encontró el cadete, entonces le agrego el pedido
             buscarCadete.ListaPedidos1.Add(nuevoPedido);
         }
@@ -41,8 +41,19 @@ public class PedidosController : Controller
     public IActionResult PedidoAgregado() {
         return View();
     }
+    [HttpGet]
+    public IActionResult EliminarPedido(int id) {
+        var pedidoBuscado = ListaPedidos.Find(pedido => pedido.Numero.Equals(id));
+        if (pedidoBuscado == null) {
+            // Mostrar mensaje de error
+        } else {
+            ListaPedidos.Remove(pedidoBuscado);
+        }
+        ViewData["idPedidoEliminado"] = id;
+        return View();
+    }
 
-    private static void LoadCadetes(List<Cadete> lista) { // no lee bien
+    private static void LoadCadetes(List<Cadete> lista) {
         string nombreArchivoCadetes = "datosCadetes.csv";
         string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
         var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
