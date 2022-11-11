@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LINQtoCSV;
 
 namespace Tp4MvcNuevo.Models {
 
@@ -37,13 +36,9 @@ namespace Tp4MvcNuevo.Models {
             Console.WriteLine("Direccion: " + Direccion);
             Console.WriteLine("Telefono: " + Telefono);
         }
-        [CsvColumn(name = "id")]
         public int Id { get => id; set => id = value; }
-        [CsvColumn(name = "nombre")]
         public string? Nombre { get => nombre; set => nombre = value; }
-        [CsvColumn(name = "direccion")]
         public string? Direccion { get => direccion; set => direccion = value; }
-        [CsvColumn(name = "telefono")]
         public long? Telefono { get => telefono; set => telefono = value; }
     }
 
@@ -65,16 +60,15 @@ namespace Tp4MvcNuevo.Models {
         private List<Pedido>? ListaPedidos;
         private double? TotalACobrar;
 
-        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1, List<Pedido> listaPedidos1) : base(nombre, direccion, telefono) {
+        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1) : base(nombre, direccion, telefono) {
             TotalACobrar1 = totalACobrar1;
-            ListaPedidos1 = listaPedidos1;
+            ListaPedidos1 = new List<Pedido>();
         }
 
         public override void MostrarDatos() {
             base.MostrarDatos(); 
             Console.WriteLine("Total a Cobrar: " + TotalACobrar1);
         }
-        [CsvColumn(name = "totalACobrar")]
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
         internal List<Pedido>? ListaPedidos1 { get => ListaPedidos; set => ListaPedidos = value; }
     }

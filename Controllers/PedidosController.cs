@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CsvHelper;
 using System.Globalization;
+using System.Text;
 
 namespace Tp4MvcNuevo.Controllers;
 
@@ -23,9 +23,13 @@ public class PedidosController : Controller
     }
 
     [HttpPost]
-    public IActionResult PedidoAgregado(int numero, string obs, string estado, string nombreCliente, string apellidoCliente) {
+    public IActionResult PedidoAgregado(int numero, string obs, string estado, string nombreCliente, string apellidoCliente, string nombreCadete) {
         Cliente nuevoCliente = new Cliente(nombreCliente, apellidoCliente);
         Pedido nuevoPedido = new Pedido(numero, obs, estado, nuevoCliente);
+        Cadete buscarCadete = ListaCadetes.Find(cad => cad.Nombre.Contains(nombreCadete));
+        if (buscarCadete != null) { // Si se encontró el cadete, entonces le agrego el pedido
+            buscarCadete.ListaPedidos1.Add(nuevoPedido);
+        }
         ListaPedidos.Add(nuevoPedido);
         return View();
     }
@@ -41,6 +45,11 @@ public class PedidosController : Controller
     private static void LoadCadetes(List<Cadete> lista) { // no lee bien
         string nombreArchivoCadetes = "datosCadetes.csv";
         string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
-    
+        var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
+        foreach (var linea in datos.Skip(1)) {
+            var col = linea.Split(';');
+            Cadete nuevoCadete = new Cadete(Convert.ToInt32(col[0]), col[1], col[2], Convert.ToInt64(col[3]), Convert.ToDouble(col[4]));
+            lista.Add(nuevoCadete);
+        }
     }
 }
