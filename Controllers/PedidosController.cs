@@ -35,6 +35,9 @@ public class PedidosController : Controller
     }
 
     public IActionResult ListarPedidos() {
+        ListarPedidosViewModels ViewModel = new ListarPedidosViewModels();
+        ViewModel.pedidos = ListaPedidos;
+        ViewModel.cadetes = ListaCadetes;
         return View(ListaPedidos);
     }
 
