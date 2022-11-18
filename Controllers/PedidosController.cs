@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 using System.Text;
+using Tp4MvcNuevo.ViewModels;
 
 namespace Tp4MvcNuevo.Controllers;
 
@@ -16,6 +17,8 @@ public class PedidosController : Controller
     internal static List<Pedido> ListaPedidos = new List<Pedido>();
     internal static List<Cliente> ListaClientes = new List<Cliente>();
     internal static List<Cadete> ListaCadetes = new List<Cadete>();
+
+    internal static int contadorPedidos = 0;
     
     public IActionResult HacerPedido() {
         LoadCadetes(ListaCadetes);
@@ -23,9 +26,9 @@ public class PedidosController : Controller
     }
 
     [HttpPost]
-    public IActionResult PedidoAgregado(int numero, string obs, string estado, string nombreCliente, string apellidoCliente, string nombreCadete) {
+    public IActionResult PedidoAgregado(string obs, string estado, string nombreCliente, string apellidoCliente, string nombreCadete) {
         Cliente nuevoCliente = new Cliente(nombreCliente, apellidoCliente);
-        Pedido nuevoPedido = new Pedido(numero, obs, estado, nuevoCliente);
+        Pedido nuevoPedido = new Pedido(contadorPedidos++, obs, estado, nuevoCliente);
         Cadete? buscarCadete = ListaCadetes.Find(cad => cad.Nombre.Contains(nombreCadete));
         if (buscarCadete != null) { // Si se encontró el cadete, entonces le agrego el pedido
             buscarCadete.ListaPedidos1.Add(nuevoPedido);
@@ -35,10 +38,8 @@ public class PedidosController : Controller
     }
 
     public IActionResult ListarPedidos() {
-        ListarPedidosViewModels ViewModel = new ListarPedidosViewModels();
-        ViewModel.pedidos = ListaPedidos;
-        ViewModel.cadetes = ListaCadetes;
-        return View(ListaPedidos);
+        ListarPedidosViewModels ViewModel = new ListarPedidosViewModels(ListaPedidos, ListaCadetes);
+        return View(ViewModel);
     }
 
     public IActionResult PedidoAgregado() {

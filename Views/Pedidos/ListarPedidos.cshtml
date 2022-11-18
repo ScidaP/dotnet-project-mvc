@@ -1,4 +1,4 @@
-@model List<Tp4MvcNuevo.ViewModels.ListarPedidosViewModel>
+@model Tp4MvcNuevo.ViewModels.ListarPedidosViewModels;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,7 +9,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col"> Numero de Turno </th>
+            <th scope="col"> Numero de Pedido </th>
             <th scope="col"> Obs </th>
             <th scope="col"> Estado </th>
             <th scope="col"> Cliente </th>
@@ -18,7 +18,7 @@
     </thead>
     <tbody>
         
-            @foreach (var item in Model)
+            @foreach (var item in Model.pedidos)
             {
             <tr>
                 <td scope="row"> @item.Numero </td>

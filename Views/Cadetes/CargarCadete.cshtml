@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hacer Pedidos</h1>
+</div>
+<form asp-controller="Cadetes" asp-action="CadeteAgregado" method="POST" class="w-50 mx-auto">
+    <h2>Datos Cadete:</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre</span>
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" name="nombre">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Dirección</span>
+        <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" name="direccion">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Teléfono</span>
+        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1" name="telefono">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Sueldo</span>
+        <input type="text" class="form-control" placeholder="Sueldo" aria-label="Sueldo" aria-describedby="basic-addon1" name="sueldo">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
