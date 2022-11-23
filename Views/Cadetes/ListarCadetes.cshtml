@@ -1,0 +1,33 @@
+@model List<Tp4MvcNuevo.Models.Cadete>;
+
+<div class="text-center">
+    <h1 class="display-4">Listar Cadetes</h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Dirección </th>
+            <th scope="col"> Teléfono </th>
+            <th scope="col"> Sueldo </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td scope="row"> @item.Id </td>
+                <td> @item.Nombre </td>
+                <td> @item.Direccion</td>
+                <td> @item.Telefono</td>
+                <td> @item.TotalACobrar1</td>
+                <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Id">Eliminar</a></td>
+            </tr>    
+            }
+
+            <a  asp-controller="Pedidos" asp-action="ListarPedidos"> Refrescar </a>
+    </tbody>
+    
+</table>

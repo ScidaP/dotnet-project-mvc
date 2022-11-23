@@ -20,13 +20,17 @@ public class CadetesController : Controller {
         cargarCadeteCSV(crearLinea(nuevoCadete));
         return View();
     }
+
+    public IActionResult ListarCadetes() {
+        LoadCadetes(ListaCadetes);
+        return View(ListaCadetes);
+    }
     
     private static int GetIndexCadetes() {
         string nombreArchivoCadetes = "datosCadetes.csv";
         string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
-        var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
-        int index = datos.Count + 1;
-        return index;
+        var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).Length;
+        return datos;
     }
 
     private static string crearLinea(Cadete cad) { //Recibe datos y devuelve una línea concatenada (es para agregar la línea al CSV)
@@ -36,5 +40,16 @@ public class CadetesController : Controller {
 
     private static void cargarCadeteCSV(string linea) {
         System.IO.File.AppendAllText("bin\\Debug\\net6.0\\datosCadetes.csv", linea + Environment.NewLine);
+    }
+
+    private static void LoadCadetes(List<Cadete> lista) {
+        string nombreArchivoCadetes = "datosCadetes.csv";
+        string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
+        var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
+        foreach (var linea in datos.Skip(1)) {
+            var col = linea.Split(';');
+            Cadete nuevoCadete = new Cadete(Convert.ToInt32(col[0]), col[1], col[2], Convert.ToInt64(col[3]), Convert.ToDouble(col[4]));
+            lista.Add(nuevoCadete);
+        }
     }
 }
