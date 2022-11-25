@@ -23,11 +23,11 @@
                 <td> @item.Direccion</td>
                 <td> @item.Telefono</td>
                 <td> @item.TotalACobrar1</td>
-                <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Id">Eliminar</a></td>
+                <td><a class="btn btn-danger btn-sm" href="/Cadetes/EliminarCadete?id=@item.Id">Eliminar</a></td>
             </tr>    
             }
 
-            <a  asp-controller="Pedidos" asp-action="ListarPedidos"> Refrescar </a>
+            <a  asp-controller="Cadetes" asp-action="ListarCadetes"> Refrescar </a>
     </tbody>
     
 </table>

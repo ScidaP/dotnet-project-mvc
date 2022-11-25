@@ -1,3 +1,4 @@
+@model Tp4MvcNuevo.Models.Cadete;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,7 +10,7 @@
     <h2>Datos Cadete:</h2>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre</span>
-        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" name="nombre">
+        <input asp-for="@Model.Nombre" type="text">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Dirección</span>

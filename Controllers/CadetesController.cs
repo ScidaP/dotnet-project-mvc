@@ -25,6 +25,18 @@ public class CadetesController : Controller {
         LoadCadetes(ListaCadetes);
         return View(ListaCadetes);
     }
+
+    [HttpGet]
+    public IActionResult EliminarCadete(int id) {
+        Cadete? cadBuscado = ListaCadetes.Find(cad => cad.Id.Equals(id));
+        if (cadBuscado != null) {
+            ViewData["NombreCadete"] = cadBuscado.Nombre;
+            ListaCadetes.Remove(cadBuscado);
+        } else {
+            ViewData["Error"] = "Error: cadete no encontrado";
+        }
+        return View();
+    }
     
     private static int GetIndexCadetes() {
         string nombreArchivoCadetes = "datosCadetes.csv";
@@ -43,6 +55,7 @@ public class CadetesController : Controller {
     }
 
     private static void LoadCadetes(List<Cadete> lista) {
+        lista.RemoveAll(cad => cad.Id != 0); // Solución temporal para limpiar la lista cada vez qeu se quiere hacer un load
         string nombreArchivoCadetes = "datosCadetes.csv";
         string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
         var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
