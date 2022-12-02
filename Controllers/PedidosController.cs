@@ -19,23 +19,6 @@ public class PedidosController : Controller
     internal static List<Cadete> ListaCadetes = new List<Cadete>();
 
     internal static int contadorPedidos = 0;
-    
-    public IActionResult HacerPedido() {
-        LoadCadetes(ListaCadetes);
-        return View();
-    }
-
-    [HttpPost]
-    public IActionResult PedidoAgregado(string obs, string estado, string nombreCliente, string apellidoCliente, string nombreCadete) {
-        Cliente nuevoCliente = new Cliente(nombreCliente, apellidoCliente);
-        Pedido nuevoPedido = new Pedido(contadorPedidos++, obs, estado, nuevoCliente);
-        Cadete? buscarCadete = ListaCadetes.Find(cad => cad.Nombre.Contains(nombreCadete));
-        if (buscarCadete != null) { // Si se encontró el cadete, entonces le agrego el pedido
-            buscarCadete.ListaPedidos1.Add(nuevoPedido);
-        }
-        ListaPedidos.Add(nuevoPedido);
-        return View();
-    }
 
     public IActionResult ListarPedidos() {
         ListarPedidosViewModels ViewModel = new ListarPedidosViewModels(ListaPedidos, ListaCadetes);
@@ -55,16 +38,5 @@ public class PedidosController : Controller
         }
         ViewData["idPedidoEliminado"] = id;
         return View();
-    }
-
-    private static void LoadCadetes(List<Cadete> lista) {
-        string nombreArchivoCadetes = "datosCadetes.csv";
-        string ruta = "bin\\Debug\\net6.0\\" + nombreArchivoCadetes;
-        var datos = System.IO.File.ReadAllLines(ruta, Encoding.Default).ToList();
-        foreach (var linea in datos.Skip(1)) {
-            var col = linea.Split(';');
-            Cadete nuevoCadete = new Cadete(Convert.ToInt32(col[0]), col[1], col[2], Convert.ToInt64(col[3]), Convert.ToDouble(col[4]));
-            lista.Add(nuevoCadete);
-        }
     }
 }

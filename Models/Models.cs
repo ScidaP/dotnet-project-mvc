@@ -7,13 +7,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Tp4MvcNuevo.Models {
 
-    class Persona {
+    public class Persona {
         private int id;
         private string? nombre;
         private string? direccion;
         private long? telefono;
 
         static private int incremental = 0;
+
+        public Persona(){}
 
         public Persona(string nombre, string direccion, long telefono) {
             Id = incremental;
@@ -48,7 +50,7 @@ namespace Tp4MvcNuevo.Models {
         public long? Telefono { get => telefono; set => telefono = value; }
     }
 
-    class Cliente : Persona {
+    public class Cliente : Persona {
         private string? referenciasDireccion;
 
         public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
@@ -62,11 +64,18 @@ namespace Tp4MvcNuevo.Models {
         public string? ReferenciasDireccion { get => referenciasDireccion; set => referenciasDireccion = value; }
     }
 
-    class Cadete : Persona {
+    public class Cadete : Persona {
         private List<Pedido>? ListaPedidos;
+
+        private int cadeteria;
         private double? TotalACobrar;
 
-        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1) : base(nombre, direccion, telefono) {
+        public Cadete() {
+
+        }
+
+        public Cadete(int id, string nombre, string direccion, long telefono, int cad, double totalACobrar1) : base(nombre, direccion, telefono) {
+            Cadeteria = cad;
             TotalACobrar1 = totalACobrar1;
             ListaPedidos1 = new List<Pedido>();
         }
@@ -77,6 +86,8 @@ namespace Tp4MvcNuevo.Models {
         }
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
         internal List<Pedido>? ListaPedidos1 { get => ListaPedidos; set => ListaPedidos = value; }
+
+        public int Cadeteria {get => cadeteria; set => cadeteria = value; }
     }
 
     class Cadeteria {
