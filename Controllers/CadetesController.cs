@@ -21,6 +21,7 @@ public class CadetesController : Controller {
         return View();
     }
 
+    
     public IActionResult ListarCadetes() {
         LoadCadetes(ListaCadetes);
         return View(ListaCadetes);

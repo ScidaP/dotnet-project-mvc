@@ -8,69 +8,69 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Tp4MvcNuevo
 build_property.RootNamespace = Tp4MvcNuevo
-build_property.ProjectDir = D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\
+build_property.ProjectDir = d:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo
+build_property.MSBuildProjectDirectory = d:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/CadeteAgregado.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/CadeteAgregado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xDYWRldGVBZ3JlZ2Fkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/CargarCadete.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/CargarCadete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xDYXJnYXJDYWRldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/EliminarCadete.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/EliminarCadete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xFbGltaW5hckNhZGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/ListarCadetes.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/ListarCadetes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xMaXN0YXJDYWRldGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Index.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Privacy.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/EliminarPedido.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/EliminarPedido.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xFbGltaW5hclBlZGlkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/HacerPedido.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/HacerPedido.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xIYWNlclBlZGlkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/ListarPedidos.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/ListarPedidos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xMaXN0YXJQZWRpZG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/PedidoAgregado.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Pedidos/PedidoAgregado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xQZWRpZG9BZ3JlZ2Fkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/Error.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/_ValidationScriptsPartial.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/_ViewImports.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/_ViewStart.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/_Layout.cshtml]
+[d:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xl785v85o0
