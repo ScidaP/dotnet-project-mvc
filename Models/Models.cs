@@ -53,7 +53,9 @@ namespace Tp4MvcNuevo.Models {
     public class Cliente : Persona {
         private string? referenciasDireccion;
 
-        public Cliente(int id, string nombre, string direccion, int telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
+        public Cliente():base(){}
+
+        public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
             ReferenciasDireccion = referenciasDireccion;
         }
 

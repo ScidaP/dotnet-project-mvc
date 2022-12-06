@@ -66,7 +66,6 @@ public class RepositorioCadetes : IRepositorioCadetes {
             command.Parameters.AddWithValue("$sueldo", cad.TotalACobrar1);
             command.Parameters.AddWithValue("$cadeteria", cad.Cadeteria);
             command.Parameters.AddWithValue("$id", cad.Id);
-            string consulta = command.ToString();
             int resultado = command.ExecuteNonQuery();
             conexion.Close();
         }
