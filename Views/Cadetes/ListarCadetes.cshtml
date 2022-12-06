@@ -1,4 +1,4 @@
-@model List<Tp4MvcNuevo.Models.Cadete>;
+@model Tp4MvcNuevo.ViewModels.ListaCadetesViewModel;
 
 <div class="text-center">
     <h1 class="display-4">Listar Cadetes</h1>
@@ -11,11 +11,12 @@
             <th scope="col"> Dirección </th>
             <th scope="col"> Teléfono </th>
             <th scope="col"> Sueldo </th>
+            <th scope="col" rowspan="2"> Acciones </th>
         </tr>
     </thead>
     <tbody>
         
-            @foreach (var item in Model)
+            @foreach (var item in Model.ListaCadetes1)
             {
             <tr>
                 <td scope="row"> @item.Id </td>
@@ -23,7 +24,8 @@
                 <td> @item.Direccion</td>
                 <td> @item.Telefono</td>
                 <td> @item.TotalACobrar1</td>
-                <td><a class="btn btn-danger btn-sm" href="/Cadetes/EliminarCadete?id=@item.Id">Eliminar</a></td>
+                <td> @Html.ActionLink("Eliminar", "EliminarCadete", "Cadetes", new {id = item.Id})</td>
+                <td> @Html.ActionLink("Actualizar", "ActualizarCadete", "Cadetes", new {id = item.Id})</td>
             </tr>    
             }
 

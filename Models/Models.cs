@@ -53,7 +53,7 @@ namespace Tp4MvcNuevo.Models {
     public class Cliente : Persona {
         private string? referenciasDireccion;
 
-        public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
+        public Cliente(int id, string nombre, string direccion, int telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
             ReferenciasDireccion = referenciasDireccion;
         }
 
@@ -65,7 +65,6 @@ namespace Tp4MvcNuevo.Models {
     }
 
     public class Cadete : Persona {
-        private List<Pedido>? ListaPedidos;
 
         private int cadeteria;
         private double? TotalACobrar;
@@ -74,10 +73,15 @@ namespace Tp4MvcNuevo.Models {
 
         }
 
-        public Cadete(int id, string nombre, string direccion, long telefono, int cad, double totalACobrar1) : base(nombre, direccion, telefono) {
+        public Cadete(string nombre, string direccion, long telefono, int cad, double totalACobrar1) : base(nombre, direccion, telefono) {
             Cadeteria = cad;
             TotalACobrar1 = totalACobrar1;
-            ListaPedidos1 = new List<Pedido>();
+        }
+
+        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1, int cad) : base(nombre, direccion, telefono) {
+            Id = id;
+            Cadeteria = cad;
+            TotalACobrar1 = totalACobrar1;
         }
 
         public override void MostrarDatos() {
@@ -85,25 +89,20 @@ namespace Tp4MvcNuevo.Models {
             Console.WriteLine("Total a Cobrar: " + TotalACobrar1);
         }
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
-        internal List<Pedido>? ListaPedidos1 { get => ListaPedidos; set => ListaPedidos = value; }
-
         public int Cadeteria {get => cadeteria; set => cadeteria = value; }
     }
 
     class Cadeteria {
         private string? nombre;
         private long? telefono;
-        private List<Cadete>? ListaCadetes;
 
-        public Cadeteria(string nombre, long telefono, List<Cadete> listaCadetes1) {
+        public Cadeteria(string nombre, long telefono) {
             Nombre = nombre;
             Telefono = telefono;
-            ListaCadetes1 = listaCadetes1;
         }
 
         public string? Nombre { get => nombre; set => nombre = value; }
         public long? Telefono { get => telefono; set => telefono = value; }
-        internal List<Cadete>? ListaCadetes1 { get => ListaCadetes; set => ListaCadetes = value; }
     }
     class Pedido {
         private int numero;
