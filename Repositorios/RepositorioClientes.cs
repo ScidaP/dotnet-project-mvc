@@ -4,7 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Tp4MvcNuevo.Models;
 
 public interface IRepositorioClientes {
+    public Cliente getCliente(int id);
 
+    public void agregarCliente(Cliente cli);
+
+    public void eliminarCliente(int id);
+
+    public void actualizarCliente(Cliente cli);
+
+    public List<Cliente> getTodosClientes();
 }
 
 public class RepositorioClientes : IRepositorioClientes {

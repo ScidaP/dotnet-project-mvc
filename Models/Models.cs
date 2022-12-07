@@ -56,6 +56,11 @@ namespace Tp4MvcNuevo.Models {
         public Cliente():base(){}
 
         public Cliente(int id, string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
+            Id = id;
+            ReferenciasDireccion = referenciasDireccion;
+        }
+
+        public Cliente(string nombre, string direccion, long telefono, string referenciasDireccion) : base(nombre, direccion, telefono) {
             ReferenciasDireccion = referenciasDireccion;
         }
 

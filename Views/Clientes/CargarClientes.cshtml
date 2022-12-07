@@ -1,0 +1,28 @@
+@model Tp4MvcNuevo.Models.Cadete;
+@{
+    ViewData["Title"] = "Home Page";
+}
+                                                                                                                                                                        
+<div class="text-center">
+    <h1 class="display-4">Cargar Cliente</h1>
+</div>
+<form asp-controller="Cadetes" asp-action="CadeteAgregado" method="POST" class="w-50 mx-auto">
+    <h2>Datos Cliente:</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre</span>
+        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Dirección</span>
+        <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" name="direccion">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Teléfono</span>
+        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1" name="telefono">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Referencias Dirección</span>
+        <input type="text" class="form-control" placeholder="Referencias Dirección" aria-label="Referencias Dirección" aria-describedby="basic-addon1" name="ref_direcc">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

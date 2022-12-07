@@ -8,7 +8,7 @@ namespace Tp4MvcNuevo.Controllers;
 
 public class CadetesController : Controller {
 
-    private IRepositorioCadetes repoCadetes;
+    private readonly IRepositorioCadetes repoCadetes;
 
     public CadetesController(IRepositorioCadetes repoCad) {
         repoCadetes = repoCad;
