@@ -85,7 +85,7 @@ namespace Tp4MvcNuevo.Models {
             TotalACobrar1 = totalACobrar1;
         }
 
-        public Cadete(int id, string nombre, string direccion, long telefono, double totalACobrar1, int cad) : base(nombre, direccion, telefono) {
+        public Cadete(int id, string nombre, string direccion, long telefono, int cad, double totalACobrar1) : base(nombre, direccion, telefono) {
             Id = id;
             Cadeteria = cad;
             TotalACobrar1 = totalACobrar1;
@@ -111,17 +111,28 @@ namespace Tp4MvcNuevo.Models {
         public string? Nombre { get => nombre; set => nombre = value; }
         public long? Telefono { get => telefono; set => telefono = value; }
     }
-    class Pedido {
+    public class Pedido {
         private int numero;
         private string? obs;
-        private Cliente? datosCliente;
+        private int? idCliente;
+        private int? idCadete;
         private string? estado;
 
-        public Pedido(int numero, string obs, string estado, Cliente datosCliente) {
+        public Pedido() {}
+
+        public Pedido(string obs, string estado, int idCli, int idCad) {
+            Obs = obs;
+            Estado = estado;
+            idCliente = idCli;
+            idCadete = idCad;
+        }
+
+        public Pedido(int numero, string obs, int idCli, string estado, int idCad) {
             Numero = numero;
             Obs = obs;
             Estado = estado;
-            DatosCliente = datosCliente;
+            idCliente = idCli;
+            idCadete = idCad;
         }
 
         public void CambiarEstado(string EstadoNuevo) {
@@ -130,6 +141,7 @@ namespace Tp4MvcNuevo.Models {
         public int Numero { get => numero; set => numero = value; }
         public string? Obs { get => obs; set => obs = value; }
         public string? Estado { get => estado; set => estado = value; }
-        internal Cliente? DatosCliente { get => datosCliente; set => datosCliente = value; }
+        public int? idCliente1 { get => idCliente; set => idCliente = value; }
+        public int? idCadete1 { get => idCadete; set => idCadete = value; }
     }
 }

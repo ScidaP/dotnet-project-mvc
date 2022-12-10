@@ -79,7 +79,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
             command.CommandText = @"SELECT * FROM cadete";
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
-                    var cadete = new Cadete(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetInt32(4), reader.GetInt32(5));
+                    var cadete = new Cadete(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetInt32(5), reader.GetInt32(4));
                     ListaCadetes.Add(cadete);
                 }
             }

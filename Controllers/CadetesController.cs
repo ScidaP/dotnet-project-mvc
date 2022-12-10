@@ -34,8 +34,8 @@ public class CadetesController : Controller {
     }
 
     [HttpPost]
-    public IActionResult CadeteActualizado(string nombre, string direccion, int telefono, int cadeteria, double sueldo) {
-        Cadete actualizarCadete = new Cadete(nombre, direccion, telefono, cadeteria, sueldo);
+    public IActionResult CadeteActualizado(int id, string nombre, string direccion, int telefono, int cadeteria, double sueldo) {
+        Cadete actualizarCadete = new Cadete(id, nombre, direccion, telefono, cadeteria, sueldo);
         repoCadetes.actualizarCadete(actualizarCadete);
         TempData["Info"] = "Cadete N° " + actualizarCadete.Id + " actualizado correctamente.";
         return RedirectToAction("Info");

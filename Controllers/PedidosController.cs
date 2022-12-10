@@ -14,5 +14,7 @@ namespace Tp4MvcNuevo.Controllers;
 
 public class PedidosController : Controller
 {
-    
+    public IActionResult HacerPedido() {
+        return View();
+    }
 }
