@@ -3,18 +3,28 @@ using Microsoft.AspNetCore.Mvc;
 using Tp4MvcNuevo.Models;
 using System.Text;
 using Tp4MvcNuevo.ViewModels;
+using AutoMapper;
 
 namespace Tp4MvcNuevo.Controllers;
 
 public class CadetesController : Controller {
 
     private readonly IRepositorioCadetes repoCadetes;
+    private readonly IMapper mapper;
 
-    public CadetesController(IRepositorioCadetes repoCad) {
+    public CadetesController(IRepositorioCadetes repoCad, IMapper mapp) {
         repoCadetes = repoCad;
+        mapper = mapp;
     }
     public IActionResult CargarCadete() {
         return View();
+    }
+
+    [HttpGet]
+    public IActionResult Mostrarcadete(int id) {
+        Cadete cad = repoCadetes.getCadete(id);
+        var MostrarCadeteVM = mapper.Map<MostrarCadeteViewModel>(cad);
+        return View(MostrarCadeteVM);
     }
 
     [HttpGet]

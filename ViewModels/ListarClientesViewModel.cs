@@ -1,7 +1,7 @@
 using Tp4MvcNuevo.Models;
 
 namespace Tp4MvcNuevo.ViewModels {
-    class ListarClientesViewModel {
+    public class ListarClientesViewModel {
         List<Cliente> ListaClientes;
 
         public ListarClientesViewModel(List<Cliente> ListaCli) {

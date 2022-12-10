@@ -1,0 +1,24 @@
+@model Tp4MvcNuevo.ViewModels.MostrarCadeteViewModel;
+
+<div class="text-center">
+    <h1 class="display-4">Viendo el cadete @Model.Nombre </h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Dirección </th>
+            <th scope="col"> Teléfono </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td> @Model.Nombre </td>
+                <td> @Model.Direccion</td>
+                <td> @Model.Telefono</td>
+            </tr>   
+
+            <a  asp-controller="Cadetes" asp-action="ListarCadetes"> Ver todos los cadetes </a>
+    </tbody>
+    
+</table>

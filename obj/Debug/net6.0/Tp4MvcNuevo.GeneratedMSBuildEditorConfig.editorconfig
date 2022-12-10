@@ -31,6 +31,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xMaXN0YXJDYWRldGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[e:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/MostrarCadete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xNb3N0cmFyQ2FkZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [e:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Clientes/CargarClientes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ2FyZ2FyQ2xpZW50ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

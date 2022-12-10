@@ -1,7 +1,7 @@
 using Tp4MvcNuevo.Models;
 
 namespace Tp4MvcNuevo.ViewModels {
-    class ListaCadetesViewModel {
+    public class ListaCadetesViewModel {
         List<Cadete> ListaCadetes;
 
         public ListaCadetesViewModel(List<Cadete> ListaCad) {
