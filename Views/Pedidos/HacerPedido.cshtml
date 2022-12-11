@@ -1,3 +1,5 @@
+@model Tp4MvcNuevo.ViewModels.HacerPedidoViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -15,15 +17,19 @@
         <span class="input-group-text" id="basic-addon1">Estado Pedido</span>
         <input type="text" class="form-control" placeholder="estado" aria-describedby="basic-addon1" name="estado">
     </div>
-    <h2>Numero Teléfono Cliente</h2>
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Número</span>
-        <input type="text" class="form-control" placeholder="Numero" aria-describedby="basic-addon1" name="numeroCliente">
-    </div>
-    <h2>Datos Cadete</h2>
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nombre</span>
-        <input type="text" class="form-control" placeholder="Nombre" aria-describedby="basic-addon1" name="nombreCadete">
-    </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <h2 class="mt-3">Nombre Cliente</h2>
+    <select class="form-select mt-1" name="idCliente1">
+        <option selected>Selecciona el Cliente</option>
+        @foreach (var cliente in Model.ListaClientes1) {
+            <option value="@cliente.Id">@cliente.Nombre</option>
+        }
+    </select>
+    <h2 class="mt-3">Nombre Cadete</h2>
+    <select class="form-select mt-1" name="idCadete1">
+        <option selected>Selecciona el Cadete</option>
+        @foreach (var cadete in Model.ListaCadetes1) {
+            <option value="@cadete.Id">@cadete.Nombre</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
 </form>

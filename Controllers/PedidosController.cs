@@ -10,29 +10,33 @@ using System.Globalization;
 using System.Text;
 using Tp4MvcNuevo.ViewModels;
 using AutoMapper;
-using Tp4MvcNuevo.Models;
 
 namespace Tp4MvcNuevo.Controllers;
 
 public class PedidosController : Controller
 {
     private readonly IRepositorioPedidos repoPedidos;
+    private readonly IRepositorioCadetes repoCadetes;
+    private readonly IRepositorioClientes repoClientes;
+
     private readonly IMapper mapper;
 
-    public PedidosController(IRepositorioPedidos repoPed, IMapper mapp) {
+    public PedidosController(IRepositorioPedidos repoPed, IRepositorioCadetes repoCad, IRepositorioClientes repoCli,IMapper mapp) {
         repoPedidos = repoPed;
+        repoCadetes = repoCad;
+        repoClientes = repoCli;
         mapper = mapp;
     }
     public IActionResult HacerPedido() {
-        return View();
+        List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
+        List<Cliente> ListaClientes = repoClientes.getTodosClientes();
+        HacerPedidoViewModel HacerPedidoVM = new HacerPedidoViewModel(ListaCadetes, ListaClientes);
+        return View(HacerPedidoVM);
     }
 
     [HttpPost]
-    public IActionResult PedidoAgregado(string obs, string estado, string numeroCliente, string nombreCadete) {
-        long numeroTelCliente = Convert.ToInt64(numeroCliente);
-        var cliente = repoPedidos.getIdCliente(numeroTelCliente);
-        var cadete = repoPedidos.getIdCadete(nombreCadete);
-        var nuevoPedido = new Pedido(obs, estado, cliente, cadete);
+    public IActionResult PedidoAgregado(HacerPedidoViewModel HacerPedidoVM) {
+        var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
         repoPedidos.agregarPedido(nuevoPedido);
         TempData["Info"] = "Pedido agregado con éxito";
         return RedirectToAction("Info");
