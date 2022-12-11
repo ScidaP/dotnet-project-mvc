@@ -4,6 +4,7 @@ using AutoMapper;
 
 public class PerfilDeMapeo : Profile {
     public PerfilDeMapeo() {
-        CreateMap<Cadete, MostrarCadeteViewModel>();
+        CreateMap<Cadete, MostrarCadeteViewModel>().ReverseMap();
+        CreateMap<List<Pedido>, ListarPedidosViewModels>().ReverseMap();
     }
 }

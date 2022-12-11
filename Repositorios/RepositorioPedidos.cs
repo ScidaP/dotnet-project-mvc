@@ -9,8 +9,8 @@ public interface IRepositorioPedidos {
     public void eliminarPedido(int id);
     public List<Pedido> getTodosPedidos();
     public void actualizarPedido(Pedido ped);
-    public int? getIdCliente(int telefono); //Te devuelve el id (o null) de un cliente al buscarlo por su numero de telefono
-    public int? getIdCadete(string nombre);
+    public int getIdCliente(long telefono); //Te devuelve el id (o null) de un cliente al buscarlo por su numero de telefono
+    public int getIdCadete(string nombre);
 }
 
 public class RepositorioPedidos : IRepositorioPedidos {
@@ -88,8 +88,8 @@ public class RepositorioPedidos : IRepositorioPedidos {
         }
     }
 
-    public int? getIdCliente(int telefono) {
-        int? idCliente = null;
+    public int getIdCliente(long telefono) {
+        int idCliente = 0;
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
@@ -106,8 +106,8 @@ public class RepositorioPedidos : IRepositorioPedidos {
         return idCliente;
     }
 
-    public int? getIdCadete(string nombre) {
-        int? idCadete = null;
+    public int getIdCadete(string nombre) {
+        int idCadete = 0;
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();

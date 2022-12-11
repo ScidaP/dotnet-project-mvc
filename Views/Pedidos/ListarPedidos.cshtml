@@ -24,10 +24,10 @@
                 <td scope="row"> @item.Numero </td>
                 <td> @item.Obs </td>
                 <td> @item.Estado</td>
-                @if (item.DatosCliente == null) {
+                @if (item.idCliente1 == 0) {
                     <td> - </td>
                 } else {
-                    <td>@item.DatosCliente.Nombre</td>
+                    <td>@item.getNombreCliente(item.idCliente1)</td>
                 }
                 <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Numero">Eliminar</a></td>
             </tr>    
