@@ -4,25 +4,26 @@
 }
                                                                                                                                                                         
 <div class="text-center">
-    <h1 class="display-4">Cargar Cliente</h1>
+    <h1 class="display-4">Actualizar Pedido</h1>
 </div>
-<form asp-controller="Clientes" asp-action="ClienteAgregado" method="POST" class="w-50 mx-auto">
+<form asp-controller="Clientes" asp-action="ClienteActualizado" method="POST" class="w-50 mx-auto">
     <h2>Datos Cliente:</h2>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre</span>
-        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
+        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre" value="@Model.Nombre">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Dirección</span>
-        <input asp-for="@Model.Direccion" type="text" class="form-control" placeholder="Dirección">
+        <input asp-for="@Model.Direccion" type="text" class="form-control" placeholder="Dirección" value="@Model.Direccion">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Teléfono</span>
-        <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono">
+        <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono" value="@Model.Telefono">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Referencias Dirección</span>
-        <input asp-for="@Model.ReferenciasDireccion" type="text" class="form-control" placeholder="Referencia de Dirección">
+        <input asp-for="@Model.ReferenciasDireccion" type="text" class="form-control" placeholder="Referencia de Dirección" value="@Model.ReferenciasDireccion">
     </div>
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

@@ -62,7 +62,7 @@ public class RepositorioClientes : IRepositorioClientes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"UPDATE cadete SET nombre = $nombre, direccion = $direccion, telefono = $telefono, referenciaDireccion = $ref WHERE id = $id";
+            command.CommandText = @"UPDATE cliente SET nombre = $nombre, direccion = $direccion, telefono = $telefono, referenciaDireccion = $ref WHERE id = $id";
             command.Parameters.AddWithValue("$nombre", cli.Nombre);
             command.Parameters.AddWithValue("$direccion", cli.Direccion);
             command.Parameters.AddWithValue("$telefono", cli.Telefono);

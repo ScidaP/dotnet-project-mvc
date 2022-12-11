@@ -16328,8 +16328,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Clientes\\Info.cshtml",
+      "TargetPath": "Views\\Clientes\\Info.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Clientes\\ListarClientes.cshtml",
       "TargetPath": "Views\\Clientes\\ListarClientes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Clientes\\ActualizarCliente.cshtml",
+      "TargetPath": "Views\\Clientes\\ActualizarCliente.cshtml",
       "FileKind": "mvc"
     },
     {

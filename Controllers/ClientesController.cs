@@ -21,10 +21,11 @@ public class ClientesController : Controller {
         return View();
     }
 
-    public IActionResult clienteAgregado(string nombre, string direccion, long telefono, string ref_direcc) {
-        Cliente nuevoCliente = new Cliente(nombre, direccion, telefono, ref_direcc);
+    [HttpPost]
+    public IActionResult ClienteAgregado(ClienteViewModel ClienteVM) {
+        var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
         _repo.agregarCliente(nuevoCliente);
-        TempData["Info"] = "Cliente " + nombre + " agregado satisfactoriamente.";
+        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
         return RedirectToAction("Info");
     }
 
@@ -34,4 +35,30 @@ public class ClientesController : Controller {
         return View(ListarCadetesViewModel);
     }
 
+    [HttpGet]
+    public IActionResult EliminarCliente(int id) {
+        _repo.eliminarCliente(id);
+        TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
+        return RedirectToAction("Info");
+    }
+
+    [HttpGet]
+    public IActionResult ActualizarCliente(int id) {
+        var ClienteAActualizar = _repo.getCliente(id);
+        var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
+        return View(ActualizarClienteVM);
+    }
+
+    [HttpPost]
+
+    public IActionResult ClienteActualizado(ClienteViewModel ClienteVM) {
+        var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
+        _repo.actualizarCliente(clienteActualizado);
+        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+        return View("Info");
+    }
+
+    public IActionResult Info() {
+        return View("Info");
+    }
 }

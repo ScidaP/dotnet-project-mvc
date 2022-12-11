@@ -9,13 +9,6 @@ namespace Tp4MvcNuevo.ViewModels {
 
         public PedidoViewModel() {}
 
-        public PedidoViewModel(string o, int idCli, int idCad, string est) {
-            obs = o;
-            idCliente = idCli;
-            idCadete = idCad;
-            estado = est;
-        }
-
         public string? Obs { get => obs; set => obs = value; }
         public int IdCliente { get => idCliente; set => idCliente = value; }
         public int IdCadete { get => idCadete; set => idCadete = value; }

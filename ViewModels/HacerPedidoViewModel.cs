@@ -16,14 +16,6 @@ namespace Tp4MvcNuevo.ViewModels {
             ListaCadetes = listaCad;
             ListaClientes = listaCli;
         }
-
-        public HacerPedidoViewModel(string? o, int idcli, int idcad, string? est) {
-            ListaCadetes = new List<Cadete>(); ListaClientes = new List<Cliente>();
-            Obs = o;
-            idCliente1 = idcli;
-            idCadete1 = idcad;
-            Estado = est;
-        }
         public List<Cadete> ListaCadetes1 { get => ListaCadetes; set => ListaCadetes = value; }
         public List<Cliente> ListaClientes1 { get => ListaClientes; set => ListaClientes = value; }
         public string? Obs { get => obs; set => obs = value; }
