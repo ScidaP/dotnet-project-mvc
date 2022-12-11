@@ -55,6 +55,23 @@ public class PedidosController : Controller
         ListarPedidosVM.pedidos = mapper.Map<List<Pedido>>(pedidos);
         return View(ListarPedidosVM);
     }
+
+    [HttpGet]
+    public IActionResult ActualizarPedido(int id) {
+        var pedidoAActualizar = repoPedidos.getPedido(id);
+        var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
+        HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+        HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+        return View(HacerPedidoVM);
+    }
+
+    [HttpPost]
+    public IActionResult PedidoActualizado(HacerPedidoViewModel VM) {
+        var nuevoPedido = mapper.Map<Pedido>(VM);
+        repoPedidos.actualizarPedido(nuevoPedido);
+        TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+        return RedirectToAction("Info");
+    }
     
     public IActionResult Info() {
         return View();

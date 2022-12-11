@@ -13,6 +13,8 @@
             <th scope="col"> Obs </th>
             <th scope="col"> Estado </th>
             <th scope="col"> Cliente </th>
+            <th scope="col"> Cadete </th>
+            <th scope="col"> Modificar </th>
             <th scope="col"> Eliminar</th>
         </tr>
     </thead>
@@ -29,6 +31,12 @@
                 } else {
                     <td>@item.getNombreCliente(item.idCliente1)</td>
                 }
+                @if (item.idCadete1 == 0) {
+                    <td> - </td>
+                } else {
+                    <td>@item.getNombreCadete(item.idCadete1)</td>
+                }
+                <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = item.Numero})</td>
                 <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Numero">Eliminar</a></td>
             </tr>    
             }

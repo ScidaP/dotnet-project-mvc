@@ -16368,18 +16368,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\PedidoAgregado.cshtml",
-      "TargetPath": "Views\\Pedidos\\PedidoAgregado.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\ListarPedidos.cshtml",
       "TargetPath": "Views\\Pedidos\\ListarPedidos.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\EliminarPedido.cshtml",
-      "TargetPath": "Views\\Pedidos\\EliminarPedido.cshtml",
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Pedidos\\ActualizarPedido.cshtml",
+      "TargetPath": "Views\\Pedidos\\ActualizarPedido.cshtml",
       "FileKind": "mvc"
     },
     {

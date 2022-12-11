@@ -156,6 +156,23 @@ namespace Tp4MvcNuevo.Models {
             }
             return nombre;
         }
+
+        public string getNombreCadete(int id) {
+            string nombre = "";
+            using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+                conexion.Open();
+                var command = conexion.CreateCommand();
+                command.CommandText = @"SELECT nombre FROM cadete WHERE id = $id";
+                command.Parameters.AddWithValue("$id", id);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        nombre = reader.GetString(0);
+                    }
+                }
+                conexion.Close();
+            }
+            return nombre;
+        }
         public int Numero { get => numero; set => numero = value; }
         public string? Obs { get => obs; set => obs = value; }
         public string? Estado { get => estado; set => estado = value; }

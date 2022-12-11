@@ -17,7 +17,7 @@ public class ClientesController : Controller {
         _mapper = mapper;
     }
 
-    public IActionResult cargarCliente() {
+    public IActionResult CargarClientes() {
         return View();
     }
 

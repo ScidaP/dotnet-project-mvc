@@ -19,7 +19,7 @@ public class RepositorioPedidos : IRepositorioPedidos {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM pedidos WHERE id = $id";
+            command.CommandText = @"SELECT * FROM pedidos WHERE nro = $id";
             command.Parameters.AddWithValue("$id", id);
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
@@ -49,7 +49,7 @@ public class RepositorioPedidos : IRepositorioPedidos {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"DELETE FROM pedidos WHERE id=$id";
+            command.CommandText = @"DELETE FROM pedidos WHERE nro=$id";
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
             conexion.Close();
@@ -77,7 +77,7 @@ public class RepositorioPedidos : IRepositorioPedidos {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"UPDATE pedidos SET obs = $obs, cliente = $cliente, estado = $estado, cadete = $cadete WHERE id = $id";
+            command.CommandText = @"UPDATE pedidos SET obs = $obs, cliente = $cliente, estado = $estado, cadete = $cadete WHERE nro = $id";
             command.Parameters.AddWithValue("$obs", ped.Obs);
             command.Parameters.AddWithValue("$cliente", ped.idCliente1);
             command.Parameters.AddWithValue("$estado", ped.Estado);
