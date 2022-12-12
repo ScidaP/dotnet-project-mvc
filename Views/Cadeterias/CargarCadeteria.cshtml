@@ -1,0 +1,20 @@
+@model Tp4MvcNuevo.Models.Cadeteria;
+@{
+    ViewData["Title"] = "Home Page";
+}
+                                                                                                                                                                        
+<div class="text-center">
+    <h1 class="display-4">Cargar Cadetería</h1>
+</div>
+<form asp-controller="Cadeterias" asp-action="CadeteriaAgregada" method="POST" class="w-50 mx-auto">
+    <h2>Datos Cadetería:</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre</span>
+        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Teléfono</span>
+        <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

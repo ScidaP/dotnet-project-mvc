@@ -5,7 +5,7 @@ using Tp4MvcNuevo.Models;
 
 public interface IRepositorioCadeterias {
     public Cadeteria GetCadeteria(int id);
-    public void Agregarcadeteria(Cadeteria cad);
+    public void AgregarCadeteria(Cadeteria cad);
     public void EliminarCadeteria(int id);
     public void ActualizarCadeteria(Cadeteria cad);
     public List<Cadeteria> GetTodasCadeterias();
@@ -29,11 +29,11 @@ public class RepositorioCadeterias : IRepositorioCadeterias {
         return cad;
     }
 
-    public void Agregarcadeteria(Cadeteria cad) {
+    public void AgregarCadeteria(Cadeteria cad) {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"INSERT INTO cadete(nombre, telefono) VALUES ($nombre, $telefono)";
+            command.CommandText = @"INSERT INTO cadeteria(nombre, telefono) VALUES ($nombre, $telefono)";
             command.Parameters.AddWithValue("$nombre", cad.Nombre);
             command.Parameters.AddWithValue("$telefono", cad.Telefono);
             command.ExecuteNonQuery();

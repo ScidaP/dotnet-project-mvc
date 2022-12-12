@@ -10,14 +10,17 @@ namespace Tp4MvcNuevo.Controllers;
 public class CadetesController : Controller {
 
     private readonly IRepositorioCadetes repoCadetes;
+    private readonly IRepositorioCadeterias repoCadeterias;
     private readonly IMapper mapper;
 
-    public CadetesController(IRepositorioCadetes repoCad, IMapper mapp) {
-        repoCadetes = repoCad;
+    public CadetesController(IRepositorioCadetes repoCadetes1, IRepositorioCadeterias repoCadeterias1, IMapper mapp) {
+        repoCadetes = repoCadetes1;
+        repoCadeterias = repoCadeterias1;
         mapper = mapp;
     }
     public IActionResult CargarCadete() {
-        return View();
+        CargarCadeteViewModel CargarCadeteVM = new CargarCadeteViewModel(repoCadeterias.GetTodasCadeterias());
+        return View(CargarCadeteVM);
     }
 
     [HttpGet]
@@ -42,10 +45,10 @@ public class CadetesController : Controller {
     }
 
     [HttpPost]
-    public IActionResult CadeteAgregado(string nombre, string direccion, int telefono, int cadeteria, double sueldo) {
-        Cadete cad = new Cadete(nombre, direccion, telefono, cadeteria, sueldo);
-        repoCadetes.agregarCadete(cad);
-        TempData["Info"] = "Cadete " + nombre + " agregado satisfactoriamente.";
+    public IActionResult CadeteAgregado(CargarCadeteViewModel NuevoCadeteVM) {
+        Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
+        repoCadetes.agregarCadete(nuevoCadete);
+        TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
         return RedirectToAction("Info");
     }
     

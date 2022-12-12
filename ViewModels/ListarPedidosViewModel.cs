@@ -7,7 +7,7 @@ using Tp4MvcNuevo.Models;
 using System.Data.SQLite;
 
 namespace Tp4MvcNuevo.ViewModels {
-    class ListarPedidosViewModels {
+    public class ListarPedidosViewModels {
         public List<Pedido> pedidos {get;set;}
         public List<Cadete> cadetes {get;set;}
 

@@ -15,6 +15,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadeterias/CargarCadeteria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlcmlhc1xDYXJnYXJDYWRldGVyaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadeterias/Info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlcmlhc1xJbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Programacion y Fac/Facultad/Segundo/Taller de Lenguajes II/REPOS2022/Tp4MvcNuevo/Views/Cadetes/ActualizarCadete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FkZXRlc1xBY3R1YWxpemFyQ2FkZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

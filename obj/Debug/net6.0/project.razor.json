@@ -16308,6 +16308,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Cadeterias\\Info.cshtml",
+      "TargetPath": "Views\\Cadeterias\\Info.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -16385,6 +16390,11 @@
     {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Clientes\\ListarClientes.cshtml",
       "TargetPath": "Views\\Clientes\\ListarClientes.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Cadeterias\\CargarCadeteria.cshtml",
+      "TargetPath": "Views\\Cadeterias\\CargarCadeteria.cshtml",
       "FileKind": "mvc"
     },
     {
