@@ -100,17 +100,27 @@ namespace Tp4MvcNuevo.Models {
         public int Cadeteria {get => cadeteria; set => cadeteria = value; }
     }
 
-    class Cadeteria {
+    public class Cadeteria {
+        private int id;
         private string? nombre;
         private long? telefono;
+
+        public Cadeteria(){}
 
         public Cadeteria(string nombre, long telefono) {
             Nombre = nombre;
             Telefono = telefono;
         }
 
+        public Cadeteria(int id, string nombre, long telefono) {
+            Id = id;
+            Nombre = nombre;
+            Telefono = telefono;
+        }
+
         public string? Nombre { get => nombre; set => nombre = value; }
         public long? Telefono { get => telefono; set => telefono = value; }
+        public int Id { get => id; set => id = value; }
     }
     public class Pedido {
         private int numero;

@@ -21,7 +21,7 @@ public class PedidosController : Controller
 
     private readonly IMapper mapper;
 
-    public PedidosController(IRepositorioPedidos repoPed, IRepositorioCadetes repoCad, IRepositorioClientes repoCli,IMapper mapp) {
+    public PedidosController(IRepositorioPedidos repoPed, IRepositorioCadetes repoCad, IRepositorioClientes repoCli, IMapper mapp) {
         repoPedidos = repoPed;
         repoCadetes = repoCad;
         repoClientes = repoCli;
