@@ -10,8 +10,8 @@
             <th scope="col"> Nombre </th>
             <th scope="col"> Dirección </th>
             <th scope="col"> Teléfono </th>
-            <th scope="col"> Sueldo </th>
             <th scope="col"> Cadetería </th>
+            <th scope="col"> Sueldo </th>
             <th scope="col" rowspan="2"> Acciones </th>
         </tr>
     </thead>
@@ -24,8 +24,8 @@
                 <td> @item.Nombre </td>
                 <td> @item.Direccion</td>
                 <td> @item.Telefono</td>
-                <td> @item.TotalACobrar1</td>
                 <td> @item.Cadeteria</td>
+                <td> @item.TotalACobrar1</td>
                 <td> @Html.ActionLink("Eliminar", "EliminarCadete", "Cadetes", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Actualizar", "ActualizarCadete", "Cadetes", new {id = item.Id})</td>
             </tr>    

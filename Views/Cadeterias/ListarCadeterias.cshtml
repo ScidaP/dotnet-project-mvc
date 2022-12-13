@@ -1,0 +1,31 @@
+@model Tp4MvcNuevo.ViewModels.ListarCadeteriasViewModel;
+
+<div class="text-center">
+    <h1 class="display-4">Listar Clientes</h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Teléfono </th>
+            <th scope="col" rowspan="2"> Acciones </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var item in Model.ListaCadeterias1)
+            {
+            <tr>
+                <td scope="row"> @item.Id </td>
+                <td> @item.Nombre </td>
+                <td> @item.Telefono</td>
+                <td> @Html.ActionLink("Eliminar", "EliminarCadeteria", "Cadeterias", new {id = item.Id})</td>
+                <td> @Html.ActionLink("Actualizar", "ActualizarCadeteria", "Cadeterias", new {id = item.Id})</td>
+            </tr>    
+            }
+
+            <a  asp-controller="Cadeterias" asp-action="ListarCadeterias"> Refrescar </a>
+    </tbody>
+    
+</table>

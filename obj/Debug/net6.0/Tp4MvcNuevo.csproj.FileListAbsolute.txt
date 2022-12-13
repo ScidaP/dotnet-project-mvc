@@ -108,3 +108,5 @@ E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNu
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\obj\Debug\net6.0\Tp4MvcNuevo.csproj.CopyComplete
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\AutoMapper.dll
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\AutoMapper.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
