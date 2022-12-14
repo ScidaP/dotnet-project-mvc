@@ -20,6 +20,7 @@
                 <td scope="row"> @item.Id </td>
                 <td> @item.Nombre </td>
                 <td> @item.Telefono</td>
+                <td> @Html.ActionLink("Ver", "MostrarCadeteria", "Cadeterias", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Eliminar", "EliminarCadeteria", "Cadeterias", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Actualizar", "ActualizarCadeteria", "Cadeterias", new {id = item.Id})</td>
             </tr>    

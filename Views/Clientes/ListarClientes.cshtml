@@ -24,6 +24,7 @@
                 <td> @item.Direccion</td>
                 <td> @item.Telefono</td>
                 <td> @item.ReferenciasDireccion</td>
+                <td> @Html.ActionLink("Ver", "MostrarCliente", "Clientes", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Eliminar", "EliminarCliente", "Clientes", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Actualizar", "ActualizarCliente", "Clientes", new {id = item.Id})</td>
             </tr>    

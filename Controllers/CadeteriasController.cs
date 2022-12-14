@@ -40,6 +40,13 @@ public class CadeteriasController : Controller {
         return RedirectToAction("Info");
     }
 
+    [HttpGet]
+    public IActionResult MostrarCadeteria(int id) {
+        Cadeteria cad = repoCadeterias.GetCadeteria(id);
+        MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
+        return View(cadVM);
+    }
+
     public IActionResult Info() {
         return View();
     }

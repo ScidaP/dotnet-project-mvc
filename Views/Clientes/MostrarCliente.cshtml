@@ -1,0 +1,26 @@
+@model Tp4MvcNuevo.ViewModels.MostrarClienteViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Viendo el Cliente @Model.Nombre </h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Dirección </th>
+            <th scope="col"> Teléfono </th>
+            <th scope="col"> Referencias Dirección </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td> @Model.Nombre </td>
+                <td> @Model.Direccion</td>
+                <td> @Model.Telefono</td>
+                <td> @Model.ReferenciasDireccion</td>
+            </tr>   
+
+            <a  asp-controller="Clientes" asp-action="ListarClientes"> Ver todos los clientes </a>
+    </tbody>
+    
+</table>

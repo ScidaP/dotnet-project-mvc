@@ -34,6 +34,13 @@ public class PedidosController : Controller
         return View(HacerPedidoVM);
     }
 
+    [HttpGet]
+
+    public IActionResult MostrarPedido(int id) {
+        Pedido ped = repoPedidos.getPedido(id);
+        return View(ped);
+    }
+
     [HttpPost]
     public IActionResult PedidoAgregado(HacerPedidoViewModel HacerPedidoVM) {
         var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);

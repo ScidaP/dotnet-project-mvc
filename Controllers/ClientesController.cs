@@ -21,6 +21,13 @@ public class ClientesController : Controller {
         return View();
     }
 
+    [HttpGet]
+    public IActionResult MostrarCliente(int id) {
+        Cliente cliente = _repo.getCliente(id);
+        MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
+        return View(clienteVM);
+    }
+
     [HttpPost]
     public IActionResult ClienteAgregado(ClienteViewModel ClienteVM) {
         var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);

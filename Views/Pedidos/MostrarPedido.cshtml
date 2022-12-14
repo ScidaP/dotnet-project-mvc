@@ -1,0 +1,40 @@
+@model Tp4MvcNuevo.Models.Pedido;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Datos Pedido N° @Model.Numero</h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"> Numero de Pedido </th>
+            <th scope="col"> Obs </th>
+            <th scope="col"> Estado </th>
+            <th scope="col"> Cliente </th>
+            <th scope="col"> Cadete </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td scope="row"> @Model.Numero </td>
+                <td> @Model.Obs </td>
+                <td> @Model.Estado</td>
+                @if (Model.idCliente1 == 0) {
+                    <td> - </td>
+                } else {
+                    <td>@Model.getNombreCliente(Model.idCliente1)</td>
+                }
+                @if (Model.idCadete1 == 0) {
+                    <td> - </td>
+                } else {
+                    <td>@Model.getNombreCadete(Model.idCadete1)</td>
+                }
+                <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@Model.Numero">Eliminar</a></td>
+            </tr>    
+
+            <a  asp-controller="Pedidos" asp-action="ListarPedidos"> Refrescar </a>
+    </tbody>
+    
+</table>
