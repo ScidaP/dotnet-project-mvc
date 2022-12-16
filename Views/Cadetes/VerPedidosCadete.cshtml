@@ -1,0 +1,32 @@
+@model Tp4MvcNuevo.ViewModels.VerPedidosCadeteViewModel;
+
+@{
+    var i = 0;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Viendo los Pedidos de los Cadetes </h1>
+</div>
+
+@foreach (var item in Model.ListaCadetes1) {
+    <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@item.Id" aria-controls="@item.Id">
+        <p>Cadete @item.Nombre</p>
+      </button>
+    </h2>
+    <div id="@item.Id" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+            @foreach (var ped in Model.ListaPedidos1) {
+                if (ped.idCadete1 == item.Id) {
+                    <li>Pedido N° @ped.Numero. Estado: @ped.Estado</li>
+                }
+            }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+}

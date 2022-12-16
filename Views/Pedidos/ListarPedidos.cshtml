@@ -30,12 +30,12 @@
                 @if (item.idCliente1 == 0) {
                     <td> - </td>
                 } else {
-                    <td>@item.getNombreCliente(item.idCliente1)</td>
+                    <td> @Html.ActionLink(@item.getNombreCliente(item.idCliente1), "MostrarCliente", "Clientes", new {id = item.idCliente1})</td>
                 }
                 @if (item.idCadete1 == 0) {
                     <td> - </td>
                 } else {
-                    <td>@item.getNombreCadete(item.idCadete1)</td>
+                    <td> @Html.ActionLink(@item.getNombreCadete(item.idCadete1), "MostrarCadete", "Cadetes", new {id = item.idCadete1})</td>
                 }
                 <td> @Html.ActionLink("Ver", "MostrarPedido", "Pedidos", new {id = item.Numero})</td>
                 <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = item.Numero})</td>

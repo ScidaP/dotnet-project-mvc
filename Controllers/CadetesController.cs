@@ -11,11 +11,13 @@ public class CadetesController : Controller {
 
     private readonly IRepositorioCadetes repoCadetes;
     private readonly IRepositorioCadeterias repoCadeterias;
+    private readonly IRepositorioPedidos repoPedidos;
     private readonly IMapper mapper;
 
-    public CadetesController(IRepositorioCadetes repoCadetes1, IRepositorioCadeterias repoCadeterias1, IMapper mapp) {
+    public CadetesController(IRepositorioCadetes repoCadetes1, IRepositorioCadeterias repoCadeterias1, IRepositorioPedidos repoPedidos1, IMapper mapp) {
         repoCadetes = repoCadetes1;
         repoCadeterias = repoCadeterias1;
+        repoPedidos = repoPedidos1;
         mapper = mapp;
     }
     public IActionResult CargarCadete() {
@@ -62,6 +64,13 @@ public class CadetesController : Controller {
         repoCadetes.eliminarCadete(id);
         TempData["Info"] = "Cadete N° " + id + " eliminado correctamente.";
         return RedirectToAction("Info");
+    }
+
+    public IActionResult VerPedidosCadete() {
+        List<Cadete> todosCadetes = repoCadetes.getTodosCadetes();
+        List<Pedido> todosPedidos = repoPedidos.getTodosPedidos();
+        var VerPedidosCadeteVM = new VerPedidosCadeteViewModel(todosCadetes, todosPedidos);
+        return View(VerPedidosCadeteVM);
     }
 
     public IActionResult Info() {

@@ -3,6 +3,48 @@
 }
 
 <div class="text-center">
-    <h2>Bienvenido</h2>
+    <h2>Bienvenido, </h2>
     <h3>Al sistema de cadeteria más picante de tucumán (?</h3>
+    <div class="row row-cols-1 row-cols-md-2 g-4 w-75 mx-auto mt-3">
+  <div class="col">
+    <div class="card">
+      <img src="../wwwroot/img/img1.jpeg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Cadeterias</h5>
+        <p class="card-text">Aquí podrás agregar, quitar o modificar cadeterías del sistema.</p>
+        <a href='@Url.Action("ListarCadeterias", "Cadeterias")'><button type="button" class="btn btn-secondary">Ver Cadeterías</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Pedidos</h5>
+        <p class="card-text">Revisa los pedidos anotados en el sistema</p>
+        <a href='@Url.Action("ListarPedidos", "Pedidos")'><button type="button" class="btn btn-secondary">Ver Pedidos</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Clientes</h5>
+        <p class="card-text">Todo cliente que alguna vez compró con el sistema, queda registrado.</p>
+        <a href='@Url.Action("ListarClientes", "Clientes")'><button type="button" class="btn btn-secondary">Ver Clientes</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Cadetes</h5>
+        <p class="card-text">Solo los cadetes activos seguirán apareciendo en el sistema web.</p>
+        <a href='@Url.Action("ListarCadetes", "Cadetes")'><button type="button" class="btn btn-secondary">Ver Cadetes</button></a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
