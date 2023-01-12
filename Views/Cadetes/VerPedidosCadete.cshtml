@@ -1,7 +1,7 @@
 @model Tp4MvcNuevo.ViewModels.VerPedidosCadeteViewModel;
 
 @{
-    var i = 0;
+  var acc = "acc";
 }
 
 <div class="text-center">
@@ -12,16 +12,16 @@
     <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@item.Id" aria-controls="@item.Id">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@(acc + item.Id)" aria-controls="@(acc + item.Id)">
         <p>Cadete @item.Nombre</p>
       </button>
     </h2>
-    <div id="@item.Id" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="@(acc + item.Id)" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <ul>
             @foreach (var ped in Model.ListaPedidos1) {
                 if (ped.idCadete1 == item.Id) {
-                    <li>Pedido N° @ped.Numero. Estado: @ped.Estado</li>
+                    <li>Pedido N° @ped.Numero. Estado: @ped.Estado. @Html.ActionLink("Ver", "MostrarPedido", "Pedidos", new {id = ped.Numero}, new { target = "_blank"})</li>
                 }
             }
         </ul>
