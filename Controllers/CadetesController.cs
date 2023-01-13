@@ -35,7 +35,9 @@ public class CadetesController : Controller {
     [HttpGet]
     public IActionResult ActualizarCadete(int id) {
         Cadete CadeteAActualizar = repoCadetes.getCadete(id);
-        return View(CadeteAActualizar);
+        List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+        ActualizarCadeteViewModel ActualizarCadeteVM = new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias);
+        return View(ActualizarCadeteVM);
     }
 
     [HttpPost]
@@ -56,7 +58,8 @@ public class CadetesController : Controller {
     
     public IActionResult ListarCadetes() {
         List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
-        var ListarCadetesViewModel = new ListaCadetesViewModel(ListaCadetes);
+        List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+        var ListarCadetesViewModel = new ListaCadetesViewModel(ListaCadetes, ListaCadeterias);
         return View(ListarCadetesViewModel);
     }
     [HttpGet]

@@ -14,6 +14,9 @@ namespace Tp4MvcNuevo.ViewModels {
             ListaCadeterias = listaC;
         }
 
+        public CargarCadeteViewModel(Cadete cad, List<Cadeteria> listaC) {
+        }
+
         public CargarCadeteViewModel(){}
         public List<Cadeteria> ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
         public int Id { get => id; set => id = value; }

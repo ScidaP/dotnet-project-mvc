@@ -1,4 +1,4 @@
-@model Tp4MvcNuevo.Models.Cadete;
+@model Tp4MvcNuevo.ViewModels.ActualizarCadeteViewModel;
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,24 +10,30 @@
     <h2>Datos Cadete:</h2>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Nombre</span>
-        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre" value="@Model.Nombre">
+        <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" name="nombre" value="@Model.Cadete1.Nombre">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Dirección</span>
-        <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" name="direccion" value="@Model.Direccion">
+        <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1" name="direccion" value="@Model.Cadete1.Direccion">
     </div>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Teléfono</span>
-        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1" name="telefono" value="@Model.Telefono">
+        <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1" name="telefono" value="@Model.Cadete1.Telefono">
     </div>
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Cadeteria</span>
-        <input type="text" class="form-control" placeholder="Cadeteria" aria-label="Cadeteria" aria-describedby="basic-addon1" name="cadeteria" value="@Model.Cadeteria">
-    </div>
+    <h2 class="mt-3">Cadetería</h2>
+    <select class="form-select my-3" name="Cadeteria">
+        @foreach (var cadeteria in Model.ListaCadeterias1) {
+            if (cadeteria.Id == Model.Cadete1.Cadeteria) {
+                <option value="@cadeteria.Id" selected>@cadeteria.Nombre</option>
+            } else {
+                <option value="@cadeteria.Id">@cadeteria.Nombre</option>
+            }
+        }
+    </select>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1">Sueldo</span>
-        <input type="text" class="form-control" placeholder="Sueldo" aria-label="Sueldo" aria-describedby="basic-addon1" name="sueldo" value="@Model.TotalACobrar1">
+        <input type="text" class="form-control" placeholder="Sueldo" aria-label="Sueldo" aria-describedby="basic-addon1" name="sueldo" value="@Model.Cadete1.TotalACobrar1">
     </div>
-    <input type="hidden" name="id" value="@Model.Id">
+    <input type="hidden" name="id" value="@Model.Cadete1.Id">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

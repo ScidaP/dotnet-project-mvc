@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.navbar-logo {
+  width: 70px;
+  height: auto;
+}
