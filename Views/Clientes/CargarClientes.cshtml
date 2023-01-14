@@ -9,19 +9,19 @@
 <form asp-controller="Clientes" asp-action="ClienteAgregado" method="POST" class="w-50 mx-auto">
     <h2>Datos Cliente:</h2>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nombre</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
         <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Dirección</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
         <input asp-for="@Model.Direccion" type="text" class="form-control" placeholder="Dirección">
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Teléfono</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
         <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono">
     </div>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Referencias Dirección</span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-house"></i></span>
         <input asp-for="@Model.ReferenciasDireccion" type="text" class="form-control" placeholder="Referencia de Dirección">
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
