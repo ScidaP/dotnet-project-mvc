@@ -10,6 +10,12 @@ builder.Services.AddTransient<IRepositorioCadetes, RepositorioCadetes>();
 builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
 builder.Services.AddTransient<IRepositorioPedidos, RepositorioPedidos>();
 builder.Services.AddTransient<IRepositorioCadeterias, RepositorioCadeterias>();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(opciones => {
+    opciones.IdleTimeout = TimeSpan.FromMinutes(15);
+    opciones.Cookie.HttpOnly = true;
+    opciones.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -25,6 +31,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
