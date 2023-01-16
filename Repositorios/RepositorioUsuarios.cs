@@ -28,16 +28,18 @@ public class RepositorioUsuarios : IRepositorioUsuarios {
     }
 
     public bool DatosCorrectos(string usuario, string pass) {
+        bool res;
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
             command.CommandText = @"SELECT * FROM usuarios WHERE usuario = $usuario AND pass = $pass";
             command.Parameters.AddWithValue("$usuario", usuario);
             command.Parameters.AddWithValue("$pass", pass);
-            conexion.Close();
             using (var reader = command.ExecuteReader()) {
-                return reader.HasRows;
+                res = reader.HasRows;
             }
+            conexion.Close();
+            return res;
         }
     }
 }

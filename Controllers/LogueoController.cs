@@ -23,7 +23,7 @@ public class LogueoController : Controller {
     }
 
     [HttpPost]
-    public IActionResult SesionIniciada(string usuario, string pass) {
+    public IActionResult SesionIniciada(string usuario, string pass) { // Funciona correctamente
         if (repoUsuarios.DatosCorrectos(usuario, pass)) {
             return RedirectToAction("Index", "Home");
         } else {
