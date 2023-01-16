@@ -1,0 +1,21 @@
+@model Tp4MvcNuevo.ViewModels.IniciarSesionViewModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Iniciar Sesión </h1>
+</div>
+<form asp-controller="Logueo" asp-action="SesionIniciada" method="POST" class="w-50 mx-auto">
+    <h2>Usuario y Contraseña requeridos</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
+        <input asp-for="@Model.Usuario" type="text" class="form-control" placeholder="Usuario">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+        <input asp-for="@Model.Pass" type="text" class="form-control" placeholder="Contraseña">
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>

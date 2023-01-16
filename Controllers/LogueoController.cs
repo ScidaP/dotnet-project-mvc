@@ -17,4 +17,17 @@ public class LogueoController : Controller {
         repoUsuarios = repo;
         mapper = map;
     }
+
+    public IActionResult IniciarSesion() {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult SesionIniciada(string usuario, string pass) {
+        if (repoUsuarios.DatosCorrectos(usuario, pass)) {
+            return RedirectToAction("Index", "Home");
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
+    }
 }
