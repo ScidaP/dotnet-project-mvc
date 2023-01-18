@@ -7,7 +7,7 @@ namespace Tp4MvcNuevo.ViewModels {
 
         public IniciarSesionViewModel() {}
 
-        public string? Usuario { get => usuario; set => usuario = value; }
+        public string? Usuario1 { get => usuario; set => usuario = value; }
         public string? Pass { get => pass; set => pass = value; }
     }
 }

@@ -23,8 +23,9 @@ public class LogueoController : Controller {
     }
 
     [HttpPost]
-    public IActionResult SesionIniciada(string usuario, string pass) { // Funciona correctamente
-        if (repoUsuarios.DatosCorrectos(usuario, pass)) {
+    public IActionResult SesionIniciada(IniciarSesionViewModel IniciarSesionVM) { // Funciona correctamente
+        Usuario UsuarioNuevo = mapper.Map<Usuario>(IniciarSesionVM);
+        if (repoUsuarios.DatosCorrectos(UsuarioNuevo.Usuario1, UsuarioNuevo.Pass)) {
             return RedirectToAction("Index", "Home");
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");

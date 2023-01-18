@@ -10,5 +10,6 @@ public class PerfilDeMapeo : Profile {
         CreateMap<Cadete, CargarCadeteViewModel>().ReverseMap();
         CreateMap<Cliente, MostrarClienteViewModel>().ReverseMap();
         CreateMap<Cadeteria, MostrarCadeteriaViewModel>().ReverseMap();
+        CreateMap<Usuario, IniciarSesionViewModel>().ReverseMap();
     }
 }
