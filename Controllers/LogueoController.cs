@@ -26,6 +26,8 @@ public class LogueoController : Controller {
     public IActionResult SesionIniciada(IniciarSesionViewModel IniciarSesionVM) { // Funciona correctamente
         Usuario UsuarioNuevo = mapper.Map<Usuario>(IniciarSesionVM);
         if (repoUsuarios.DatosCorrectos(UsuarioNuevo.Usuario1, UsuarioNuevo.Pass)) {
+            HttpContext.Session.SetString("Rol", UsuarioNuevo.Rol);
+            HttpContext.Session.SetString("Usuario", UsuarioNuevo.Usuario1);
             return RedirectToAction("Index", "Home");
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");

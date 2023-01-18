@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Text;
 using Tp4MvcNuevo.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace Tp4MvcNuevo.Controllers;
 
@@ -28,17 +30,28 @@ public class PedidosController : Controller
         mapper = mapp;
     }
     public IActionResult HacerPedido() {
-        List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
-        List<Cliente> ListaClientes = repoClientes.getTodosClientes();
-        HacerPedidoViewModel HacerPedidoVM = new HacerPedidoViewModel(ListaCadetes, ListaClientes);
-        return View(HacerPedidoVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
+            List<Cliente> ListaClientes = repoClientes.getTodosClientes();
+            HacerPedidoViewModel HacerPedidoVM = new HacerPedidoViewModel(ListaCadetes, ListaClientes);
+            return View(HacerPedidoVM);
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     [HttpGet]
 
     public IActionResult MostrarPedido(int id) {
-        Pedido ped = repoPedidos.getPedido(id);
-        return View(ped);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            Pedido ped = repoPedidos.getPedido(id);
+            var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
+            return View(mostrarPedidoVM);
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     [HttpPost]

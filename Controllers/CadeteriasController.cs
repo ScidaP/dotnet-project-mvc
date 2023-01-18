@@ -17,7 +17,12 @@ public class CadeteriasController : Controller {
     }
 
     public IActionResult CargarCadeteria() {
-        return View();
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 2 || Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            return View();
+        }
     }
 
     [HttpPost]
@@ -29,22 +34,37 @@ public class CadeteriasController : Controller {
     }
 
     public IActionResult ListarCadeterias() {
-        List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
-        ListarCadeteriasViewModel ListarCadVM = new ListarCadeteriasViewModel(ListaCadeterias);
-        return View(ListarCadVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 2 || Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+            ListarCadeteriasViewModel ListarCadVM = new ListarCadeteriasViewModel(ListaCadeterias);
+            return View(ListarCadVM);
+        }
     }
 
     public IActionResult EliminarCadeteria(int id) {
-        repoCadeterias.EliminarCadeteria(id);
-        TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 2 || Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            repoCadeterias.EliminarCadeteria(id);
+            TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
+            return RedirectToAction("Info");
+        }
     }
 
     [HttpGet]
     public IActionResult MostrarCadeteria(int id) {
-        Cadeteria cad = repoCadeterias.GetCadeteria(id);
-        MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
-        return View(cadVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 2 || Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            Cadeteria cad = repoCadeterias.GetCadeteria(id);
+            MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
+            return View(cadVM);
+        }
     }
 
     public IActionResult Info() {

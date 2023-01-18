@@ -23,46 +23,76 @@ public class ClientesController : Controller {
 
     [HttpGet]
     public IActionResult MostrarCliente(int id) {
-        Cliente cliente = _repo.getCliente(id);
-        MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
-        return View(clienteVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { // Los únicos uqe no pueden acceder a esta página son los no logueados
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            Cliente cliente = _repo.getCliente(id);
+            MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
+            return View(clienteVM);
+        }
     }
 
     [HttpPost]
     public IActionResult ClienteAgregado(ClienteViewModel ClienteVM) {
-        var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
-        _repo.agregarCliente(nuevoCliente);
-        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { 
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
+            _repo.agregarCliente(nuevoCliente);
+            TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
+            return RedirectToAction("Info");
+        }
     }
 
     public IActionResult ListarClientes() {
-        List<Cliente> ListaClientes = _repo.getTodosClientes();
-        var ListarCadetesViewModel = new ListarClientesViewModel(ListaClientes);
-        return View(ListarCadetesViewModel);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { 
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            List<Cliente> ListaClientes = _repo.getTodosClientes();
+            var ListarClientesViewModel = new ListarClientesViewModel(ListaClientes);
+            return View(ListarClientesViewModel);
+        }
     }
 
     [HttpGet]
     public IActionResult EliminarCliente(int id) {
-        _repo.eliminarCliente(id);
-        TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { 
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            _repo.eliminarCliente(id);
+            TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
+            return RedirectToAction("Info");
+        }
     }
 
     [HttpGet]
     public IActionResult ActualizarCliente(int id) {
-        var ClienteAActualizar = _repo.getCliente(id);
-        var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
-        return View(ActualizarClienteVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { 
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            var ClienteAActualizar = _repo.getCliente(id);
+            var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
+            return View(ActualizarClienteVM);
+        }
     }
 
     [HttpPost]
 
     public IActionResult ClienteActualizado(ClienteViewModel ClienteVM) {
-        var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
-        _repo.actualizarCliente(clienteActualizado);
-        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
-        return View("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) { 
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
+            _repo.actualizarCliente(clienteActualizado);
+            TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+            return View("Info");
+        }
     }
 
     public IActionResult Info() {
