@@ -56,41 +56,66 @@ public class PedidosController : Controller
 
     [HttpPost]
     public IActionResult PedidoAgregado(HacerPedidoViewModel HacerPedidoVM) {
-        var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
-        repoPedidos.agregarPedido(nuevoPedido);
-        TempData["Info"] = "Pedido agregado con éxito";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
+            repoPedidos.agregarPedido(nuevoPedido);
+            TempData["Info"] = "Pedido agregado con éxito";
+            return RedirectToAction("Info");
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     [HttpGet]
     public IActionResult EliminarPedido(int id) {
-        repoPedidos.eliminarPedido(id);
-        TempData["Info"] = "Pedido N°" + id + " eliminado con éxito.";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            repoPedidos.eliminarPedido(id);
+            TempData["Info"] = "Pedido N°" + id + " eliminado con éxito.";
+            return RedirectToAction("Info");
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     public IActionResult ListarPedidos() {
-        List<Pedido> pedidos = repoPedidos.getTodosPedidos();
-        var ListarPedidosVM = new ListarPedidosViewModels();
-        ListarPedidosVM.pedidos = mapper.Map<List<Pedido>>(pedidos);
-        return View(ListarPedidosVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            List<Pedido> pedidos = repoPedidos.getTodosPedidos();
+            var ListarPedidosVM = new ListarPedidosViewModels();
+            ListarPedidosVM.pedidos = mapper.Map<List<Pedido>>(pedidos);
+            return View(ListarPedidosVM);
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     [HttpGet]
     public IActionResult ActualizarPedido(int id) {
-        var pedidoAActualizar = repoPedidos.getPedido(id);
-        var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
-        HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-        HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
-        return View(HacerPedidoVM);
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            var pedidoAActualizar = repoPedidos.getPedido(id);
+            var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
+            HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+            HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+            return View(HacerPedidoVM);
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
 
     [HttpPost]
     public IActionResult PedidoActualizado(HacerPedidoViewModel VM) {
-        var nuevoPedido = mapper.Map<Pedido>(VM);
-        repoPedidos.actualizarPedido(nuevoPedido);
-        TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
-        return RedirectToAction("Info");
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == 1) { // Sólo los admin ven esta página
+            var nuevoPedido = mapper.Map<Pedido>(VM);
+            repoPedidos.actualizarPedido(nuevoPedido);
+            TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+            return RedirectToAction("Info");
+        } else {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        }
     }
     
     public IActionResult Info() {
