@@ -11,16 +11,15 @@ public class Usuario {
     private string nombre;
     private string usuario;
     private string pass;
-    private string rol;
+    private int rol;
 
     public Usuario() {
         nombre = "";
         usuario = "";
         pass = "";
-        rol = "";
     }
 
-    public Usuario(int id1, string nombre1, string usuario1, string pass1, string rol1) {
+    public Usuario(int id1, string nombre1, string usuario1, string pass1, int rol1) {
         id = id1;
         nombre = nombre1;
         usuario = usuario1;
@@ -31,5 +30,5 @@ public class Usuario {
     public string Nombre { get => nombre; set => nombre = value; }
     public string Usuario1 { get => usuario; set => usuario = value; }
     public string Pass { get => pass; set => pass = value; }
-    public string Rol { get => rol; set => rol = value; }
+    public int Rol { get => rol; set => rol = value; }
 }
