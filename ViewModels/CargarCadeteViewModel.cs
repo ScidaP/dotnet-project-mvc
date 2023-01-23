@@ -9,6 +9,9 @@ namespace Tp4MvcNuevo.ViewModels {
         private long telefono;
         private int cadeteria;
         private double TotalACobrar;
+        private string usuario;
+        private string pass;
+        private int rol;
         private List<Cadeteria> ListaCadeterias;
         public CargarCadeteViewModel(List<Cadeteria> listaC) {
             ListaCadeterias = listaC;
@@ -25,5 +28,8 @@ namespace Tp4MvcNuevo.ViewModels {
         public long Telefono { get => telefono; set => telefono = value; }
         public int Cadeteria { get => cadeteria; set => cadeteria = value; }
         public double TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
+        public string Usuario { get => usuario; set => usuario = value; }
+        public string Pass { get => pass; set => pass = value; }
+        public int Rol { get => rol; set => rol = value; }
     }
 }

@@ -17,7 +17,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM cadete WHERE id = $id";
+            command.CommandText = @"SELECT * FROM cadetes WHERE id = $id";
             command.Parameters.AddWithValue("$id", id);
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
@@ -33,7 +33,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"INSERT INTO cadete(nombre, direccion, telefono, totalACobrar, cadeteria) VALUES ($nombre, $direccion, $telefono, $sueldo, $cadeteria)";
+            command.CommandText = @"INSERT INTO cadetes(nombre, direccion, telefono, totalACobrar, cadeteria) VALUES ($nombre, $direccion, $telefono, $sueldo, $cadeteria)";
             command.Parameters.AddWithValue("$nombre", cad.Nombre);
             command.Parameters.AddWithValue("$direccion", cad.Direccion);
             command.Parameters.AddWithValue("$telefono", cad.Telefono);
@@ -48,7 +48,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"DELETE FROM cadete WHERE id=$id";
+            command.CommandText = @"DELETE FROM cadetes WHERE id=$id"; //Rol=2 indica que solo se modificarán CADETES.
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
             conexion.Close();
@@ -59,7 +59,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"UPDATE cadete SET nombre = $nombre, direccion = $direccion, telefono = $telefono, cadeteria = $cadeteria, totalACobrar = $sueldo WHERE id = $id";
+            command.CommandText = @"UPDATE cadetes SET nombre = $nombre, direccion = $direccion, telefono = $telefono, cadeteria = $cadeteria, totalACobrar = $sueldo WHERE id = $id";
             command.Parameters.AddWithValue("$nombre", cad.Nombre);
             command.Parameters.AddWithValue("$direccion", cad.Direccion);
             command.Parameters.AddWithValue("$telefono", cad.Telefono);
@@ -76,7 +76,7 @@ public class RepositorioCadetes : IRepositorioCadetes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM cadete";
+            command.CommandText = @"SELECT * FROM cadetes";
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     var cadete = new Cadete(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetInt32(4), reader.GetInt32(5));

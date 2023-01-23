@@ -56,7 +56,7 @@ public class Pedido {
             using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = @"SELECT nombre FROM cadete WHERE id = $id";
+                command.CommandText = @"SELECT nombre FROM usuarios WHERE id = $id AND rol=2";
                 command.Parameters.AddWithValue("$id", id);
                 using (var reader = command.ExecuteReader()) {
                     while (reader.Read()) {
