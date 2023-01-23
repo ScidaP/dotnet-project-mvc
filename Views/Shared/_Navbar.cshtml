@@ -7,6 +7,6 @@
     @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
         @Html.Partial("_NavbarAdmin");
     } else {
-        @Html.Partial("_NavbarCadete");
+        @Html.Partial("_NavbarSupervisor");
     }
 }

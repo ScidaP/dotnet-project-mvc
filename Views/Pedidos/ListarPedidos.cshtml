@@ -17,7 +17,7 @@
             <th scope="col"> Estado </th>
             <th scope="col"> Cliente </th>
             <th scope="col"> Cadete </th>
-            <th scope="col"> Ver </th>
+            <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
             @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
                 <th scope="col"> Modificar </th>
                 <th scope="col"> Eliminar</th>

@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @model Tp4MvcNuevo.ViewModels.ListarClientesViewModel;
 
 <div class="text-center">
@@ -11,7 +14,10 @@
             <th scope="col"> Dirección </th>
             <th scope="col"> Teléfono </th>
             <th scope="col"> Referencia Dirección </th>
-            <th scope="col" colspan="3"> Acciones </th>
+            <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
+            @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                <th scope="col" colspan="2"> Acciones </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -25,8 +31,10 @@
                 <td> @item.Telefono</td>
                 <td> @item.ReferenciasDireccion</td>
                 <td> @Html.ActionLink("Ver", "MostrarCliente", "Clientes", new {id = item.Id})</td>
-                <td> @Html.ActionLink("Eliminar", "EliminarCliente", "Clientes", new {id = item.Id})</td>
-                <td> @Html.ActionLink("Actualizar", "ActualizarCliente", "Clientes", new {id = item.Id})</td>
+                @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                    <td> @Html.ActionLink("Eliminar", "EliminarCliente", "Clientes", new {id = item.Id})</td>
+                    <td> @Html.ActionLink("Actualizar", "ActualizarCliente", "Clientes", new {id = item.Id})</td>
+                }
             </tr>    
             }
 

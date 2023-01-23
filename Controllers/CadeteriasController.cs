@@ -18,10 +18,14 @@ public class CadeteriasController : Controller {
 
     public IActionResult CargarCadeteria() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            return View();
+            if (Rol == 1) {
+                return View();
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
@@ -35,7 +39,7 @@ public class CadeteriasController : Controller {
 
     public IActionResult ListarCadeterias() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
@@ -46,19 +50,23 @@ public class CadeteriasController : Controller {
 
     public IActionResult EliminarCadeteria(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            repoCadeterias.EliminarCadeteria(id);
-            TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                repoCadeterias.EliminarCadeteria(id);
+                TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
+                return RedirectToAction("Info");
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
     [HttpGet]
     public IActionResult MostrarCadeteria(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             Cadeteria cad = repoCadeterias.GetCadeteria(id);

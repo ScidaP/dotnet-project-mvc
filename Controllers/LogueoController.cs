@@ -29,10 +29,29 @@ public class LogueoController : Controller {
         if (logueo > 0) {
             Usuario UsuarioLogueado = repoUsuarios.GetUsuario(logueo);
             HttpContext.Session.SetInt32("Rol", UsuarioLogueado.Rol);
+            HttpContext.Session.SetString("RolNombre", NombreRol(UsuarioLogueado.Rol));
             HttpContext.Session.SetString("Usuario", UsuarioLogueado.Usuario1);
             return RedirectToAction("Index", "Home");
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");
         }
+    }
+
+    public IActionResult CerrarSesion() {
+       HttpContext.Session.Clear();
+        return RedirectToAction("IniciarSesion","Logueo");
+    }
+
+    private static string NombreRol(int id) {
+        string rol = "";
+        switch (id){
+            case 1:
+                rol = "Administrador";
+                break;
+            case 2:
+                rol = "Supervisor";
+                break;
+        }
+        return rol;
     }
 }

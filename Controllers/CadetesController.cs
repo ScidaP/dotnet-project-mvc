@@ -22,17 +22,21 @@ public class CadetesController : Controller {
     }
     public IActionResult CargarCadete() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            return View(new CargarCadeteViewModel(repoCadeterias.GetTodasCadeterias()));
+            if (Rol == 1) {
+                return View(new CargarCadeteViewModel(repoCadeterias.GetTodasCadeterias()));
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
     [HttpGet]
     public IActionResult Mostrarcadete(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             Cadete cad = repoCadetes.getCadete(id);
@@ -44,43 +48,55 @@ public class CadetesController : Controller {
     [HttpGet]
     public IActionResult ActualizarCadete(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            Cadete CadeteAActualizar = repoCadetes.getCadete(id);
-            List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
-            return View(new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias));
+            if (Rol == 1) {
+                Cadete CadeteAActualizar = repoCadetes.getCadete(id);
+                List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+                return View(new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias));
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
     [HttpPost]
     public IActionResult CadeteActualizado(int id, string nombre, string direccion, int telefono, int cadeteria, double sueldo) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            repoCadetes.actualizarCadete(new Cadete(id, nombre, direccion, telefono, cadeteria, sueldo));
-            TempData["Info"] = "Cadete N° " + id + " actualizado correctamente.";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                repoCadetes.actualizarCadete(new Cadete(id, nombre, direccion, telefono, cadeteria, sueldo));
+                TempData["Info"] = "Cadete N° " + id + " actualizado correctamente.";
+                return RedirectToAction("Info");
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
     [HttpPost]
     public IActionResult CadeteAgregado(CargarCadeteViewModel NuevoCadeteVM) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
-            repoCadetes.agregarCadete(nuevoCadete);
-            TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
+                repoCadetes.agregarCadete(nuevoCadete);
+                TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
+                return RedirectToAction("Info");
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
     
     public IActionResult ListarCadetes() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
@@ -91,18 +107,22 @@ public class CadetesController : Controller {
     [HttpGet]
     public IActionResult EliminarCadete(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            repoCadetes.eliminarCadete(id);
-            TempData["Info"] = "Cadete N° " + id + " eliminado correctamente.";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                repoCadetes.eliminarCadete(id);
+                TempData["Info"] = "Cadete N° " + id + " eliminado correctamente.";
+                return RedirectToAction("Info");
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 
     public IActionResult VerPedidosTodosCadetes() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 2 || Rol == null) {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cadete> todosCadetes = repoCadetes.getTodosCadetes();

@@ -19,9 +19,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Cadetes" asp-action="CargarCadete">Cargar</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Cadetes" asp-action="ListarCadetes">Listar</a>
                             </li>
                         </ul>
@@ -31,9 +28,6 @@
                             Pedidos
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Pedidos" asp-action="HacerPedido">Cargar</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Pedidos" asp-action="ListarPedidos">Listar</a>
                             </li>
@@ -45,9 +39,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Clientes" asp-action="CargarClientes">Cargar</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Clientes" asp-action="ListarClientes">Listar</a>
                             </li>
                         </ul>
@@ -58,9 +49,6 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Cadeterias" asp-action="CargarCadeteria">Cargar</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Cadeterias" asp-action="ListarCadeterias">Listar</a>
                             </li>
                         </ul>
@@ -69,7 +57,7 @@
                         <a class="nav-link text-dark" asp-controller="Cadetes" asp-action="VerPedidosTodosCadetes">Pedidos de cada cadete</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                        <p style="margin-bottom: 0;">@@@HttpContextAccessor.HttpContext.Session.GetString("Usuario") - @HttpContextAccessor.HttpContext.Session.GetString("RolNombre")</p>
+                        <p style="margin-bottom: 0;">@HttpContextAccessor.HttpContext.Session.GetString("Usuario") - @HttpContextAccessor.HttpContext.Session.GetString("RolNombre")</p>
                     </li>
                     <li class="nav-item ml-3">
                         <a class="btn btn-primary ms-4" asp-controller="Logueo" asp-action="CerrarSesion">Cerrar Sesión</a>

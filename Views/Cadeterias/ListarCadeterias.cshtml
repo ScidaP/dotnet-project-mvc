@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @model Tp4MvcNuevo.ViewModels.ListarCadeteriasViewModel;
 
 <div class="text-center">
@@ -9,7 +12,10 @@
             <th scope="col"> ID </th>
             <th scope="col"> Nombre </th>
             <th scope="col"> Teléfono </th>
-            <th scope="col" colspan="3"> Acciones </th>
+            <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
+            @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                <th scope="col" colspan="2"> Acciones </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -21,8 +27,10 @@
                 <td> @item.Nombre </td>
                 <td> @item.Telefono</td>
                 <td> @Html.ActionLink("Ver", "MostrarCadeteria", "Cadeterias", new {id = item.Id})</td>
-                <td> @Html.ActionLink("Eliminar", "EliminarCadeteria", "Cadeterias", new {id = item.Id})</td>
-                <td> @Html.ActionLink("Actualizar", "ActualizarCadeteria", "Cadeterias", new {id = item.Id})</td>
+                @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                    <td> @Html.ActionLink("Eliminar", "EliminarCadeteria", "Cadeterias", new {id = item.Id})</td>
+                    <td> @Html.ActionLink("Actualizar", "ActualizarCadeteria", "Cadeterias", new {id = item.Id})</td>
+                }
             </tr>    
             }
 
