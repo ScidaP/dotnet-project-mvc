@@ -11,6 +11,7 @@ builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
 builder.Services.AddTransient<IRepositorioPedidos, RepositorioPedidos>();
 builder.Services.AddTransient<IRepositorioCadeterias, RepositorioCadeterias>();
 builder.Services.AddTransient<IRepositorioUsuarios, RepositorioUsuarios>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(opciones => {
     opciones.IdleTimeout = TimeSpan.FromMinutes(15);

@@ -1,3 +1,6 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @model Tp4MvcNuevo.ViewModels.ListarPedidosViewModels;
 @{
     ViewData["Title"] = "Home Page";
@@ -15,8 +18,10 @@
             <th scope="col"> Cliente </th>
             <th scope="col"> Cadete </th>
             <th scope="col"> Ver </th>
-            <th scope="col"> Modificar </th>
-            <th scope="col"> Eliminar</th>
+            @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                <th scope="col"> Modificar </th>
+                <th scope="col"> Eliminar</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -38,8 +43,10 @@
                     <td> @Html.ActionLink(@item.getNombreCadete(item.idCadete1), "MostrarCadete", "Cadetes", new {id = item.idCadete1})</td>
                 }
                 <td> @Html.ActionLink("Ver", "MostrarPedido", "Pedidos", new {id = item.Numero})</td>
-                <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = item.Numero})</td>
-                <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Numero">Eliminar</a></td>
+                @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                    <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = item.Numero})</td>
+                    <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Numero">Eliminar</a></td>
+                }
             </tr>    
             }
 

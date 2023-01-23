@@ -100,14 +100,14 @@ public class CadetesController : Controller {
         }
     }
 
-    public IActionResult VerPedidosCadete() {
+    public IActionResult VerPedidosTodosCadetes() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 2 || Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cadete> todosCadetes = repoCadetes.getTodosCadetes();
             List<Pedido> todosPedidos = repoPedidos.getTodosPedidos();
-            return View(new VerPedidosCadeteViewModel(todosCadetes, todosPedidos));
+            return View(new VerPedidosTodosCadetesViewModel(todosCadetes, todosPedidos));
         }
     }
 

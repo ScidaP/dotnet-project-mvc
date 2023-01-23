@@ -1,11 +1,11 @@
 using Tp4MvcNuevo.Models;
 
 namespace Tp4MvcNuevo.ViewModels {
-    public class VerPedidosCadeteViewModel {
+    public class VerPedidosTodosCadetesViewModel {
         private List<Cadete> ListaCadetes;
         private List<Pedido> ListaPedidos;
 
-        public VerPedidosCadeteViewModel(List<Cadete> ListaCadetes2, List<Pedido> ListaPedidos2){
+        public VerPedidosTodosCadetesViewModel(List<Cadete> ListaCadetes2, List<Pedido> ListaPedidos2){
             ListaCadetes = ListaCadetes2;
             ListaPedidos = ListaPedidos2;
         }
