@@ -39,7 +39,7 @@ namespace Tp4MvcNuevo.ViewModels {
             using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
                 conexion.Open();
                 var command = conexion.CreateCommand();
-                command.CommandText = @"SELECT nombre FROM cadete WHERE id = $id";
+                command.CommandText = @"SELECT nombre FROM cadetes WHERE id = $id";
                 command.Parameters.AddWithValue("$id", id);
                 using (var reader = command.ExecuteReader()) {
                     while (reader.Read()) {

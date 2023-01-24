@@ -3,8 +3,12 @@
 
 @model Tp4MvcNuevo.ViewModels.ListaCadetesViewModel;
 
-<div class="text-center">
+@{
+    var Rol = HttpContextAccessor.HttpContext.Session.GetInt32("Rol");
+}
+<div class="text-center titulo-listar">
     <h1 class="display-4">Cadetes</h1>
+    <a  asp-controller="Cadetes" asp-action="ListarCadetes"> Refrescar </a>
 </div>
 <table class="table">
     <thead class="table-dark">
@@ -16,7 +20,7 @@
             <th scope="col"> Cadetería </th>
             <th scope="col"> Sueldo </th>
             <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
-            @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+            @if (Rol == 1) {
                 <th scope="col" colspan="2"> Acciones </th>
             }
         </tr>
@@ -33,14 +37,18 @@
                 <td> @item.Cadeteria</td>
                 <td> @item.TotalACobrar1</td>
                 <td> @Html.ActionLink("Ver", "MostrarCadete", "Cadetes", new {id = item.Id})</td>
-                @if (HttpContextAccessor.HttpContext.Session.GetInt32("Rol") == 1) {
+                @if (Rol == 1) {
                     <td> @Html.ActionLink("Eliminar", "EliminarCadete", "Cadetes", new {id = item.Id})</td>
                     <td> @Html.ActionLink("Actualizar", "ActualizarCadete", "Cadetes", new {id = item.Id})</td>
                 }
             </tr>    
             }
-
-            <a  asp-controller="Cadetes" asp-action="ListarCadetes"> Refrescar </a>
     </tbody>
     
 </table>
+
+@if (Rol == 1) {
+    <div class="text-center">
+        <h5><a asp-controller="Cadetes" asp-action="CargarCadete">--> Cargar cadetes nuevos</a></h5>
+    </div>
+}

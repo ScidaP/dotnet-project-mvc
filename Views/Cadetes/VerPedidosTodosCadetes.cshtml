@@ -4,16 +4,16 @@
   var acc = "acc";
 }
 
-<div class="text-center">
+<div class="text-center my-5">
     <h1 class="display-4">Viendo los Pedidos de los Cadetes </h1>
 </div>
 
 @foreach (var item in Model.ListaCadetes1) {
-    <div class="accordion" id="accordionExample">
+    <div class="accordion w-50 mx-auto" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@(acc + item.Id)" aria-controls="@(acc + item.Id)">
-        <p>Cadete @item.Nombre</p>
+        <p><i class="fa-solid fa-pizza-slice me-3"></i>Cadete @item.Nombre</p>
       </button>
     </h2>
     <div id="@(acc + item.Id)" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">

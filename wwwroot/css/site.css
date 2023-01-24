@@ -30,3 +30,21 @@ body {
 a {
   text-decoration: none !important;
 }
+
+.table {
+  width: 75% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.titulo-listar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.titulo-listar a {
+  margin-top: 1.8em;
+  margin-left: 2em;
+}
