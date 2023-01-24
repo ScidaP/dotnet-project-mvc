@@ -43,8 +43,7 @@ public class CadeteriasController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
-            ListarCadeteriasViewModel ListarCadVM = new ListarCadeteriasViewModel(ListaCadeterias);
-            return View(ListarCadVM);
+            return View(new ListarCadeteriasViewModel(ListaCadeterias));
         }
     }
 

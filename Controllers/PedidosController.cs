@@ -34,8 +34,7 @@ public class PedidosController : Controller
         if (Rol == 1) { // Admin
             List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
             List<Cliente> ListaClientes = repoClientes.getTodosClientes();
-            HacerPedidoViewModel HacerPedidoVM = new HacerPedidoViewModel(ListaCadetes, ListaClientes);
-            return View(HacerPedidoVM);
+            return View(new HacerPedidoViewModel(ListaCadetes, ListaClientes));
         } else {
             if (Rol == 2) {
                 return RedirectToAction("Index", "Home");

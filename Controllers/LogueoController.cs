@@ -38,7 +38,7 @@ public class LogueoController : Controller {
     }
 
     public IActionResult CerrarSesion() {
-       HttpContext.Session.Clear();
+        HttpContext.Session.Clear();
         return RedirectToAction("IniciarSesion","Logueo");
     }
 

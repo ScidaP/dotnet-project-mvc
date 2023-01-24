@@ -52,8 +52,7 @@ public class ClientesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             List<Cliente> ListaClientes = _repo.getTodosClientes();
-            var ListarClientesViewModel = new ListarClientesViewModel(ListaClientes);
-            return View(ListarClientesViewModel);
+            return View(new ListarClientesViewModel(ListaClientes));
         }
     }
 

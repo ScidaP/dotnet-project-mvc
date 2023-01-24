@@ -1,7 +1,8 @@
 @model Tp4MvcNuevo.ViewModels.MostrarCadeteriaViewModel;
 
-<div class="text-center my-5">
+<div class="text-center titulo-listar">
     <h1 class="display-4">Viendo la Cadeteria @Model.Nombre </h1>
+    <a  asp-controller="Cadeterias" asp-action="ListarCadeterias"> Ver todas las cadeterías </a>
 </div>
 <table class="table">
     <thead class="table-dark">
@@ -15,8 +16,6 @@
                 <td> @Model.Nombre </td>
                 <td> @Model.Telefono</td>
             </tr>   
-
-            <a  asp-controller="Cadeterias" asp-action="ListarCadeterias"> Ver todas las cadeterías </a>
     </tbody>
     
 </table>
