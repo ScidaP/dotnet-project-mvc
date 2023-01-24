@@ -62,7 +62,7 @@ public class CadetesController : Controller {
     }
 
     [HttpPost]
-    public IActionResult CadeteActualizado(int id, string nombre, string direccion, int telefono, int cadeteria, double sueldo) {
+    public IActionResult CadeteActualizado(int id, string nombre, string direccion, long telefono, int cadeteria, double sueldo) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
