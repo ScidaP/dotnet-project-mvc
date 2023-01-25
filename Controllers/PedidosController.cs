@@ -48,7 +48,7 @@ public class PedidosController : Controller
 
     public IActionResult MostrarPedido(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1 || Rol == 2) { // Admin y cadete
+        if (Rol == 1 || Rol == 2) { // Admin y supervisor
             Pedido ped = repoPedidos.getPedido(id);
             var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
             return View(mostrarPedidoVM);
@@ -60,18 +60,24 @@ public class PedidosController : Controller
     [HttpPost]
     public IActionResult PedidoAgregado(HacerPedidoViewModel HacerPedidoVM) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1) { // Admin
-            var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
-            repoPedidos.agregarPedido(nuevoPedido);
-            TempData["Info"] = "Pedido agregado con éxito";
-            return RedirectToAction("Info");
+        if (Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 2) {
-                return RedirectToAction("Index", "Home");
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
+                    repoPedidos.agregarPedido(nuevoPedido);
+                    TempData["Info"] = "Pedido agregado con éxito";
+                    return RedirectToAction("Info");
+                } else {
+                    HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                    HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+                    return View("HacerPedido", HacerPedidoVM);
+                }
             } else {
-                return RedirectToAction("IniciarSesion", "Logueo");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
-        } 
+        }
     }
 
     [HttpGet]
@@ -83,7 +89,7 @@ public class PedidosController : Controller
             return RedirectToAction("Info");
         } else {
             if (Rol == 2) {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             } else {
                 return RedirectToAction("IniciarSesion", "Logueo");
             }
@@ -105,27 +111,41 @@ public class PedidosController : Controller
     [HttpGet]
     public IActionResult ActualizarPedido(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1) { // Sólo los admin ven esta página
-            var pedidoAActualizar = repoPedidos.getPedido(id);
-            var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
-            HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-            HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
-            return View(HacerPedidoVM);
-        } else {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                var pedidoAActualizar = repoPedidos.getPedido(id);
+                var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
+                HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+                return View(HacerPedidoVM);
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
     [HttpPost]
     public IActionResult PedidoActualizado(HacerPedidoViewModel VM) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1) { // Sólo los admin ven esta página
-            var nuevoPedido = mapper.Map<Pedido>(VM);
-            repoPedidos.actualizarPedido(nuevoPedido);
-            TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
-            return RedirectToAction("Info");
-        } else {
+        if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var nuevoPedido = mapper.Map<Pedido>(VM);
+                    repoPedidos.actualizarPedido(nuevoPedido);
+                    TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+                    return RedirectToAction("Info");
+                } else {
+                    VM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                    VM.ListaClientes1 = repoClientes.getTodosClientes();
+                    return View("ActualizarPedido", VM);
+                }
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
     
