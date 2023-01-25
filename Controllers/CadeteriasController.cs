@@ -22,7 +22,7 @@ public class CadeteriasController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                return View();
+                return View(new CadeteriaViewModel());
             } else {
                 return RedirectToAction("Index", "Home");
             }
@@ -31,10 +31,59 @@ public class CadeteriasController : Controller {
 
     [HttpPost]
 
-    public IActionResult CadeteriaAgregada(Cadeteria cad) {
-        repoCadeterias.AgregarCadeteria(cad);
-        TempData["Info"] = "Cadetería " + cad.Nombre + " agregada con éxito.";
-        return RedirectToAction("Info");
+    public IActionResult CadeteriaAgregada(CadeteriaViewModel cadVM) {
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var cad = mapper.Map<Cadeteria>(cadVM);
+                    repoCadeterias.AgregarCadeteria(cad);
+                    TempData["Info"] = "Cadetería " + cad.Nombre + " agregada con éxito.";
+                    return RedirectToAction("Info");
+                } else {
+                    return View("CargarCadeteria", cadVM);
+                }
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+    }
+
+    public IActionResult ActualizarCadeteria(int id) {
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                var CadeteriaAActualiar = repoCadeterias.GetCadeteria(id);
+                var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
+                return View(CadeteriaVM);
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+    }
+
+    public IActionResult CadeteriaActualizada(CadeteriaViewModel CadVM) {
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var Cadeteria = mapper.Map<Cadeteria>(CadVM);
+                    repoCadeterias.ActualizarCadeteria(Cadeteria);
+                    TempData["Info"] = "Cadetería N° " + Cadeteria.Id + " actualizada correctamente.";
+                    return RedirectToAction("Info");
+                } else {
+                    return View("Actualizarcadeteria", CadVM);
+                }
+            } else {
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 
     public IActionResult ListarCadeterias() {

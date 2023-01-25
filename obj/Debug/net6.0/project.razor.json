@@ -18489,6 +18489,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Cadeterias\\ActualizarCadeteria.cshtml",
+      "TargetPath": "Views\\Cadeterias\\ActualizarCadeteria.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"

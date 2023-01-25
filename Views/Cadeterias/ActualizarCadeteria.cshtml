@@ -4,19 +4,20 @@
 }
                                                                                                                                                                         
 <div class="text-center">
-    <h1 class="display-4">Cargar Cadetería</h1>
+    <h1 class="display-4">Actualizar Cadetería</h1>
 </div>
-<form asp-controller="Cadeterias" asp-action="CadeteriaAgregada" method="POST" class="w-50 mx-auto">
+<form asp-controller="Cadeterias" asp-action="CadeteriaActualizada" method="POST" class="w-50 mx-auto">
     <h2>Datos Cadetería:</h2>
     <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
-        <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
+        <input asp-for="@Model.Nombre" type="text" class="form-control" value="@Model.Nombre">
     </div>
     <span asp-validation-for="@Model.Telefono" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-        <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono">
+        <input asp-for="@Model.Telefono" type="text" class="form-control" value="@Model.Telefono">
     </div>
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id">
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>

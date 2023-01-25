@@ -25,7 +25,10 @@ namespace Tp4MvcNuevo.ViewModels {
             Telefono = telefono;
         }
 
+        [StringLength(30)][RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Sólo se admiten letras")]
         public string? Nombre { get => nombre; set => nombre = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo teléfono")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Número de teléfono no válido")]
         public long? Telefono { get => telefono; set => telefono = value; }
         public int Id { get => id; set => id = value; }
     }
