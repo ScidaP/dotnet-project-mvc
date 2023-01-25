@@ -57,7 +57,7 @@
                         <a class="nav-link text-dark" asp-controller="Cadetes" asp-action="VerPedidosTodosCadetes">Pedidos de cada cadete</a>
                     </li>
                     <li class="nav-item ms-auto mt-1">
-                        <p style="margin-bottom: 0;">@HttpContextAccessor.HttpContext.Session.GetString("Usuario") - @HttpContextAccessor.HttpContext.Session.GetString("RolNombre")</p>
+                        <p style="margin-bottom: 0;">@@@HttpContextAccessor.HttpContext.Session.GetString("Usuario") - @HttpContextAccessor.HttpContext.Session.GetString("RolNombre")</p>
                     </li>
                     <li class="nav-item ml-3">
                         <a class="btn btn-primary ms-4" asp-controller="Logueo" asp-action="CerrarSesion">Cerrar Sesión<i class="fa-solid fa-arrow-right-from-bracket ms-1"></i></a>
