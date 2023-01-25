@@ -1,17 +1,14 @@
 using Tp4MvcNuevo.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Tp4MvcNuevo.ViewModels {
     public class CargarCadeteViewModel {
-
         private int id;
         private string nombre;
         private string direccion;
-        private long telefono;
+        private long? telefono;
         private int cadeteria;
-        private double TotalACobrar;
-        private string usuario;
-        private string pass;
-        private int rol;
+        private double? TotalACobrar;
         private List<Cadeteria> ListaCadeterias;
         public CargarCadeteViewModel(List<Cadeteria> listaC) {
             ListaCadeterias = listaC;
@@ -23,13 +20,17 @@ namespace Tp4MvcNuevo.ViewModels {
         public CargarCadeteViewModel(){}
         public List<Cadeteria> ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
         public int Id { get => id; set => id = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo nombre")]
+        [StringLength(30)]
         public string Nombre { get => nombre; set => nombre = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo dirección")]
         public string Direccion { get => direccion; set => direccion = value; }
-        public long Telefono { get => telefono; set => telefono = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo teléfono")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Número de teléfono no válido")]
+        public long? Telefono { get => telefono; set => telefono = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo cadetería")]
         public int Cadeteria { get => cadeteria; set => cadeteria = value; }
-        public double TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
-        public string Usuario { get => usuario; set => usuario = value; }
-        public string Pass { get => pass; set => pass = value; }
-        public int Rol { get => rol; set => rol = value; }
+        [Required(ErrorMessage = "Tiene que llenar el campo sueldo")]
+        public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
     }
 }

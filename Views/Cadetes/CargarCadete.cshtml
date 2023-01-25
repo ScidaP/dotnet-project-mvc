@@ -8,24 +8,29 @@
 </div>
 <form asp-controller="Cadetes" asp-action="CadeteAgregado" method="POST" class="w-50 mx-auto">
     <h2>Datos Cadete:</h2>
+    <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
-        <input name="Nombre" type="text" class="form-control" placeholder="Nombre">
+        <input type="text" asp-for="@Model.Nombre" class="form-control" placeholder="Nombre">
     </div>
+    <span asp-validation-for="@Model.Direccion" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
-        <input name="Direccion" type="text" class="form-control" placeholder="Dirección">
+        <input type="text" asp-for="@Model.Direccion" class="form-control" placeholder="Dirección">
     </div>
+    <span asp-validation-for="@Model.Telefono" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-        <input name="Telefono" type="text" class="form-control" placeholder="Teléfono">
+        <input type="text" asp-for="@Model.Telefono" class="form-control" placeholder="Teléfono">
     </div>
+    <span asp-validation-for="@Model.TotalACobrar1" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-money-check-dollar"></i></span>
-        <input name="TotalACobrar1" type="text" class="form-control" placeholder="Sueldo">
+        <input type="text" asp-for="@Model.TotalACobrar1" class="form-control" placeholder="Sueldo">
     </div>
+    <span asp-validation-for="@Model.Cadeteria" class="text-danger"></span>
     <h2 class="mt-3">Cadetería</h2>
-    <select class="form-select my-3" name="Cadeteria">
+    <select class="form-select my-3" asp-for="@Model.Cadeteria">
         @foreach (var cadeteria in Model.ListaCadeterias1) {
             <option value="@cadeteria.Id">@cadeteria.Nombre</option>
         }

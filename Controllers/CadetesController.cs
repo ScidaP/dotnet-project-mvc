@@ -84,10 +84,15 @@ public class CadetesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
-                repoCadetes.agregarCadete(nuevoCadete);
-                TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
-                return RedirectToAction("Info");
+                if (ModelState.IsValid) {
+                    Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
+                    repoCadetes.agregarCadete(nuevoCadete);
+                    TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
+                    return RedirectToAction("Info");
+                } else {
+                    NuevoCadeteVM.ListaCadeterias1 = repoCadeterias.GetTodasCadeterias();
+                    return View("CargarCadete", NuevoCadeteVM);
+                }
             } else {
                 return RedirectToAction("Index", "Home");
             }
