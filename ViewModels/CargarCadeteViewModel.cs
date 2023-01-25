@@ -28,7 +28,7 @@ namespace Tp4MvcNuevo.ViewModels {
         [Required(ErrorMessage = "Tiene que llenar el campo teléfono")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Número de teléfono no válido")]
         public long? Telefono { get => telefono; set => telefono = value; }
-        [Required(ErrorMessage = "Tiene que llenar el campo cadetería")]
+        [Required(ErrorMessage = "Tiene que llenar el campo cadetería. Si no hay ninguna cargada, cargue una antes.")]
         public int Cadeteria { get => cadeteria; set => cadeteria = value; }
         [Required(ErrorMessage = "Tiene que llenar el campo sueldo")]
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }

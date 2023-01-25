@@ -28,7 +28,7 @@ public class CadetesController : Controller {
             if (Rol == 1) {
                 return View(new CargarCadeteViewModel(repoCadeterias.GetTodasCadeterias()));
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -56,7 +56,7 @@ public class CadetesController : Controller {
                 List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
                 return View(new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias));
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -78,7 +78,7 @@ public class CadetesController : Controller {
                     return View("ActualizarCadete", CadeteVM);
                 }
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -100,7 +100,7 @@ public class CadetesController : Controller {
                     return View("CargarCadete", NuevoCadeteVM);
                 }
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -126,7 +126,7 @@ public class CadetesController : Controller {
                 TempData["Info"] = "Cadete N° " + id + " eliminado correctamente.";
                 return RedirectToAction("Info");
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }

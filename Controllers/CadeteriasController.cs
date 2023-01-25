@@ -24,7 +24,7 @@ public class CadeteriasController : Controller {
             if (Rol == 1) {
                 return View(new CadeteriaViewModel());
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -46,7 +46,7 @@ public class CadeteriasController : Controller {
                     return View("CargarCadeteria", cadVM);
                 }
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -61,7 +61,7 @@ public class CadeteriasController : Controller {
                 var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
                 return View(CadeteriaVM);
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -81,7 +81,7 @@ public class CadeteriasController : Controller {
                     return View("Actualizarcadeteria", CadVM);
                 }
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }
@@ -106,7 +106,7 @@ public class CadeteriasController : Controller {
                 TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
                 return RedirectToAction("Info");
             } else {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPermiso", "Home");
             }
         }
     }

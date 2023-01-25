@@ -8,18 +8,22 @@
 </div>
 <form asp-controller="Clientes" asp-action="ClienteAgregado" method="POST" class="w-50 mx-auto">
     <h2>Datos Cliente:</h2>
+    <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
         <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
     </div>
+    <span asp-validation-for="@Model.Direccion" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
         <input asp-for="@Model.Direccion" type="text" class="form-control" placeholder="Dirección">
     </div>
+    <span asp-validation-for="@Model.Telefono" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
         <input asp-for="@Model.Telefono" type="text" class="form-control" placeholder="Teléfono">
     </div>
+    <span asp-validation-for="@Model.ReferenciasDireccion" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-house"></i></span>
         <input asp-for="@Model.ReferenciasDireccion" type="text" class="form-control" placeholder="Referencia de Dirección">

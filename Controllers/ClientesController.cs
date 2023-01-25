@@ -18,7 +18,16 @@ public class ClientesController : Controller {
     }
 
     public IActionResult CargarClientes() {
-        return View();
+        int? Rol = HttpContext.Session.GetInt32("Rol");
+        if (Rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (Rol == 1) {
+                return View(new ClienteViewModel());
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
+        }
     }
 
     [HttpGet]
@@ -39,10 +48,18 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
-            _repo.agregarCliente(nuevoCliente);
-            TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
+                    _repo.agregarCliente(nuevoCliente);
+                    TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
+                    return RedirectToAction("Info");
+                } else {
+                    return View("CargarClientes", ClienteVM);
+                }
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
@@ -62,9 +79,13 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            _repo.eliminarCliente(id);
-            TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
-            return RedirectToAction("Info");
+            if (Rol == 1) {
+                _repo.eliminarCliente(id);
+                TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
+                return RedirectToAction("Info");
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
@@ -74,9 +95,13 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            var ClienteAActualizar = _repo.getCliente(id);
-            var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
-            return View(ActualizarClienteVM);
+            if (Rol == 1) {
+                var ClienteAActualizar = _repo.getCliente(id);
+                var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
+                return View(ActualizarClienteVM);
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
@@ -87,10 +112,18 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
-            _repo.actualizarCliente(clienteActualizado);
-            TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
-            return View("Info");
+            if (Rol == 1) {
+                if (ModelState.IsValid) {
+                    var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
+                    _repo.actualizarCliente(clienteActualizado);
+                    TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+                    return View("Info");
+                } else {
+                    return View("ActualizarCliente", ClienteVM);
+                }
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
