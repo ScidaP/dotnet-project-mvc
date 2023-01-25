@@ -62,15 +62,21 @@ public class CadetesController : Controller {
     }
 
     [HttpPost]
-    public IActionResult CadeteActualizado(int id, string nombre, string direccion, long telefono, int cadeteria, double sueldo) {
+    public IActionResult CadeteActualizado(ActualizarCadeteViewModel CadeteVM) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                repoCadetes.actualizarCadete(new Cadete(id, nombre, direccion, telefono, cadeteria, sueldo));
-                TempData["Info"] = "Cadete N° " + id + " actualizado correctamente.";
-                return RedirectToAction("Info");
+                if (ModelState.IsValid) {
+                    var cadete = mapper.Map<Cadete>(CadeteVM);
+                    repoCadetes.actualizarCadete(cadete);
+                    TempData["Info"] = "Cadete N° " + cadete.Id + " actualizado correctamente.";
+                    return RedirectToAction("Info");
+                } else {
+                    CadeteVM.ListaCadeterias1 = repoCadeterias.GetTodasCadeterias();
+                    return View("ActualizarCadete", CadeteVM);
+                }
             } else {
                 return RedirectToAction("Index", "Home");
             }

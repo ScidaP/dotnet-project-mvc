@@ -10,7 +10,9 @@ namespace Tp4MvcNuevo.ViewModels {
         private long? telefono;
         private int cadeteria;
         private double? TotalACobrar;
-        private List<Cadeteria> ListaCadeterias;
+        private List<Cadeteria>? ListaCadeterias;
+
+        public ActualizarCadeteViewModel(){}
 
         public ActualizarCadeteViewModel(Cadete cad, List<Cadeteria> ListaC) {
             id = cad.Id;
@@ -21,7 +23,7 @@ namespace Tp4MvcNuevo.ViewModels {
             TotalACobrar = cad.TotalACobrar1;
             ListaCadeterias = ListaC;
         }
-        public List<Cadeteria> ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
+        public List<Cadeteria>? ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
         public int Id { get => id; set => id = value; }
         [Required(ErrorMessage = "Tiene que llenar el campo nombre")]
         [StringLength(30)]
