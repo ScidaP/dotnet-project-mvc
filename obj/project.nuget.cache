@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5qId2fJttWx9Cq1jAeFbp5c9RShbDHHd8m8bhc51kRO2oIgp+ezxcHIiw9eTMZygx6ZtqowMAjlK/SCBQt9k+A==",
+  "dgSpecHash": "bGDTUqIiNCAyciQvF6mpX7eMV/LH55sMHiDCfjyE5yLzmDZeFXFT9cI/zlXg3Ef9eOE/32Sj7HslKhAxnQ+qXA==",
   "success": true,
   "projectFilePath": "E:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Tp4MvcNuevo.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\patri\\.nuget\\packages\\nlog\\5.1.1\\nlog.5.1.1.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
