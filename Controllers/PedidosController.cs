@@ -20,14 +20,15 @@ public class PedidosController : Controller
     private readonly IRepositorioPedidos repoPedidos;
     private readonly IRepositorioCadetes repoCadetes;
     private readonly IRepositorioClientes repoClientes;
-
     private readonly IMapper mapper;
+    private readonly ILogger<PedidosController> logger;
 
-    public PedidosController(IRepositorioPedidos repoPed, IRepositorioCadetes repoCad, IRepositorioClientes repoCli, IMapper mapp) {
+    public PedidosController(IRepositorioPedidos repoPed, IRepositorioCadetes repoCad, IRepositorioClientes repoCli, IMapper mapp, ILogger<PedidosController> log) {
         repoPedidos = repoPed;
         repoCadetes = repoCad;
         repoClientes = repoCli;
         mapper = mapp;
+        logger = log;
     }
     public IActionResult HacerPedido() {
         int? Rol = HttpContext.Session.GetInt32("Rol");

@@ -12,10 +12,12 @@ namespace Tp4MvcNuevo.Controllers;
 public class LogueoController : Controller {
     private readonly IRepositorioUsuarios repoUsuarios;
     private readonly IMapper mapper;
+    private readonly ILogger<LogueoController> logger;
 
-    public LogueoController(IMapper map, IRepositorioUsuarios repo) {
+    public LogueoController(IMapper map, IRepositorioUsuarios repo, ILogger<LogueoController> log) {
         repoUsuarios = repo;
         mapper = map;
+        logger = log;
     }
 
     public IActionResult IniciarSesion() {

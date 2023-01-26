@@ -11,10 +11,12 @@ public class ClientesController : Controller {
 
     private readonly IRepositorioClientes _repo;
     private readonly IMapper _mapper;
+    private readonly ILogger<ClientesController> logger;
 
-    public ClientesController (IRepositorioClientes repoC, IMapper mapper) {
+    public ClientesController (IRepositorioClientes repoC, IMapper mapper, ILogger<ClientesController> log) {
         _repo = repoC;
         _mapper = mapper;
+        logger = log;
     }
 
     public IActionResult CargarClientes() {

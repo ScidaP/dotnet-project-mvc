@@ -13,12 +13,14 @@ public class CadetesController : Controller {
     private readonly IRepositorioCadeterias repoCadeterias;
     private readonly IRepositorioPedidos repoPedidos;
     private readonly IMapper mapper;
+    private readonly ILogger<CadetesController> logger;
 
-    public CadetesController(IRepositorioCadetes repoCadetes1, IRepositorioCadeterias repoCadeterias1, IRepositorioPedidos repoPedidos1, IMapper mapp) {
+    public CadetesController(IRepositorioCadetes repoCadetes1, IRepositorioCadeterias repoCadeterias1, IRepositorioPedidos repoPedidos1, IMapper mapp, ILogger<CadetesController> log) {
         repoCadetes = repoCadetes1;
         repoCadeterias = repoCadeterias1;
         repoPedidos = repoPedidos1;
         mapper = mapp;
+        logger = log;
     }
     public IActionResult CargarCadete() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
