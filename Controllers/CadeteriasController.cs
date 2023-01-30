@@ -10,7 +10,7 @@ namespace Tp4MvcNuevo.Controllers;
 public class CadeteriasController : Controller {
     private readonly IRepositorioCadeterias repoCadeterias;
     private readonly IMapper mapper;
-    private readonly ILogger<CadeteriasController> logger;
+    static ILogger<CadeteriasController> logger;
 
     public CadeteriasController(IMapper map, IRepositorioCadeterias repo, ILogger<CadeteriasController> log) {
         repoCadeterias = repo;
