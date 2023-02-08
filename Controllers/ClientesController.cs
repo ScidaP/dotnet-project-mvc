@@ -39,9 +39,15 @@ public class ClientesController : Controller {
         if (Rol == null) { // Los únicos uqe no pueden acceder a esta página son los no logueados
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            Cliente cliente = _repo.getCliente(id);
-            MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
-            return View(clienteVM);
+            try {
+                Cliente cliente = _repo.getCliente(id);
+                MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
+                return View(clienteVM);
+            } catch (Exception e) {
+                logger.LogError("Error al mostrar cliente. -> " + e.ToString());
+                TempData["Info"] = "Error al mostrar cliente. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         }
     }
 
@@ -53,10 +59,16 @@ public class ClientesController : Controller {
         } else {
             if (Rol == 1) {
                 if (ModelState.IsValid) {
-                    var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
-                    _repo.agregarCliente(nuevoCliente);
-                    TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
-                    return RedirectToAction("Info");
+                    try {
+                        var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
+                        _repo.agregarCliente(nuevoCliente);
+                        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
+                        return RedirectToAction("Info");
+                    } catch (Exception e) {
+                        logger.LogError("Error al agregar cliente. -> " + e.ToString());
+                        TempData["Info"] = "Error al agregar cliente. Intente nuevamente. " + e.Message;
+                        return RedirectToAction("Info");
+                    }
                 } else {
                     return View("CargarClientes", ClienteVM);
                 }
@@ -71,8 +83,14 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            List<Cliente> ListaClientes = _repo.getTodosClientes();
-            return View(new ListarClientesViewModel(ListaClientes));
+            try {
+                List<Cliente> ListaClientes = _repo.getTodosClientes();
+                return View(new ListarClientesViewModel(ListaClientes));
+            } catch (Exception e) {
+                logger.LogError("Error al listar clientes. -> " + e.ToString());
+                TempData["Info"] = "Error al listar clientes. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         }
     }
 
@@ -83,9 +101,15 @@ public class ClientesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                _repo.eliminarCliente(id);
-                TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
-                return RedirectToAction("Info");
+                try {
+                    _repo.eliminarCliente(id);
+                    TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
+                    return RedirectToAction("Info");
+                } catch (Exception e) {
+                    logger.LogError("Error al eliminar cliente. -> " + e.ToString());
+                    TempData["Info"] = "Error al eliminar cliente. Intente nuevamente. -> " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -99,9 +123,15 @@ public class ClientesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                var ClienteAActualizar = _repo.getCliente(id);
-                var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
-                return View(ActualizarClienteVM);
+                try {
+                    var ClienteAActualizar = _repo.getCliente(id);
+                    var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
+                    return View(ActualizarClienteVM);
+                } catch (Exception e) {
+                    logger.LogError("Error al actualizar cliente. -> "+ e.ToString());
+                    TempData["Info"] = "Error al actualizar cliente. Intente nuevamente. ->" + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -117,10 +147,16 @@ public class ClientesController : Controller {
         } else {
             if (Rol == 1) {
                 if (ModelState.IsValid) {
-                    var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
-                    _repo.actualizarCliente(clienteActualizado);
-                    TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
-                    return View("Info");
+                    try {
+                        var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
+                        _repo.actualizarCliente(clienteActualizado);
+                        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+                        return View("Info");
+                    } catch (Exception e) {
+                        logger.LogError("Error al actualizar cliente. -> "+ e.ToString());
+                        TempData["Info"] = "Error al actualizar cliente. Intente nuevamente. ->" + e.Message;
+                        return RedirectToAction("Info");
+                    }
                 } else {
                     return View("ActualizarCliente", ClienteVM);
                 }
