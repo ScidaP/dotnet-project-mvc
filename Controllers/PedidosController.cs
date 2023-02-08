@@ -33,9 +33,15 @@ public class PedidosController : Controller
     public IActionResult HacerPedido() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1) { // Admin
-            List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
-            List<Cliente> ListaClientes = repoClientes.getTodosClientes();
-            return View(new HacerPedidoViewModel(ListaCadetes, ListaClientes));
+            try {
+                List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
+                List<Cliente> ListaClientes = repoClientes.getTodosClientes();
+                return View(new HacerPedidoViewModel(ListaCadetes, ListaClientes));
+            } catch (Exception e) {
+                logger.LogError("Error al cargar página. -> " + e.ToString());
+                TempData["Info"] = "Error al cargar página. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         } else {
             if (Rol == 2) {
                 return RedirectToAction("Index", "Home");
@@ -50,9 +56,15 @@ public class PedidosController : Controller
     public IActionResult MostrarPedido(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1 || Rol == 2) { // Admin y supervisor
-            Pedido ped = repoPedidos.getPedido(id);
-            var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
-            return View(mostrarPedidoVM);
+            try {
+                Pedido ped = repoPedidos.getPedido(id);
+                var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
+                return View(mostrarPedidoVM);
+            } catch (Exception e) {
+                logger.LogError("Error al mostrar pedidos. -> " + e.ToString());
+                TempData["Info"] = "Error al mostrar pedidos. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info"); 
+            }
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");
         }
@@ -65,15 +77,21 @@ public class PedidosController : Controller
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                if (ModelState.IsValid) {
-                    var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
-                    repoPedidos.agregarPedido(nuevoPedido);
-                    TempData["Info"] = "Pedido agregado con éxito";
+                try {
+                    if (ModelState.IsValid) {
+                        var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
+                        repoPedidos.agregarPedido(nuevoPedido);
+                        TempData["Info"] = "Pedido agregado con éxito";
+                        return RedirectToAction("Info");
+                    } else {
+                        HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                        HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+                        return View("HacerPedido", HacerPedidoVM);
+                    }
+                } catch (Exception e) {
+                    logger.LogError("Error desconocido. -> " + e.ToString());
+                    TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
                     return RedirectToAction("Info");
-                } else {
-                    HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-                    HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
-                    return View("HacerPedido", HacerPedidoVM);
                 }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
@@ -85,9 +103,15 @@ public class PedidosController : Controller
     public IActionResult EliminarPedido(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1) { // Admin
-            repoPedidos.eliminarPedido(id);
-            TempData["Info"] = "Pedido N°" + id + " eliminado con éxito.";
-            return RedirectToAction("Info");
+            try {
+                repoPedidos.eliminarPedido(id);
+                TempData["Info"] = "Pedido N°" + id + " eliminado con éxito.";
+                return RedirectToAction("Info");
+            } catch (Exception e) {
+                logger.LogError("Error al eliminar pedido. -> " + e.ToString());
+                TempData["Info"] = "Error al eliminar pedido. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         } else {
             if (Rol == 2) {
                 return RedirectToAction("ErrorPermiso", "Home");
@@ -100,10 +124,16 @@ public class PedidosController : Controller
     public IActionResult ListarPedidos() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1 || Rol == 2) { // Admin y cadete
-            List<Pedido> pedidos = repoPedidos.getTodosPedidos();
-            var ListarPedidosVM = new ListarPedidosViewModels();
-            ListarPedidosVM.pedidos = mapper.Map<List<Pedido>>(pedidos);
-            return View(ListarPedidosVM);
+            try {
+                List<Pedido> pedidos = repoPedidos.getTodosPedidos();
+                var ListarPedidosVM = new ListarPedidosViewModels();
+                ListarPedidosVM.pedidos = mapper.Map<List<Pedido>>(pedidos);
+                return View(ListarPedidosVM);
+            } catch (Exception e) {
+                logger.LogError("Error al listar pedidos. -> " + e.ToString());
+                TempData["Info"] = "Error al listar pedidos. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");
         }
@@ -116,11 +146,17 @@ public class PedidosController : Controller
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                var pedidoAActualizar = repoPedidos.getPedido(id);
-                var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
-                HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-                HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
-                return View(HacerPedidoVM);
+                try {
+                    var pedidoAActualizar = repoPedidos.getPedido(id);
+                    var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
+                    HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                    HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+                    return View(HacerPedidoVM);
+                } catch (Exception e) {
+                    logger.LogError("Error al actualizar pedido. -> " + e.ToString());
+                    TempData["Info"] = "Error al actualizar pedido. Intente nuevamente. -> " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -134,15 +170,21 @@ public class PedidosController : Controller
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                if (ModelState.IsValid) {
-                    var nuevoPedido = mapper.Map<Pedido>(VM);
-                    repoPedidos.actualizarPedido(nuevoPedido);
-                    TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+                try {
+                    if (ModelState.IsValid) {
+                        var nuevoPedido = mapper.Map<Pedido>(VM);
+                        repoPedidos.actualizarPedido(nuevoPedido);
+                        TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+                        return RedirectToAction("Info");
+                    } else {
+                        VM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                        VM.ListaClientes1 = repoClientes.getTodosClientes();
+                        return View("ActualizarPedido", VM);
+                    }
+                } catch (Exception e) {
+                    logger.LogError("Error al actualizar pedido. -> " + e.ToString());
+                    TempData["Info"] = "Error al actualizar pedido. Intente nuevamente. -> " + e.Message;
                     return RedirectToAction("Info");
-                } else {
-                    VM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-                    VM.ListaClientes1 = repoClientes.getTodosClientes();
-                    return View("ActualizarPedido", VM);
                 }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");

@@ -25,7 +25,7 @@ public class LogueoController : Controller {
     }
 
     [HttpPost]
-    public IActionResult SesionIniciada(IniciarSesionViewModel IniciarSesionVM) { // Funciona correctamente
+    public IActionResult SesionIniciada(IniciarSesionViewModel IniciarSesionVM) { 
         Usuario UsuarioNuevo = mapper.Map<Usuario>(IniciarSesionVM);
         int logueo = repoUsuarios.DatosCorrectos(UsuarioNuevo.Usuario1, UsuarioNuevo.Pass); // La vble "logueo" guarda -1 (si no encontró el usuario) o el id del usuario que haya encontrado.
         if (logueo > 0) {
