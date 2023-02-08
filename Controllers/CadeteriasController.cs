@@ -40,10 +40,16 @@ public class CadeteriasController : Controller {
         } else {
             if (Rol == 1) {
                 if (ModelState.IsValid) {
-                    var cad = mapper.Map<Cadeteria>(cadVM);
-                    repoCadeterias.AgregarCadeteria(cad);
-                    TempData["Info"] = "Cadetería " + cad.Nombre + " agregada con éxito.";
-                    return RedirectToAction("Info");
+                    try {
+                        var cad = mapper.Map<Cadeteria>(cadVM);
+                        repoCadeterias.AgregarCadeteria(cad);
+                        TempData["Info"] = "Cadetería " + cad.Nombre + " agregada con éxito.";
+                        return RedirectToAction("Info");
+                    } catch (Exception e) {
+                        logger.LogError("No se pudo agregar la cadetería a la DB -> " + e.ToString());
+                        TempData["Info"] = "Error cargando la cadetería. Intente nuevamente -> " + e.Message;
+                        return RedirectToAction("Info");
+                    }
                 } else {
                     return View("CargarCadeteria", cadVM);
                 }
@@ -59,9 +65,15 @@ public class CadeteriasController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                var CadeteriaAActualiar = repoCadeterias.GetCadeteria(id);
-                var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
-                return View(CadeteriaVM);
+                try {
+                    var CadeteriaAActualiar = repoCadeterias.GetCadeteria(id);
+                    var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
+                    return View(CadeteriaVM);
+                } catch (Exception e) {
+                    logger.LogError("Error al obtener todas las cadeterías. -> " + e.ToString());
+                    TempData["Info"] = "Error al cargar página. Intente nuevamente. -> " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -75,10 +87,16 @@ public class CadeteriasController : Controller {
         } else {
             if (Rol == 1) {
                 if (ModelState.IsValid) {
-                    var Cadeteria = mapper.Map<Cadeteria>(CadVM);
-                    repoCadeterias.ActualizarCadeteria(Cadeteria);
-                    TempData["Info"] = "Cadetería N° " + Cadeteria.Id + " actualizada correctamente.";
-                    return RedirectToAction("Info");
+                    try {
+                        var Cadeteria = mapper.Map<Cadeteria>(CadVM);
+                        repoCadeterias.ActualizarCadeteria(Cadeteria);
+                        TempData["Info"] = "Cadetería N° " + Cadeteria.Id + " actualizada correctamente.";
+                        return RedirectToAction("Info");
+                    } catch (Exception e) {
+                        logger.LogError("Error al actualizar la cadetería. --> " + e.ToString());
+                        TempData["Info"] = "Error al actualizar la cadetería. Intente nuevamente. -> " + e.Message;
+                        return RedirectToAction("Info");
+                    }
                 } else {
                     return View("Actualizarcadeteria", CadVM);
                 }
@@ -93,8 +111,14 @@ public class CadeteriasController : Controller {
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
-            return View(new ListarCadeteriasViewModel(ListaCadeterias));
+            try {
+                List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+                return View(new ListarCadeteriasViewModel(ListaCadeterias));
+            } catch (Exception e) {
+                logger.LogError("Error al listar cadeterías. -> " + e.ToString());
+                TempData["Info"] = "Error al listar las cadeterías. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         }
     }
 
@@ -104,9 +128,15 @@ public class CadeteriasController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (Rol == 1) {
-                repoCadeterias.EliminarCadeteria(id);
-                TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
-                return RedirectToAction("Info");
+                try {
+                    repoCadeterias.EliminarCadeteria(id);
+                    TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
+                    return RedirectToAction("Info");
+                } catch (Exception e) {
+                    logger.LogError("Error al eliminar cadetería. ->" + e.ToString());
+                    TempData["Info"] = "Error al eliminar la cadetería. Intente nuevamente. ->" + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -119,9 +149,15 @@ public class CadeteriasController : Controller {
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            Cadeteria cad = repoCadeterias.GetCadeteria(id);
-            MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
-            return View(cadVM);
+            try {
+                Cadeteria cad = repoCadeterias.GetCadeteria(id);
+                MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
+                return View(cadVM);
+            } catch (Exception e) {
+                logger.LogError("Error al mostrar cadetería. -> " + e.ToString());
+                TempData["Info"] = "Error el mostrar la cadetería. Intente nuevamente. -> " + e.Message;
+                return RedirectToAction("Info");
+            }
         }
     }
 
