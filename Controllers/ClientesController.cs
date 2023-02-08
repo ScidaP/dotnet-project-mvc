@@ -34,6 +34,7 @@ public class ClientesController : Controller {
 
     [HttpGet]
     public IActionResult MostrarCliente(int id) {
+        logger.LogInformation("Mostrando Clientes");
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) { // Los únicos uqe no pueden acceder a esta página son los no logueados
             return RedirectToAction("IniciarSesion", "Logueo");

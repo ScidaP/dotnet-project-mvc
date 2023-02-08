@@ -1,4 +1,8 @@
 using AutoMapper;
+using NLog;
+using NLog.Web;
+
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +22,10 @@ builder.Services.AddSession(opciones => {
     opciones.Cookie.HttpOnly = true;
     opciones.Cookie.IsEssential = true;
 });
+
+// NLOG
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
