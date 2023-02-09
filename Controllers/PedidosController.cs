@@ -32,7 +32,7 @@ public class PedidosController : Controller
     }
     public IActionResult HacerPedido() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1) { // Admin
+        if (Rol == 1 || Rol == 2) { // Admin y supervisor
             try {
                 List<Cadete> ListaCadetes = repoCadetes.getTodosCadetes();
                 List<Cliente> ListaClientes = repoClientes.getTodosClientes();
@@ -76,12 +76,14 @@ public class PedidosController : Controller
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) { // Admin y supervisor
                 try {
                     if (ModelState.IsValid) {
                         var nuevoPedido = mapper.Map<Pedido>(HacerPedidoVM);
                         repoPedidos.agregarPedido(nuevoPedido);
-                        TempData["Info"] = "Pedido agregado con éxito";
+                        var mensaje = "Pedido agregado con éxito";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } else {
                         HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
@@ -102,10 +104,12 @@ public class PedidosController : Controller
     [HttpGet]
     public IActionResult EliminarPedido(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1) { // Admin
+        if (Rol == 1 || Rol == 2) { // Admin y supervisor
             try {
                 repoPedidos.eliminarPedido(id);
-                TempData["Info"] = "Pedido N°" + id + " eliminado con éxito.";
+                var mensaje = "Pedido N°" + id + " eliminado con éxito.";
+                TempData["Info"] = mensaje;
+                logger.LogInformation(mensaje);
                 return RedirectToAction("Info");
             } catch (Exception e) {
                 logger.LogError("Error al eliminar pedido. -> " + e.ToString());
@@ -123,7 +127,7 @@ public class PedidosController : Controller
 
     public IActionResult ListarPedidos() {
         int? Rol = HttpContext.Session.GetInt32("Rol");
-        if (Rol == 1 || Rol == 2) { // Admin y cadete
+        if (Rol == 1 || Rol == 2) { // Admin y supervisor
             try {
                 List<Pedido> pedidos = repoPedidos.getTodosPedidos();
                 var ListarPedidosVM = new ListarPedidosViewModels();
@@ -145,7 +149,7 @@ public class PedidosController : Controller
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) { // Admin y supervisor
                 try {
                     var pedidoAActualizar = repoPedidos.getPedido(id);
                     var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
@@ -169,12 +173,14 @@ public class PedidosController : Controller
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) { // Admin y supervisor
                 try {
                     if (ModelState.IsValid) {
                         var nuevoPedido = mapper.Map<Pedido>(VM);
                         repoPedidos.actualizarPedido(nuevoPedido);
-                        TempData["Info"] = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+                        var mensaje = "Pedido N° " + nuevoPedido.Numero + " actualizado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } else {
                         VM.ListaCadetes1 = repoCadetes.getTodosCadetes();

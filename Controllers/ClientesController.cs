@@ -24,7 +24,7 @@ public class ClientesController : Controller {
         if (Rol == null) {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) {
                 return View(new ClienteViewModel());
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
@@ -57,12 +57,14 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) {
                 if (ModelState.IsValid) {
                     try {
                         var nuevoCliente = _mapper.Map<Cliente>(ClienteVM);
                         _repo.agregarCliente(nuevoCliente);
-                        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " agregado satisfactoriamente.";
+                        var mensaje = "Cliente " + ClienteVM.Nombre + " agregado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } catch (Exception e) {
                         logger.LogError("Error al agregar cliente. -> " + e.ToString());
@@ -100,10 +102,12 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) {
                 try {
                     _repo.eliminarCliente(id);
-                    TempData["Info"] = "Cliente N° " + id + " eliminado correctamente.";
+                    var mensaje = "Cliente N° " + id + " eliminado correctamente.";
+                    TempData["Info"] = mensaje;
+                    logger.LogInformation(mensaje);
                     return RedirectToAction("Info");
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cliente. -> " + e.ToString());
@@ -122,7 +126,7 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) {
                 try {
                     var ClienteAActualizar = _repo.getCliente(id);
                     var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
@@ -145,12 +149,14 @@ public class ClientesController : Controller {
         if (Rol == null) { 
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            if (Rol == 1) {
+            if (Rol == 1 || Rol == 2) {
                 if (ModelState.IsValid) {
                     try {
                         var clienteActualizado = _mapper.Map<Cliente>(ClienteVM);
                         _repo.actualizarCliente(clienteActualizado);
-                        TempData["Info"] = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+                        var mensaje = "Cliente " + ClienteVM.Nombre + " actualizado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return View("Info");
                     } catch (Exception e) {
                         logger.LogError("Error al actualizar cliente. -> "+ e.ToString());

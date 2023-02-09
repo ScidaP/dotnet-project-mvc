@@ -92,7 +92,9 @@ public class CadetesController : Controller {
                     if (ModelState.IsValid) {
                         var cadete = mapper.Map<Cadete>(CadeteVM);
                         repoCadetes.actualizarCadete(cadete);
-                        TempData["Info"] = "Cadete N° " + cadete.Id + " actualizado correctamente.";
+                        var mensaje = "Cadete " + cadete.Id + " actualizado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } else {
                         CadeteVM.ListaCadeterias1 = repoCadeterias.GetTodasCadeterias();
@@ -120,7 +122,9 @@ public class CadetesController : Controller {
                     if (ModelState.IsValid) {
                         Cadete nuevoCadete = mapper.Map<Cadete>(NuevoCadeteVM);
                         repoCadetes.agregarCadete(nuevoCadete);
-                        TempData["Info"] = "Cadete " + nuevoCadete.Nombre + " agregado satisfactoriamente.";
+                        var mensaje = "Cadete " + nuevoCadete.Nombre + " agregado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } else {
                         NuevoCadeteVM.ListaCadeterias1 = repoCadeterias.GetTodasCadeterias();
@@ -162,7 +166,9 @@ public class CadetesController : Controller {
             if (Rol == 1) {
                 try {
                     repoCadetes.eliminarCadete(id);
-                    TempData["Info"] = "Cadete N° " + id + " eliminado correctamente.";
+                    var mensaje = "Cadete N°" + id + " eliminado con éxito.";
+                    TempData["Info"] = mensaje;
+                    logger.LogInformation(mensaje);
                     return RedirectToAction("Info");
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cadete. -> " + e.ToString());

@@ -1,6 +1,10 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
 @model Tp4MvcNuevo.ViewModels.MostrarPedidoViewModel;
 @{
     ViewData["Title"] = "Home Page";
+    var Rol = HttpContextAccessor.HttpContext.Session.GetInt32("Rol");
 }
 
 <div class="text-center my-5">
@@ -14,7 +18,9 @@
             <th scope="col"> Estado </th>
             <th scope="col"> Cliente </th>
             <th scope="col"> Cadete </th>
-            <th scope="col" colspan="2"> Acciones </th>
+            @if (Rol == 1 || Rol == 2) {
+                <th scope="col" colspan="2"> Acciones </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -32,8 +38,10 @@
                 } else {
                     <td>@Model.getNombreCadete(Model.idCadete1)</td>
                 }
-                <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = Model.Numero})</td>
-                <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@Model.Numero">Eliminar</a></td>
+                @if (Rol == 1 || Rol == 2) {
+                    <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = Model.Numero})</td>
+                    <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@Model.Numero">Eliminar</a></td>
+                }
             </tr>    
     </tbody>
     

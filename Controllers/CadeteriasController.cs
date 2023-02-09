@@ -43,7 +43,9 @@ public class CadeteriasController : Controller {
                     try {
                         var cad = mapper.Map<Cadeteria>(cadVM);
                         repoCadeterias.AgregarCadeteria(cad);
-                        TempData["Info"] = "Cadetería " + cad.Nombre + " agregada con éxito.";
+                        var mensaje = "Cadetería " + cad.Nombre + " agregada con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
                         return RedirectToAction("Info");
                     } catch (Exception e) {
                         logger.LogError("No se pudo agregar la cadetería a la DB -> " + e.ToString());
@@ -90,7 +92,9 @@ public class CadeteriasController : Controller {
                     try {
                         var Cadeteria = mapper.Map<Cadeteria>(CadVM);
                         repoCadeterias.ActualizarCadeteria(Cadeteria);
-                        TempData["Info"] = "Cadetería N° " + Cadeteria.Id + " actualizada correctamente.";
+                        var mensaje = "Cadetería " + Cadeteria.Id + " actualizada con éxito.";
+                        logger.LogInformation(mensaje);
+                        TempData["Info"] = mensaje;
                         return RedirectToAction("Info");
                     } catch (Exception e) {
                         logger.LogError("Error al actualizar la cadetería. --> " + e.ToString());
@@ -130,7 +134,9 @@ public class CadeteriasController : Controller {
             if (Rol == 1) {
                 try {
                     repoCadeterias.EliminarCadeteria(id);
-                    TempData["Info"] = "Cadeteria N° " + id + " eliminada con éxito";
+                    var mensaje = "Cadetería " + id + " eliminada con éxito.";
+                    TempData["Info"] = mensaje;
+                    logger.LogInformation(mensaje);
                     return RedirectToAction("Info");
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cadetería. ->" + e.ToString());

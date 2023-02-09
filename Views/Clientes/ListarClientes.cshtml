@@ -21,7 +21,7 @@
             <th scope="col"> Teléfono </th>
             <th scope="col"> Referencia Dirección </th>
             <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
-            @if (Rol == 1) {
+            @if (Rol == 1 || Rol == 2) {
                 <th scope="col" colspan="2"> Acciones </th>
             }
         </tr>
@@ -37,7 +37,7 @@
                 <td> @item.Telefono</td>
                 <td> @item.ReferenciasDireccion</td>
                 <td> @Html.ActionLink("Ver", "MostrarCliente", "Clientes", new {id = item.Id})</td>
-                @if (Rol == 1) {
+                @if (Rol == 1 || Rol == 2) {
                     <td> @Html.ActionLink("Eliminar", "EliminarCliente", "Clientes", new {id = item.Id})</td>
                     <td> @Html.ActionLink("Actualizar", "ActualizarCliente", "Clientes", new {id = item.Id})</td>
                 }
@@ -47,7 +47,7 @@
     
 </table>
 
-@if (Rol == 1) {
+@if (Rol == 1 || Rol == 2) {
     <div class="text-center">
         <h5><a asp-controller="Clientes" asp-action="CargarClientes">--> Cargar clientes nuevos</a></h5>
     </div>

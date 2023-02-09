@@ -33,6 +33,7 @@ public class LogueoController : Controller {
             HttpContext.Session.SetInt32("Rol", UsuarioLogueado.Rol);
             HttpContext.Session.SetString("RolNombre", NombreRol(UsuarioLogueado.Rol));
             HttpContext.Session.SetString("Usuario", UsuarioLogueado.Usuario1);
+            logger.LogInformation("Usuario " + UsuarioLogueado.Nombre + " acaba de iniciar sesión");
             return RedirectToAction("Index", "Home");
         } else {
             return RedirectToAction("IniciarSesion", "Logueo");
@@ -41,6 +42,7 @@ public class LogueoController : Controller {
 
     public IActionResult CerrarSesion() {
         HttpContext.Session.Clear();
+        logger.LogInformation(HttpContext.Session.GetString("Usuario") + " acaba de cerrar sesión");
         return RedirectToAction("IniciarSesion","Logueo");
     }
 

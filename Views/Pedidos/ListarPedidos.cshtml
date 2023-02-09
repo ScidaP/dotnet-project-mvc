@@ -20,7 +20,7 @@
             <th scope="col"> Cliente </th>
             <th scope="col"> Cadete </th>
             <th scope="col"> <i class="fa-solid fa-eye"></i> </th>
-            @if (Rol == 1) {
+            @if (Rol == 1 || Rol == 2) {
                 <th scope="col"> Modificar </th>
                 <th scope="col"> <i class="fa-solid fa-trash ms-4"></i></th>
             }
@@ -45,7 +45,7 @@
                     <td> @Html.ActionLink(@item.getNombreCadete(item.idCadete1), "MostrarCadete", "Cadetes", new {id = item.idCadete1})</td>
                 }
                 <td> @Html.ActionLink("Ver", "MostrarPedido", "Pedidos", new {id = item.Numero})</td>
-                @if (Rol == 1) {
+                @if (Rol == 1 || Rol == 2) {
                     <td> @Html.ActionLink("Actualizar", "ActualizarPedido", "Pedidos", new {id = item.Numero})</td>
                     <td><a class="btn btn-danger btn-sm" href="/Pedidos/EliminarPedido?id=@item.Numero">Eliminar</a></td>
                 }
