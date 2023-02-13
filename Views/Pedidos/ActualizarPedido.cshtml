@@ -18,7 +18,7 @@
         <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-clipboard"></i></span>
         <input asp-for="@Model.Estado" type="text" class="form-control" placeholder="Estado" value="@Model.Estado">
     </div>
-    <h2 class="mt-3">Nombre Cliente</h2>
+    <h2 class="mt-3"><i class="fa-regular fa-user me-3"></i>Nombre Cliente</h2>
     <span asp-validation-for="@Model.idCliente1" class="text-danger"></span>
     <select class="form-select mt-1" asp-for="@Model.idCliente1">
         @foreach (var cliente in Model.ListaClientes1) {
@@ -29,7 +29,7 @@
             }
         }
     </select>
-    <h3 class="mt-3">Nombre Cadete</h3>
+    <h3 class="mt-3"><i class="fa-solid fa-pizza-slice me-3"></i>Nombre Cadete</h3>
     <span asp-validation-for="@Model.idCadete1" class="text-danger"></span>
     <select class="form-select mt-1" asp-for="@Model.idCadete1">
         @foreach (var cadete in Model.ListaCadetes1) {

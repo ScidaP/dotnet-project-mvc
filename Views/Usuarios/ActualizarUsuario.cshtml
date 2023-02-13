@@ -4,7 +4,7 @@
 }
                                                                                                                                                                         
 <div class="text-center">
-    <h1 class="display-4">Cargar Usuario</h1>
+    <h1 class="display-4">Modificar Usuario</h1>
 </div>
 <form asp-controller="Usuarios" asp-action="UsuarioActualizado" method="POST" class="w-50 mx-auto">
     <h2>Datos Usuario:</h2>
@@ -15,12 +15,12 @@
     </div>
     <span asp-validation-for="@Model.Usuario1" class="text-danger"></span>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
         <input asp-for="@Model.Usuario1" type="text" class="form-control" value="@Model.Usuario1">
     </div>
     <span asp-validation-for="@Model.Pass" class="text-danger"></span>
     <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
         <input asp-for="@Model.Pass" type="password" class="form-control" value="@Model.Pass">
     </div>
     <span asp-validation-for="@Model.Rol" class="text-danger"></span>

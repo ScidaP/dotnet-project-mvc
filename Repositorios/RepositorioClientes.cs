@@ -24,7 +24,7 @@ public class RepositorioClientes : IRepositorioClientes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM pedidos WHERE activo=1 AND id=$id";
+            command.CommandText = @"SELECT * FROM cliente WHERE activo=1 AND id=$id";
             command.Parameters.AddWithValue("$id", id);
             using (var reader = command.ExecuteReader()) {
                 res = reader.HasRows;
