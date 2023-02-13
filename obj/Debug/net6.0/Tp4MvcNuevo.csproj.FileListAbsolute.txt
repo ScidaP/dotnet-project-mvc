@@ -114,3 +114,7 @@ E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNu
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.dll
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 E:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\nlog.config
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+D:\Programacion y Fac\Facultad\Segundo\Taller de Lenguajes II\REPOS2022\Tp4MvcNuevo\bin\Debug\net6.0\NLog.Web.AspNetCore.dll

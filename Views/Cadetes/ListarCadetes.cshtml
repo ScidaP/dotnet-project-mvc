@@ -34,7 +34,7 @@
                 <td> @item.Nombre </td>
                 <td> @item.Direccion</td>
                 <td> @item.Telefono</td>
-                <td> @item.Cadeteria</td>
+                <td> @item.NombreCadeteria(item.Cadeteria)</td>
                 <td> @item.TotalACobrar1</td>
                 <td> @Html.ActionLink("Ver", "MostrarCadete", "Cadetes", new {id = item.Id})</td>
                 @if (Rol == 1) {

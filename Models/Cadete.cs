@@ -29,9 +29,21 @@ public class Cadete : Persona {
             Activo = 1;
         }
 
-        public override void MostrarDatos() {
-            base.MostrarDatos(); 
-            Console.WriteLine("Total a Cobrar: " + TotalACobrar1);
+        public string NombreCadeteria(int id) {
+            string nombre = "";
+            using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+                conexion.Open();
+                var command = conexion.CreateCommand();
+                command.CommandText = @"SELECT nombre FROM cadeteria WHERE id = $id";
+                command.Parameters.AddWithValue("$id", id);
+                using (var reader = command.ExecuteReader()) {
+                    while (reader.Read()) {
+                        nombre = reader.GetString(0);
+                    }
+                }
+                conexion.Close();
+            }
+            return nombre;
         }
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
         public int Cadeteria {get => cadeteria; set => cadeteria = value; }
