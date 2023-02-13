@@ -31,4 +31,17 @@ public class Usuario {
     public string Usuario1 { get => usuario; set => usuario = value; }
     public string Pass { get => pass; set => pass = value; }
     public int Rol { get => rol; set => rol = value; }
+
+    public string NombreRol(int idRol) {
+        string nombre = "";
+        switch (idRol) {
+            case 1:
+                nombre = "Administrador";
+                break;
+            case 2:
+                nombre = "Supervisor";
+                break;
+        }
+        return nombre;
+    }
 }

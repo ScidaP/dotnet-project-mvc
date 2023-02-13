@@ -21,19 +21,42 @@ public class UsuariosController : Controller {
     }
 
     public IActionResult AgregarUsuario() {
-        return View(new AgregarUsuarioViewModel());
+        if (HttpContext.Session.GetInt32("Rol") == 1) {
+            return View(new AgregarUsuarioViewModel());
+        } else {
+            return RedirectToAction("ErrorPermiso", "Home");
+        }
     }
 
+    [HttpPost]
     public IActionResult UsuarioAgregado(AgregarUsuarioViewModel VM) {
-        var nuevoUsuario = mapper.Map<Usuario>(VM);
-        repoUsuarios.AgregarUsuario(nuevoUsuario);
-        TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
-        return RedirectToAction("Info");
+        if (HttpContext.Session.GetInt32("Rol") == 1) {
+            var nuevoUsuario = mapper.Map<Usuario>(VM);
+            repoUsuarios.AgregarUsuario(nuevoUsuario);
+            TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
+            return RedirectToAction("Info");
+        } else {
+            return RedirectToAction("ErrorPermiso", "Home");
+        }
     }
 
     public IActionResult ListarUsuarios() {
-        var todosUsuarios = repoUsuarios.GetTodosUsuarios();
-        return View(new ListarUsuariosViewModel(todosUsuarios));
+        if (HttpContext.Session.GetInt32("Rol") == 1) {
+            var todosUsuarios = repoUsuarios.GetTodosUsuarios();
+            return View(new ListarUsuariosViewModel(todosUsuarios));
+        } else {
+            return RedirectToAction("ErrorPermiso", "Home");
+        }
+    }
+
+    public IActionResult EliminarUsuario(int id) {
+        if (HttpContext.Session.GetInt32("Rol") == 1) {
+            repoUsuarios.EliminarUsuario(id);
+            TempData["Info"] = "Usuario " + id + " eliminado con éxito.";
+            return View("Info");
+        } else {
+            return RedirectToAction("ErrorPermiso", "Home");
+        }
     }
 
     public IActionResult Info() {

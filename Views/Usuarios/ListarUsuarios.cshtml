@@ -30,7 +30,7 @@
                 <td scope="row"> @item.Id </td>
                 <td> @item.Nombre </td>
                 <td> @item.Usuario1</td>
-                <td> @item.Rol</td>
+                <td> @item.NombreRol(item.Rol)</td>
                 <td> @Html.ActionLink("Eliminar", "EliminarUsuario", "Usuarios", new {id = item.Id})</td>
                 <td> @Html.ActionLink("Actualizar", "ActualizarUsuario", "Usuarios", new {id = item.Id})</td>
             </tr>    

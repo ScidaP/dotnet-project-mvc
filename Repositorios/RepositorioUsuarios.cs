@@ -8,9 +8,21 @@ public interface IRepositorioUsuarios {
     public int DatosCorrectos(string? usuario, string? pass);
     public void AgregarUsuario(Usuario usuario);
     public List<Usuario> GetTodosUsuarios();
+    public void EliminarUsuario(int id);
 }
 
 public class RepositorioUsuarios : IRepositorioUsuarios {
+
+    public void EliminarUsuario(int id) {
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"DELETE FROM usuarios WHERE id=$id";
+            command.Parameters.AddWithValue("$id", id);
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+    }
 
     public void AgregarUsuario(Usuario usuario) {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

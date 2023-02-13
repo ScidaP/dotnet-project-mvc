@@ -13,18 +13,18 @@
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
         <input asp-for="@Model.Nombre" type="text" class="form-control" placeholder="Nombre">
     </div>
-    <span asp-validation-for="@Model.Usuario" class="text-danger"></span>
+    <span asp-validation-for="@Model.Usuario1" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
-        <input asp-for="@Model.Usuario" type="text" class="form-control" placeholder="Usuario">
+        <input asp-for="@Model.Usuario1" type="text" class="form-control" placeholder="Usuario">
     </div>
     <span asp-validation-for="@Model.Pass" class="text-danger"></span>
     <div class="input-group mb-3">
         <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
-        <input asp-for="@Model.Pass" type="text" class="form-control" placeholder="Pass">
+        <input asp-for="@Model.Pass" type="password" class="form-control" placeholder="Pass">
     </div>
     <span asp-validation-for="@Model.Rol" class="text-danger"></span>
-    <select class="form-select mt-1" asp-for="@Model.Rol">
+    <select class="form-select my-3" asp-for="@Model.Rol">
         <option value="1">Administrador</option>
         <option value="2">Supervisor</option>
     </select>

@@ -23,8 +23,14 @@ namespace Tp4MvcNuevo.ViewModels {
         }
 
         public string Nombre { get => nombre; set => nombre = value; }
-        public string Usuario { get => usuario; set => usuario = value; }
+
+        [Required(ErrorMessage = "El usuario es requerido")]
+        public string Usuario1 { get => usuario; set => usuario = value; }
+
+        [Required(ErrorMessage = "Tiene que llenar el campo contraseña")]
         public string Pass { get => pass; set => pass = value; }
+
+        [RegularExpression(@"^[1-2]{1}$", ErrorMessage = "Rol no válido")]
         public int Rol { get => rol; set => rol = value; }
     }
 }
