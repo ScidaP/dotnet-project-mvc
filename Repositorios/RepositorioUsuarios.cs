@@ -5,11 +5,43 @@ using Tp4MvcNuevo.Models;
 
 public interface IRepositorioUsuarios {
     public Usuario GetUsuario(int id);
-
     public int DatosCorrectos(string? usuario, string? pass);
+    public void AgregarUsuario(Usuario usuario);
+    public List<Usuario> GetTodosUsuarios();
 }
 
 public class RepositorioUsuarios : IRepositorioUsuarios {
+
+    public void AgregarUsuario(Usuario usuario) {
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"INSERT INTO usuarios(nombre, usuario, pass, rol) VALUES ($nombre, $usuario, $pass, $rol)";
+            command.Parameters.AddWithValue("$nombre", usuario.Nombre);
+            command.Parameters.AddWithValue("$usuario", usuario.Usuario1);
+            command.Parameters.AddWithValue("$pass", usuario.Pass);
+            command.Parameters.AddWithValue("$rol", usuario.Rol);
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+    }
+
+    public List<Usuario> GetTodosUsuarios() {
+        var ListaUsuarios = new List<Usuario>();
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"SELECT * FROM usuarios";
+            using (var reader = command.ExecuteReader()) {
+                while (reader.Read()) {
+                    var usuario = new Usuario(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4));
+                    ListaUsuarios.Add(usuario);
+                }
+            }
+            conexion.Close();
+        }
+        return ListaUsuarios;
+    }
     public Usuario GetUsuario(int id) {
         Usuario usuario = new Usuario();
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

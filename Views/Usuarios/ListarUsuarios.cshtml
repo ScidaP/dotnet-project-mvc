@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model Tp4MvcNuevo.ViewModels.ListarUsuariosViewModel;
+
+@{
+    var Rol = HttpContextAccessor.HttpContext.Session.GetInt32("Rol");
+    ViewData["Title"] = "Listado de clientes";
+}
+
+<div class="text-center titulo-listar">
+    <h1 class="display-4">Usuarios</h1>
+    <a  asp-controller="Usuarios" asp-action="ListarUsuarios"> Refrescar </a>
+</div>
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col"> ID </th>
+            <th scope="col"> Nombre </th>
+            <th scope="col"> Usuario </th>
+            <th scope="col"> Rol </th>
+            <th scope="col" colspan="2"> Acciones </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var item in Model.ListaUsuarios)
+            {
+            <tr>
+                <td scope="row"> @item.Id </td>
+                <td> @item.Nombre </td>
+                <td> @item.Usuario1</td>
+                <td> @item.Rol</td>
+                <td> @Html.ActionLink("Eliminar", "EliminarUsuario", "Usuarios", new {id = item.Id})</td>
+                <td> @Html.ActionLink("Actualizar", "ActualizarUsuario", "Usuarios", new {id = item.Id})</td>
+            </tr>    
+            }
+    </tbody>
+    
+</table>
+    <div class="text-center">
+        <h5><a asp-controller="Usuarios" asp-action="AgregarUsuario">--> Cargar usuarios nuevos</a></h5>
+    </div>

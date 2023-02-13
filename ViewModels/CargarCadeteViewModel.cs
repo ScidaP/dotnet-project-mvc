@@ -9,7 +9,8 @@ namespace Tp4MvcNuevo.ViewModels {
         private long? telefono;
         private int cadeteria;
         private double? TotalACobrar;
-        private List<Cadeteria> ListaCadeterias;
+        private int activo;
+        private List<Cadeteria>? ListaCadeterias;
         public CargarCadeteViewModel(List<Cadeteria> listaC) {
             ListaCadeterias = listaC;
         }
@@ -18,7 +19,7 @@ namespace Tp4MvcNuevo.ViewModels {
         }
 
         public CargarCadeteViewModel(){}
-        public List<Cadeteria> ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
+        public List<Cadeteria>? ListaCadeterias1 { get => ListaCadeterias; set => ListaCadeterias = value; }
         public int Id { get => id; set => id = value; }
         [Required(ErrorMessage = "Tiene que llenar el campo nombre")]
         [StringLength(30)]
@@ -32,5 +33,7 @@ namespace Tp4MvcNuevo.ViewModels {
         public int Cadeteria { get => cadeteria; set => cadeteria = value; }
         [Required(ErrorMessage = "Tiene que llenar el campo sueldo")]
         public double? TotalACobrar1 { get => TotalACobrar; set => TotalACobrar = value; }
+        [Required(ErrorMessage = "No se proporcionó el campo activo correctamente")]
+        public int Activo { get => activo; set => activo = value; }
     }
 }

@@ -10,6 +10,7 @@ namespace Tp4MvcNuevo.ViewModels {
         private int idCliente;
         private int idCadete;
         private string? estado;
+        private int activo;
 
         public HacerPedidoViewModel(){ListaCadetes = new List<Cadete>(); ListaClientes = new List<Cliente>();}
 
@@ -30,5 +31,6 @@ namespace Tp4MvcNuevo.ViewModels {
         [StringLength(25, ErrorMessage = "Máximo 25 caracteres")]
         public string? Estado { get => estado; set => estado = value; }
         public int Numero { get => numero; set => numero = value; }
+        public int Activo { get => activo; set => activo = value; }
     }
 }

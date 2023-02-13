@@ -35,7 +35,7 @@ public class RepositorioPedidos : IRepositorioPedidos {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"INSERT INTO pedidos(obs, cliente, estado, cadete) VALUES ($obs, $cliente, $estado, $cadete)";
+            command.CommandText = @"INSERT INTO pedidos(obs, cliente, estado, cadete, activo) VALUES ($obs, $cliente, $estado, $cadete, 1)";
             command.Parameters.AddWithValue("$obs", ped.Obs);
             command.Parameters.AddWithValue("$cliente", ped.idCliente1);
             command.Parameters.AddWithValue("$estado", ped.Estado);
@@ -61,7 +61,7 @@ public class RepositorioPedidos : IRepositorioPedidos {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM pedidos";
+            command.CommandText = @"SELECT * FROM pedidos WHERE activo=1";
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     var pedido = new Pedido(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), reader.GetInt32(4));

@@ -37,7 +37,7 @@ public class RepositorioClientes : IRepositorioClientes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"INSERT INTO cliente(nombre, direccion, telefono, referenciaDireccion) VALUES ($nombre, $direccion, $telefono, $ref)";
+            command.CommandText = @"INSERT INTO cliente(nombre, direccion, telefono, referenciaDireccion, activo) VALUES ($nombre, $direccion, $telefono, $ref, 1)";
             command.Parameters.AddWithValue("$nombre", cli.Nombre);
             command.Parameters.AddWithValue("$direccion", cli.Direccion);
             command.Parameters.AddWithValue("$telefono", cli.Telefono);
@@ -54,6 +54,11 @@ public class RepositorioClientes : IRepositorioClientes {
             command.CommandText = @"DELETE FROM cliente WHERE id=$id";
             command.Parameters.AddWithValue("$id", id);
             command.ExecuteNonQuery();
+            // Ahora cambio a inactivos a todos los pedidos que hizo/hace este cliente.
+            var command2 = conexion.CreateCommand();
+            command2.CommandText = @"UPDATE pedidos SET activo=0 WHERE cliente=$id";
+            command2.Parameters.AddWithValue("$id", id);
+            command2.ExecuteNonQuery();
             conexion.Close();
         }
     }
@@ -78,7 +83,7 @@ public class RepositorioClientes : IRepositorioClientes {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
             conexion.Open();
             var command = conexion.CreateCommand();
-            command.CommandText = @"SELECT * FROM cliente";
+            command.CommandText = @"SELECT * FROM cliente WHERE activo=1";
             using (var reader = command.ExecuteReader()) {
                 while (reader.Read()) {
                     var cliente = new Cliente(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt64(3), reader.GetString(4));
