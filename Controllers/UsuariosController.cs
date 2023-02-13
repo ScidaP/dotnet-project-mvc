@@ -31,10 +31,14 @@ public class UsuariosController : Controller {
     [HttpPost]
     public IActionResult UsuarioAgregado(AgregarUsuarioViewModel VM) {
         if (HttpContext.Session.GetInt32("Rol") == 1) {
-            var nuevoUsuario = mapper.Map<Usuario>(VM);
-            repoUsuarios.AgregarUsuario(nuevoUsuario);
-            TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
-            return RedirectToAction("Info");
+            if (ModelState.IsValid) {
+                var nuevoUsuario = mapper.Map<Usuario>(VM);
+                repoUsuarios.AgregarUsuario(nuevoUsuario);
+                TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
+                return RedirectToAction("Info");
+            } else {
+                return View("AgregarUsuario", VM);
+            }
         } else {
             return RedirectToAction("ErrorPermiso", "Home");
         }
