@@ -12,9 +12,9 @@ namespace Tp4MvcNuevo.Controllers;
 public class UsuariosController : Controller {
     private readonly IRepositorioUsuarios repoUsuarios;
     private readonly IMapper mapper;
-    private readonly ILogger<LogueoController> logger;
+    private readonly ILogger<UsuariosController> logger;
 
-    public UsuariosController(IMapper map, IRepositorioUsuarios repo, ILogger<LogueoController> log) {
+    public UsuariosController(IMapper map, IRepositorioUsuarios repo, ILogger<UsuariosController> log) {
         repoUsuarios = repo;
         mapper = map;
         logger = log;
@@ -32,10 +32,16 @@ public class UsuariosController : Controller {
     public IActionResult UsuarioAgregado(AgregarUsuarioViewModel VM) {
         if (HttpContext.Session.GetInt32("Rol") == 1) {
             if (ModelState.IsValid) {
-                var nuevoUsuario = mapper.Map<Usuario>(VM);
-                repoUsuarios.AgregarUsuario(nuevoUsuario);
-                TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
-                return RedirectToAction("Info");
+                try {
+                    var nuevoUsuario = mapper.Map<Usuario>(VM);
+                    repoUsuarios.AgregarUsuario(nuevoUsuario);
+                    TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
+                    return RedirectToAction("Info");
+                } catch (Exception e) {
+                    logger.LogError("Error desconocido. -> " + e.ToString());
+                    TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return View("AgregarUsuario", VM);
             }
@@ -46,8 +52,14 @@ public class UsuariosController : Controller {
 
     public IActionResult ListarUsuarios() {
         if (HttpContext.Session.GetInt32("Rol") == 1) {
-            var todosUsuarios = repoUsuarios.GetTodosUsuarios();
-            return View(new ListarUsuariosViewModel(todosUsuarios));
+            try {
+                var todosUsuarios = repoUsuarios.GetTodosUsuarios();
+                return View(new ListarUsuariosViewModel(todosUsuarios));
+            } catch (Exception e) {
+                logger.LogError("Error desconocido. -> " + e.ToString());
+                TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                return RedirectToAction("Info");
+            }
         } else {
             return RedirectToAction("ErrorPermiso", "Home");
         }
