@@ -40,7 +40,7 @@ public class ClientesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             try {
-                if (_repo.existeCliente(id)) {
+                if (_repo.existeCliente(id)) { // Validación para evitar requests con ids falsos por GET
                     Cliente cliente = _repo.getCliente(id);
                     MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
                     return View(clienteVM);
