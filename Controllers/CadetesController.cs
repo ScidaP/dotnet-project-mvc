@@ -48,9 +48,14 @@ public class CadetesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             try {
-                Cadete cad = repoCadetes.getCadete(id);
-                var MostrarCadeteVM = mapper.Map<MostrarCadeteViewModel>(cad);
-                return View(MostrarCadeteVM);
+                if (repoCadetes.existeCadete(id)) {
+                    Cadete cad = repoCadetes.getCadete(id);
+                    var MostrarCadeteVM = mapper.Map<MostrarCadeteViewModel>(cad);
+                    return View(MostrarCadeteVM);
+                } else {
+                    TempData["Info"] = "No existe el cadete solicitado.";
+                    return RedirectToAction("Info");
+                }
             } catch (Exception e) {
                 logger.LogError("Error al mostrar cadete. -> " + e.ToString());
                 TempData["Info"] = "Error al mostrar cadete. Intente nuevamente. -> " + e.Message;
@@ -67,9 +72,14 @@ public class CadetesController : Controller {
         } else {
             if (Rol == 1) {
                 try {
-                    Cadete CadeteAActualizar = repoCadetes.getCadete(id);
-                    List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
-                    return View(new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias));
+                    if (repoCadetes.existeCadete(id)) {
+                        Cadete CadeteAActualizar = repoCadetes.getCadete(id);
+                        List<Cadeteria> ListaCadeterias = repoCadeterias.GetTodasCadeterias();
+                        return View(new ActualizarCadeteViewModel(CadeteAActualizar, ListaCadeterias));
+                    } else {
+                        TempData["Info"] = "No existe el cadete solicitado.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al actualizar cadete. -> " + e.ToString());
                     TempData["Info"] = "Error al actualizar cadete. Intente nuevamente. -> " + e.Message;
@@ -165,11 +175,16 @@ public class CadetesController : Controller {
         } else {
             if (Rol == 1) {
                 try {
-                    repoCadetes.eliminarCadete(id);
-                    var mensaje = "Cadete N°" + id + " eliminado con éxito.";
-                    TempData["Info"] = mensaje;
-                    logger.LogInformation(mensaje);
-                    return RedirectToAction("Info");
+                    if (repoCadetes.existeCadete(id)) {
+                        repoCadetes.eliminarCadete(id);
+                        var mensaje = "Cadete N°" + id + " eliminado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
+                        return RedirectToAction("Info");
+                    } else {
+                        TempData["Info"] = "No existe el cadete solicitado.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cadete. -> " + e.ToString());
                     TempData["Info"] = "Error al eliminar cadete. Intente nuevamente. -> " + e.Message;

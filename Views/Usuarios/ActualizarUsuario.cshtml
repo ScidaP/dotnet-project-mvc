@@ -1,0 +1,38 @@
+@model Tp4MvcNuevo.ViewModels.ActualizarUsuarioViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+                                                                                                                                                                        
+<div class="text-center">
+    <h1 class="display-4">Cargar Usuario</h1>
+</div>
+<form asp-controller="Usuarios" asp-action="UsuarioActualizado" method="POST" class="w-50 mx-auto">
+    <h2>Datos Usuario:</h2>
+    <span asp-validation-for="@Model.Nombre" class="text-danger"></span>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-file-signature"></i></span>
+        <input asp-for="@Model.Nombre" type="text" class="form-control" value="@Model.Nombre">
+    </div>
+    <span asp-validation-for="@Model.Usuario1" class="text-danger"></span>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-location-dot"></i></span>
+        <input asp-for="@Model.Usuario1" type="text" class="form-control" value="@Model.Usuario1">
+    </div>
+    <span asp-validation-for="@Model.Pass" class="text-danger"></span>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone"></i></span>
+        <input asp-for="@Model.Pass" type="password" class="form-control" value="@Model.Pass">
+    </div>
+    <span asp-validation-for="@Model.Rol" class="text-danger"></span>
+    <select class="form-select my-3" asp-for="@Model.Rol">
+        @if (Model.Rol == 1) {
+            <option value="1" selected>Administrador</option>
+            <option value="2">Supervisor</option>
+        } else {
+            <option value="1">Administrador</option>
+            <option value="2" selected>Supervisor</option>
+        }
+    </select>
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id">
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

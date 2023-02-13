@@ -61,6 +61,7 @@ public class CadeteriasController : Controller {
         }
     }
 
+    [HttpGet]
     public IActionResult ActualizarCadeteria(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) {
@@ -68,9 +69,14 @@ public class CadeteriasController : Controller {
         } else {
             if (Rol == 1) {
                 try {
-                    var CadeteriaAActualiar = repoCadeterias.GetCadeteria(id);
-                    var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
-                    return View(CadeteriaVM);
+                    if (repoCadeterias.ExisteCadeteria(id)) {
+                        var CadeteriaAActualiar = repoCadeterias.GetCadeteria(id);
+                        var CadeteriaVM = mapper.Map<CadeteriaViewModel>(CadeteriaAActualiar);
+                        return View(CadeteriaVM);
+                    } else {
+                        TempData["Info"] = "No existe la cadetería solicitada.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al obtener todas las cadeterías. -> " + e.ToString());
                     TempData["Info"] = "Error al cargar página. Intente nuevamente. -> " + e.Message;
@@ -82,6 +88,7 @@ public class CadeteriasController : Controller {
         }
     }
 
+    [HttpPost]
     public IActionResult CadeteriaActualizada(CadeteriaViewModel CadVM) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) {
@@ -126,6 +133,7 @@ public class CadeteriasController : Controller {
         }
     }
 
+    [HttpGet]
     public IActionResult EliminarCadeteria(int id) {
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == null) {
@@ -133,11 +141,16 @@ public class CadeteriasController : Controller {
         } else {
             if (Rol == 1) {
                 try {
-                    repoCadeterias.EliminarCadeteria(id);
-                    var mensaje = "Cadetería " + id + " eliminada con éxito.";
-                    TempData["Info"] = mensaje;
-                    logger.LogInformation(mensaje);
-                    return RedirectToAction("Info");
+                    if (repoCadeterias.ExisteCadeteria(id)) {
+                        repoCadeterias.EliminarCadeteria(id);
+                        var mensaje = "Cadetería " + id + " eliminada con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
+                        return RedirectToAction("Info");
+                    } else {
+                        TempData["Info"] = "No existe la cadetería solicitada.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cadetería. ->" + e.ToString());
                     TempData["Info"] = "Error al eliminar la cadetería. Intente nuevamente. ->" + e.Message;
@@ -156,9 +169,14 @@ public class CadeteriasController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             try {
-                Cadeteria cad = repoCadeterias.GetCadeteria(id);
-                MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
-                return View(cadVM);
+                if (repoCadeterias.ExisteCadeteria(id)) {
+                    Cadeteria cad = repoCadeterias.GetCadeteria(id);
+                    MostrarCadeteriaViewModel cadVM = mapper.Map<MostrarCadeteriaViewModel>(cad);
+                    return View(cadVM);
+                } else {
+                    TempData["Info"] = "No existe la cadetería solicitada.";
+                    return RedirectToAction("Info");
+                }
             } catch (Exception e) {
                 logger.LogError("Error al mostrar cadetería. -> " + e.ToString());
                 TempData["Info"] = "Error el mostrar la cadetería. Intente nuevamente. -> " + e.Message;

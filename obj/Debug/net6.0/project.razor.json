@@ -18429,6 +18429,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\Usuarios\\ActualizarUsuario.cshtml",
+      "TargetPath": "Views\\Usuarios\\ActualizarUsuario.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\Programacion y Fac\\Facultad\\Segundo\\Taller de Lenguajes II\\REPOS2022\\Tp4MvcNuevo\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"

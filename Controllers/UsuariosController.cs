@@ -21,57 +21,117 @@ public class UsuariosController : Controller {
     }
 
     public IActionResult AgregarUsuario() {
-        if (HttpContext.Session.GetInt32("Rol") == 1) {
-            return View(new AgregarUsuarioViewModel());
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            return RedirectToAction("ErrorPermiso", "Home");
+            if (rol == 1) {
+                return View(new AgregarUsuarioViewModel());
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 
     [HttpPost]
     public IActionResult UsuarioAgregado(AgregarUsuarioViewModel VM) {
-        if (HttpContext.Session.GetInt32("Rol") == 1) {
-            if (ModelState.IsValid) {
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (rol == 1) {
+                if (ModelState.IsValid) {
+                    try {
+                        var nuevoUsuario = mapper.Map<Usuario>(VM);
+                        var mensaje = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
+                        repoUsuarios.AgregarUsuario(nuevoUsuario);
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
+                        return RedirectToAction("Info");
+                    } catch (Exception e) {
+                        logger.LogError("Error desconocido. -> " + e.ToString());
+                        TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                        return RedirectToAction("Info");
+                    }
+                } else {
+                    return View("AgregarUsuario", VM);
+                }
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
+        }
+    }
+
+    public IActionResult ListarUsuarios() {
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (rol == 1) {
                 try {
-                    var nuevoUsuario = mapper.Map<Usuario>(VM);
-                    repoUsuarios.AgregarUsuario(nuevoUsuario);
-                    TempData["Info"] = "Usuario " + nuevoUsuario.Nombre + " agregado con éxito.";
-                    return RedirectToAction("Info");
+                    var todosUsuarios = repoUsuarios.GetTodosUsuarios();
+                    return View(new ListarUsuariosViewModel(todosUsuarios));
                 } catch (Exception e) {
                     logger.LogError("Error desconocido. -> " + e.ToString());
                     TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
                     return RedirectToAction("Info");
                 }
             } else {
-                return View("AgregarUsuario", VM);
+                return RedirectToAction("ErrorPermiso", "Home");
             }
-        } else {
-            return RedirectToAction("ErrorPermiso", "Home");
         }
     }
-
-    public IActionResult ListarUsuarios() {
-        if (HttpContext.Session.GetInt32("Rol") == 1) {
-            try {
-                var todosUsuarios = repoUsuarios.GetTodosUsuarios();
-                return View(new ListarUsuariosViewModel(todosUsuarios));
-            } catch (Exception e) {
-                logger.LogError("Error desconocido. -> " + e.ToString());
-                TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
-                return RedirectToAction("Info");
-            }
-        } else {
-            return RedirectToAction("ErrorPermiso", "Home");
-        }
-    }
-
+    [HttpGet]
     public IActionResult EliminarUsuario(int id) {
-        if (HttpContext.Session.GetInt32("Rol") == 1) {
-            repoUsuarios.EliminarUsuario(id);
-            TempData["Info"] = "Usuario " + id + " eliminado con éxito.";
-            return View("Info");
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
         } else {
-            return RedirectToAction("ErrorPermiso", "Home");
+            if (rol == 1) {
+                repoUsuarios.EliminarUsuario(id);
+                TempData["Info"] = "Usuario " + id + " eliminado con éxito.";
+                return View("Info");
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
+        }
+    }
+    [HttpGet]
+
+    public IActionResult ActualizarUsuario(int id) {
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (rol == 1) {
+                var usuario = repoUsuarios.GetUsuario(id);
+                var ActualizarUsuarioVM = mapper.Map<ActualizarUsuarioViewModel>(usuario);
+                return View(ActualizarUsuarioVM);
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
+        }
+    }
+
+    public IActionResult UsuarioActualizado(ActualizarUsuarioViewModel VM) {
+        var rol = HttpContext.Session.GetInt32("Rol");
+        if (rol == null) {
+            return RedirectToAction("IniciarSesion", "Logueo");
+        } else {
+            if (rol == 1) {
+                if (ModelState.IsValid) {
+                    var usuario = mapper.Map<Usuario>(VM);
+                    repoUsuarios.ActualizarUsuario(usuario);
+                    var mensaje = "Usuario " + usuario.Usuario1 + " actualizado con éxito.";
+                    TempData["Info"] = mensaje;
+                    logger.LogInformation(mensaje);
+                    return View("Info");
+                } else {
+                    return View("ActualizarUsuario", VM);
+                }
+            } else {
+                return RedirectToAction("ErrorPermiso", "Home");
+            }
         }
     }
 

@@ -9,9 +9,25 @@ public interface IRepositorioUsuarios {
     public void AgregarUsuario(Usuario usuario);
     public List<Usuario> GetTodosUsuarios();
     public void EliminarUsuario(int id);
+    public void ActualizarUsuario(Usuario usuario);
 }
 
 public class RepositorioUsuarios : IRepositorioUsuarios {
+
+    public void ActualizarUsuario(Usuario usuario) { 
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"UPDATE usuarios SET nombre = $nombre, usuario = $usuario, pass = $pass, rol = $rol WHERE id = $id";
+            command.Parameters.AddWithValue("$nombre", usuario.Nombre);
+            command.Parameters.AddWithValue("$usuario", usuario.Usuario1);
+            command.Parameters.AddWithValue("$pass", usuario.Pass);
+            command.Parameters.AddWithValue("$rol", usuario.Rol);
+            command.Parameters.AddWithValue("$id", usuario.Id);
+            command.ExecuteNonQuery();
+            conexion.Close();
+        }
+    }
 
     public void EliminarUsuario(int id) {
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

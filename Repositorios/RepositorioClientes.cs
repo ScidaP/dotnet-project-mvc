@@ -13,9 +13,26 @@ public interface IRepositorioClientes {
     public void actualizarCliente(Cliente cli);
 
     public List<Cliente> getTodosClientes();
+
+    public bool existeCliente(int id);
 }
 
 public class RepositorioClientes : IRepositorioClientes {
+
+    public bool existeCliente(int id) {
+        bool res = false;
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"SELECT * FROM pedidos WHERE activo=1 AND id=$id";
+            command.Parameters.AddWithValue("$id", id);
+            using (var reader = command.ExecuteReader()) {
+                res = reader.HasRows;
+            }
+            conexion.Close();
+        }
+        return res;
+    }
     public Cliente getCliente(int id) {
         Cliente cliente = new Cliente();
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

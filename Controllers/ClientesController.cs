@@ -40,9 +40,14 @@ public class ClientesController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             try {
-                Cliente cliente = _repo.getCliente(id);
-                MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
-                return View(clienteVM);
+                if (_repo.existeCliente(id)) {
+                    Cliente cliente = _repo.getCliente(id);
+                    MostrarClienteViewModel clienteVM = _mapper.Map<MostrarClienteViewModel>(cliente);
+                    return View(clienteVM);
+                } else {
+                    TempData["Info"] = "No existe el cliente solicitado.";
+                    return RedirectToAction("Info");
+                }
             } catch (Exception e) {
                 logger.LogError("Error al mostrar cliente. -> " + e.ToString());
                 TempData["Info"] = "Error al mostrar cliente. Intente nuevamente. -> " + e.Message;
@@ -104,11 +109,16 @@ public class ClientesController : Controller {
         } else {
             if (Rol == 1 || Rol == 2) {
                 try {
-                    _repo.eliminarCliente(id);
-                    var mensaje = "Cliente N° " + id + " eliminado correctamente.";
-                    TempData["Info"] = mensaje;
-                    logger.LogInformation(mensaje);
-                    return RedirectToAction("Info");
+                    if (_repo.existeCliente(id)) {
+                        _repo.eliminarCliente(id);
+                        var mensaje = "Cliente N° " + id + " eliminado correctamente.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
+                        return RedirectToAction("Info");
+                    } else {
+                        TempData["Info"] = "No existe el cliente solicitado.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al eliminar cliente. -> " + e.ToString());
                     TempData["Info"] = "Error al eliminar cliente. Intente nuevamente. -> " + e.Message;
@@ -128,9 +138,14 @@ public class ClientesController : Controller {
         } else {
             if (Rol == 1 || Rol == 2) {
                 try {
-                    var ClienteAActualizar = _repo.getCliente(id);
-                    var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
-                    return View(ActualizarClienteVM);
+                    if (_repo.existeCliente(id)) {
+                        var ClienteAActualizar = _repo.getCliente(id);
+                        var ActualizarClienteVM = _mapper.Map<ClienteViewModel>(ClienteAActualizar);
+                        return View(ActualizarClienteVM);
+                    } else {
+                        TempData["Info"] = "No existe el cliente solicitado.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al actualizar cliente. -> "+ e.ToString());
                     TempData["Info"] = "Error al actualizar cliente. Intente nuevamente. ->" + e.Message;

@@ -9,9 +9,24 @@ public interface IRepositorioCadeterias {
     public void EliminarCadeteria(int id);
     public void ActualizarCadeteria(Cadeteria cad);
     public List<Cadeteria> GetTodasCadeterias();
+    public bool ExisteCadeteria(int id);
 }
 
 public class RepositorioCadeterias : IRepositorioCadeterias {
+    public bool ExisteCadeteria(int id) {
+        bool res = false;
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"SELECT * FROM cadeteria WHERE activo=1 AND id=$id";
+            command.Parameters.AddWithValue("$id", id);
+            using (var reader = command.ExecuteReader()) {
+                res = reader.HasRows;
+            }
+            conexion.Close();
+        }
+        return res;
+    }
     public Cadeteria GetCadeteria(int id) {
         Cadeteria cad = new Cadeteria();
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

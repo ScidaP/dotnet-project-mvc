@@ -57,9 +57,14 @@ public class PedidosController : Controller
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1 || Rol == 2) { // Admin y supervisor
             try {
-                Pedido ped = repoPedidos.getPedido(id);
-                var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
-                return View(mostrarPedidoVM);
+                if (repoPedidos.existePedido(id)) {
+                    Pedido ped = repoPedidos.getPedido(id);
+                    var mostrarPedidoVM = mapper.Map<MostrarPedidoViewModel>(ped);
+                    return View(mostrarPedidoVM);
+                } else {
+                    TempData["Info"] = "No existe el pedido solicitado.";
+                    return RedirectToAction("Info");
+                }
             } catch (Exception e) {
                 logger.LogError("Error al mostrar pedidos. -> " + e.ToString());
                 TempData["Info"] = "Error al mostrar pedidos. Intente nuevamente. -> " + e.Message;
@@ -106,11 +111,16 @@ public class PedidosController : Controller
         int? Rol = HttpContext.Session.GetInt32("Rol");
         if (Rol == 1 || Rol == 2) { // Admin y supervisor
             try {
-                repoPedidos.eliminarPedido(id);
-                var mensaje = "Pedido N°" + id + " eliminado con éxito.";
-                TempData["Info"] = mensaje;
-                logger.LogInformation(mensaje);
-                return RedirectToAction("Info");
+                if (repoPedidos.existePedido(id)) {
+                    repoPedidos.eliminarPedido(id);
+                    var mensaje = "Pedido N°" + id + " eliminado con éxito.";
+                    TempData["Info"] = mensaje;
+                    logger.LogInformation(mensaje);
+                    return RedirectToAction("Info");
+                } else {
+                    TempData["Info"] = "No existe el pedido solicitado.";
+                    return RedirectToAction("Info");
+                }
             } catch (Exception e) {
                 logger.LogError("Error al eliminar pedido. -> " + e.ToString());
                 TempData["Info"] = "Error al eliminar pedido. Intente nuevamente. -> " + e.Message;
@@ -151,11 +161,16 @@ public class PedidosController : Controller
         } else {
             if (Rol == 1 || Rol == 2) { // Admin y supervisor
                 try {
-                    var pedidoAActualizar = repoPedidos.getPedido(id);
-                    var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
-                    HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
-                    HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
-                    return View(HacerPedidoVM);
+                    if (repoPedidos.existePedido(id)) {
+                        var pedidoAActualizar = repoPedidos.getPedido(id);
+                        var HacerPedidoVM = mapper.Map<HacerPedidoViewModel>(pedidoAActualizar);
+                        HacerPedidoVM.ListaCadetes1 = repoCadetes.getTodosCadetes();
+                        HacerPedidoVM.ListaClientes1 = repoClientes.getTodosClientes();
+                        return View(HacerPedidoVM);
+                    } else {
+                        TempData["Info"] = "No existe el pedido solicitado.";
+                        return RedirectToAction("Info");
+                    }
                 } catch (Exception e) {
                     logger.LogError("Error al actualizar pedido. -> " + e.ToString());
                     TempData["Info"] = "Error al actualizar pedido. Intente nuevamente. -> " + e.Message;

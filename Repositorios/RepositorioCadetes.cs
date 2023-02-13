@@ -9,9 +9,24 @@ public interface IRepositorioCadetes {
     public void eliminarCadete(int id);
     public List<Cadete> getTodosCadetes();
     public void actualizarCadete(Cadete cad);
+    public bool existeCadete(int id);
 }
 
 public class RepositorioCadetes : IRepositorioCadetes {
+    public bool existeCadete(int id) {
+        bool res = false;
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"SELECT * FROM cadetes WHERE activo=1 AND id=$id";
+            command.Parameters.AddWithValue("$id", id);
+            using (var reader = command.ExecuteReader()) {
+                res = reader.HasRows;
+            }
+            conexion.Close();
+        }
+        return res;
+    }
     public Cadete getCadete(int id) {
         Cadete cadete = new Cadete();
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {

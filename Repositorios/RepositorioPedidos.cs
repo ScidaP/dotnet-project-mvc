@@ -11,9 +11,25 @@ public interface IRepositorioPedidos {
     public void actualizarPedido(Pedido ped);
     public int getIdCliente(long telefono); //Te devuelve el id (o null) de un cliente al buscarlo por su numero de telefono
     public int getIdCadete(string nombre);
+    public bool existePedido(int id);
 }
 
 public class RepositorioPedidos : IRepositorioPedidos {
+
+    public bool existePedido(int id) {
+        bool res = false;
+        using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
+            conexion.Open();
+            var command = conexion.CreateCommand();
+            command.CommandText = @"SELECT * FROM pedidos WHERE activo=1 AND nro=$id";
+            command.Parameters.AddWithValue("$id", id);
+            using (var reader = command.ExecuteReader()) {
+                res = reader.HasRows;
+            }
+            conexion.Close();
+        }
+        return res;
+    }
     public Pedido getPedido(int id) {
         Pedido Pedido = new Pedido();
         using (var conexion = new SQLiteConnection("Data Source=DB/basededatos.db")) {
