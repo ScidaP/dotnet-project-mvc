@@ -88,9 +88,15 @@ public class UsuariosController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (rol == 1) {
-                repoUsuarios.EliminarUsuario(id);
-                TempData["Info"] = "Usuario " + id + " eliminado con éxito.";
-                return View("Info");
+                try {
+                    repoUsuarios.EliminarUsuario(id);
+                    TempData["Info"] = "Usuario " + id + " eliminado con éxito.";
+                    return View("Info");
+                } catch (Exception e) {
+                    logger.LogError("Error desconocido. -> " + e.ToString());
+                    TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -104,9 +110,15 @@ public class UsuariosController : Controller {
             return RedirectToAction("IniciarSesion", "Logueo");
         } else {
             if (rol == 1) {
-                var usuario = repoUsuarios.GetUsuario(id);
-                var ActualizarUsuarioVM = mapper.Map<ActualizarUsuarioViewModel>(usuario);
-                return View(ActualizarUsuarioVM);
+                try {
+                    var usuario = repoUsuarios.GetUsuario(id);
+                    var ActualizarUsuarioVM = mapper.Map<ActualizarUsuarioViewModel>(usuario);
+                    return View(ActualizarUsuarioVM);
+                } catch (Exception e) {
+                    logger.LogError("Error desconocido. -> " + e.ToString());
+                    TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                    return RedirectToAction("Info");
+                }
             } else {
                 return RedirectToAction("ErrorPermiso", "Home");
             }
@@ -120,12 +132,18 @@ public class UsuariosController : Controller {
         } else {
             if (rol == 1) {
                 if (ModelState.IsValid) {
-                    var usuario = mapper.Map<Usuario>(VM);
-                    repoUsuarios.ActualizarUsuario(usuario);
-                    var mensaje = "Usuario " + usuario.Usuario1 + " actualizado con éxito.";
-                    TempData["Info"] = mensaje;
-                    logger.LogInformation(mensaje);
-                    return View("Info");
+                    try {
+                        var usuario = mapper.Map<Usuario>(VM);
+                        repoUsuarios.ActualizarUsuario(usuario);
+                        var mensaje = "Usuario " + usuario.Usuario1 + " actualizado con éxito.";
+                        TempData["Info"] = mensaje;
+                        logger.LogInformation(mensaje);
+                        return View("Info");
+                    } catch (Exception e) {
+                        logger.LogError("Error desconocido. -> " + e.ToString());
+                        TempData["Info"] = "Error desconocido. Intente nuevamente. -> + " + e.Message;
+                        return RedirectToAction("Info");
+                    }
                 } else {
                     return View("ActualizarUsuario", VM);
                 }
